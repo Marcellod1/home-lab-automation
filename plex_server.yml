@@ -1,7 +1,0 @@
-- name: Configure Plex Server
-  hosts: all
-  gather_facts: false
-  tasks:
-    - name: Verify Ansible Connectivity
-      ansible.builtin.ping:
-        data: working

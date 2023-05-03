@@ -1,0 +1,37 @@
+- name: Update apt cache
+  become: true
+  ansible.builtin.apt:
+    update_cache: true
+
+- name: Install packages required to add the Docker repo
+  become: true
+  ansible.builtin.apt:
+    update_cache: true
+    package:
+      - ca-certificates
+      - curl
+      - gnupg
+
+- name: Add Docker GPG apt Key
+  become: true
+  ansible.builtin.apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    keyring: /etc/apt/trusted.gpg.d/docker.gpg
+    state: present
+
+- name: Add Docker Repository
+  become: true
+  ansible.builtin.apt_repository:
+    repo: deb https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable
+    state: present
+
+- name: Install docker packages
+  become: true
+  ansible.builtin.apt:
+    update_cache: true
+    package:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+      - docker-buildx-plugin
+      - docker-compose-plugin

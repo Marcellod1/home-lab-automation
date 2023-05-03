@@ -1,0 +1,4 @@
+- name: Configure Nginx Proxy Manager
+  hosts: docker_server
+  roles:
+    - role: docker
