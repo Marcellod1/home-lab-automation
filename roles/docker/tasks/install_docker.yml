@@ -35,3 +35,9 @@
       - containerd.io
       - docker-buildx-plugin
       - docker-compose-plugin
+
+- name: Upgrade apt packages
+  become: true
+  ansible.builtin.apt:
+    update_cache: true
+    upgrade: true
