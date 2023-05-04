@@ -1,5 +1,5 @@
-- name: Configure Nginx Proxy Manager
-  hosts: docker_server
+- name: Install and run Nginx Proxy Manager
+  hosts: all
   vars:
     docker_user_pass: "{{ vault_docker_user_pass }}"
   roles:

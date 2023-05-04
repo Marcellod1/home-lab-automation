@@ -1,0 +1,6 @@
+- name: Install and configure Docker
+  hosts: all
+  vars:
+    docker_user_pass: "{{ vault_docker_user_pass }}"
+  roles:
+    - role: docker
