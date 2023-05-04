@@ -1,0 +1,14 @@
+# - name: Start nginx-proxy-manager container
+#   become: true
+#   community.docker.docker_container:
+#     name: nginx-proxy-manager
+#     image: jc21/nginx-proxy-manager:latest
+#     state: started
+#     restart: true
+#     ports:
+#       - 80:80
+#       - 81:81
+#       - 443:443
+#     devices:
+#       - ./data:/data
+#       - ./letsencrypt:/etc/letsencrypt

@@ -1,0 +1,14 @@
+argument_specs:
+  main:
+    options:
+      docker_user_pass:
+        type: str
+        required: true
+        description: The password to set on the 'docker' user created by this role.
+
+  install_docker:
+    options:
+      docker_user_pass:
+        type: str
+        required: true
+        description: The password to set on the 'docker' user created by this task.
