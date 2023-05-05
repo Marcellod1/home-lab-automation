@@ -1,7 +1,7 @@
 argument_specs:
   main:
     options:
-      docker_user_pass:
+      docker_directory:
         type: str
-        required: true
-        description: The password to set on the 'docker' user created by this role.
+        default: '/opt/docker'
+        description: The directory to create to store persistent container data.
