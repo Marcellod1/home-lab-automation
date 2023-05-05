@@ -9,6 +9,9 @@
 #       - 80:80
 #       - 81:81
 #       - 443:443
-#     devices:
-#       - ./data:/data
-#       - ./letsencrypt:/etc/letsencrypt
+#     mounts:
+#       - source: /var/tmp
+#         target: /var/tmp
+
+#       - "{{ docker_user_home_dir | regex_replace('/+$', '') }}/data:/data"
+#       - "{{ docker_user_home_dir | regex_replace('/+$', '') }}/letsencrypt:/etc/letsencrypt"

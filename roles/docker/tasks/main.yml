@@ -3,3 +3,6 @@
 
 - name: Import tasks from create_docker_user.yml
   ansible.builtin.import_tasks: create_docker_user.yml
+
+- name: Import tasks from create_docker_directory.yml
+  ansible.builtin.import_tasks: create_docker_directory.yml
