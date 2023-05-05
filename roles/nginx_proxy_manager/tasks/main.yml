@@ -6,6 +6,16 @@
     group: docker
     state: directory
   vars:
+    target_dir: "{{ docker_directory | regex_replace('/+$', '') }}/{{ container_name }}"
+
+- name: Create {{ target_dir }}
+  become: true
+  ansible.builtin.file:
+    path: "{{ target_dir }}"
+    mode: '775'
+    group: docker
+    state: directory
+  vars:
     target_dir: "{{ docker_directory | regex_replace('/+$', '') }}/{{ container_name }}/data"
 
 - name: Create {{ target_dir }}

@@ -19,6 +19,7 @@ MarkupSafe==2.1.2
 mdurl==0.1.2
 mypy-extensions==1.0.0
 packaging==23.1
+passlib==1.7.4
 pathspec==0.11.1
 platformdirs==3.5.0
 pycparser==2.21
