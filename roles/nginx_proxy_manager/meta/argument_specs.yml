@@ -1,0 +1,7 @@
+argument_specs:
+  main:
+    options:
+      docker_directory:
+        type: str
+        default: '/opt/docker'
+        description: The directory to create to store persistent container data.

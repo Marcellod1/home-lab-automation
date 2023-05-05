@@ -1,0 +1,13 @@
+- name: Create docker group
+  become: true
+  ansible.builtin.group:
+    name: docker
+    state: present
+
+- name: Create docker directory {{ docker_directory }}
+  become: true
+  ansible.builtin.file:
+    path: "{{ docker_directory | regex_replace('/+$', '') }}"
+    mode: '775'
+    group: docker
+    state: directory
