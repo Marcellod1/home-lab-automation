@@ -8,30 +8,10 @@
   vars:
     target_dir: "{{ docker_directory | regex_replace('/+$', '') }}/{{ container_name }}"
 
-- name: Create {{ target_dir }}
-  become: true
-  ansible.builtin.file:
-    path: "{{ target_dir }}"
-    mode: '775'
-    group: docker
-    state: directory
-  vars:
-    target_dir: "{{ docker_directory | regex_replace('/+$', '') }}/{{ container_name }}/data"
-
-- name: Create {{ target_dir }}
-  become: true
-  ansible.builtin.file:
-    path: "{{ target_dir }}"
-    mode: '775'
-    group: docker
-    state: directory
-  vars:
-    target_dir: "{{ docker_directory | regex_replace('/+$', '') }}/{{ container_name }}/letsencrypt"
-
-- name: Start nginx-proxy-manager container
+- name: Start container {{ container_name }}
   become: true
   community.docker.docker_container:
-    name: nginx-proxy-manager
+    name: "{{ container_name }}"
     image: jc21/nginx-proxy-manager:latest
     state: started
     restart: true
@@ -40,9 +20,7 @@
       - 81:81
       - 443:443
     mounts:
-      - source: "{{ docker_directory | regex_replace('/+$', '') }}/{{ container_name }}/data"
-        target: /data
-        type: bind
-      - source: "{{ docker_directory | regex_replace('/+$', '') }}/{{ container_name }}/letsencrypt"
-        target: /etc/letsencrypt
-        type: bind
+      - target: /data
+        type: volume
+      - target: /etc/letsencrypt
+        type: volume
