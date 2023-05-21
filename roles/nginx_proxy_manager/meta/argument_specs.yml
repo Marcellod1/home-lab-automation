@@ -5,8 +5,3 @@ argument_specs:
         type: str
         required: true
         description: The name for an existing or new nginx proxy manager container
-
-      docker_directory:
-        type: str
-        default: /opt/docker
-        description: The directory to create to store persistent container data.
