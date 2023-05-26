@@ -1,13 +1,3 @@
-- name: Create {{ target_dir }}
-  become: true
-  ansible.builtin.file:
-    path: "{{ target_dir }}"
-    mode: '775'
-    group: docker
-    state: directory
-  vars:
-    target_dir: "{{ docker_directory | regex_replace('/+$', '') }}/{{ container_name }}"
-
 - name: Start container {{ container_name }}
   become: true
   community.docker.docker_container:
@@ -20,7 +10,9 @@
       - 81:81
       - 443:443
     mounts:
-      - target: /data
+      - source: "{{ container_name }}_data"
+        target: /data
         type: volume
-      - target: /etc/letsencrypt
+      - source: "{{ container_name }}_letsencrypt"
+        target: /etc/letsencrypt
         type: volume
