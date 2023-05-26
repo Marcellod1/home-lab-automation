@@ -10,7 +10,9 @@
       - 81:81
       - 443:443
     mounts:
-      - target: /data
+      - source: "{{ container_name }}_data"
+        target: /data
         type: volume
-      - target: /etc/letsencrypt
+      - source: "{{ container_name }}_letsencrypt"
+        target: /etc/letsencrypt
         type: volume
