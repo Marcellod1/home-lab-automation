@@ -9,6 +9,8 @@
       - 25565:25565
     env:
       EULA: "TRUE"
+    tty: true
+    interactive: true
     mounts:
       - source: "{{ container_name }}_data"
         target: /data
