@@ -1,10 +1,4 @@
 - name: Install and run a Minecraft Server in Docker
-  hosts: all
-  vars:
-    docker_user_pass: "{{ vault_docker_user_pass }}"
+  hosts: minecraft
   roles:
     - role: minecraft_server
-      container_name: minecraft_server01
-      java_memory_gb: 4
-      uid: 9999
-      gid: 9999

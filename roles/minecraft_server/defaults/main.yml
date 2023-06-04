@@ -1,2 +1,1 @@
-docker_directory: /opt/docker
-java_memory_gb: 1
+mc_java_memory_gb: 1
