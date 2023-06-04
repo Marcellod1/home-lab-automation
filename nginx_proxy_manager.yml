@@ -1,7 +1,0 @@
-- name: Install and run Nginx Proxy Manager
-  hosts: all
-  vars:
-    docker_user_pass: "{{ vault_docker_user_pass }}"
-  roles:
-    - role: nginx_proxy_manager
-      container_name: nginx_proxy_manager01

@@ -1,0 +1,22 @@
+argument_specs:
+  main:
+    options:
+      mc_container_name:
+        type: str
+        required: true
+        description: The name for an existing or new Minecraft server container
+
+      mc_uid:
+        type: int
+        required: true
+        description: uid to set for the 'minecraft' user account, to run the server with
+
+      mc_gid:
+        type: int
+        required: true
+        description: gid to set for the 'minecraft' group, to run the server with
+
+      mc_jvm_memory_gb:
+        type: int
+        default: 1
+        description: Gigabyte value to set for JVM Xms and Xmx on server start. Defaults to 1GB

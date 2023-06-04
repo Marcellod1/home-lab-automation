@@ -1,0 +1,5 @@
+- name: Import tasks from create_minecraft_user.yml
+  ansible.builtin.import_tasks: create_minecraft_user.yml
+
+- name: Import tasks from start_minecraft_server.yml
+  ansible.builtin.import_tasks: start_minecraft_server.yml
