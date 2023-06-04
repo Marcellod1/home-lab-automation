@@ -1,1 +1,2 @@
 docker_directory: /opt/docker
+java_memory_gb: 1

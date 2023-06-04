@@ -5,3 +5,4 @@
   roles:
     - role: minecraft_server
       container_name: minecraft_server01
+      java_memory_gb: 4

@@ -5,3 +5,8 @@ argument_specs:
         type: str
         required: true
         description: The name for an existing or new Minecraft server container
+
+      java_memory_gb:
+        type: int
+        default: 1
+        description: Gigabyte value to set for JVM Xms and Xmx on server start. Defaults to 1GB
