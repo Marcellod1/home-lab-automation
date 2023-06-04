@@ -6,3 +6,5 @@
     - role: minecraft_server
       container_name: minecraft_server01
       java_memory_gb: 4
+      uid: 9999
+      gid: 9999

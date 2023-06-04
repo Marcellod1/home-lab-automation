@@ -1,8 +1,2 @@
 - name: Import tasks from install_docker.yml
   ansible.builtin.import_tasks: install_docker.yml
-
-- name: Import tasks from create_docker_user.yml
-  ansible.builtin.import_tasks: create_docker_user.yml
-
-- name: Import tasks from create_docker_directory.yml
-  ansible.builtin.import_tasks: create_docker_directory.yml

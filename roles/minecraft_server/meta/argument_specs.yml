@@ -6,6 +6,16 @@ argument_specs:
         required: true
         description: The name for an existing or new Minecraft server container
 
+      uid:
+        type: int
+        required: true
+        description: uid to set for the 'minecraft' user account, to run the server with
+
+      gid:
+        type: int
+        required: true
+        description: gid to set for the 'minecraft' group, to run the server with
+
       java_memory_gb:
         type: int
         default: 1

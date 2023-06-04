@@ -1,0 +1,21 @@
+- name: Start container {{ container_name }}
+  become: true
+  community.docker.docker_container:
+    name: "{{ container_name }}"
+    image: itzg/minecraft-server:latest
+    state: started
+    restart: true
+    ports:
+      - 25565:25565
+    mounts:
+      - source: "{{ container_name }}_data"
+        target: /data
+        type: volume
+    env:
+      EULA: "TRUE"
+      ALLOW_FLIGHT: "TRUE"
+      MEMORY: "{{ java_memory_gb | string }}G"
+      UID: "{{ uid | string }}"
+      GID: "{{ gid | string }}"
+    tty: true
+    interactive: true

@@ -1,0 +1,15 @@
+- name: Create minecraft group
+  become: true
+  ansible.builtin.group:
+    gid: "{{ gid }}"
+    name: minecraft
+    state: present
+
+- name: Create minecraft user
+  become: true
+  ansible.builtin.user:
+    uid: "{{ uid }}"
+    name: minecraft
+    shell: /bin/bash
+    group: minecraft
+    state: present
