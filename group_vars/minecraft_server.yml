@@ -1,0 +1,6 @@
+mc_container_name: minecraft_server01
+mc_uid: 9999
+mc_gid: 9999
+mc_seed: -1541124385142397106
+mc_jvm_memory_gb: 4
+mc_ops: ['EqualMarcello']
