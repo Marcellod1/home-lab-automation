@@ -36,3 +36,7 @@ argument_specs:
         type: str
         default: normal
         description: The difficulty to set on the server. Defaults to normal
+
+      mc_icon:
+        type: str
+        description: The icon to set for the server in the connections list
