@@ -23,5 +23,5 @@
       DIFFICULTY: "{{ mc_difficulty }}"
       OPS: "{{ mc_ops | join(',') }}"
       OVERRIDE_OPS: "TRUE"
-      ICON: "{{ mc_icon | default(omit, true) }}"
+      ICON: "{{ mc_icon_url | default(omit, true) }}"
       OVERRIDE_ICON: "TRUE"
