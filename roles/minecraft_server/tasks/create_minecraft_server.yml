@@ -5,6 +5,8 @@
     image: itzg/minecraft-server:latest
     state: started
     restart: true
+    tty: true
+    interactive: true
     ports:
       - 25565:25565
     mounts:
@@ -17,5 +19,9 @@
       MEMORY: "{{ mc_jvm_memory_gb | string }}G"
       UID: "{{ mc_uid | string }}"
       GID: "{{ mc_gid | string }}"
-    tty: true
-    interactive: true
+      SEED: "{{ mc_seed | string }}"
+      DIFFICULTY: "{{ mc_difficulty }}"
+      OPS: "{{ mc_ops | join(',') }}"
+      OVERRIDE_OPS: "TRUE"
+      ICON: "{{ mc_icon_url | default(omit, true) }}"
+      OVERRIDE_ICON: "TRUE"
