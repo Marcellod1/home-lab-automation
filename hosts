@@ -1,12 +1,2 @@
 [docker]
 docker.marcellodb.local
-
-[minecraft_server]
-docker.marcellodb.local
-
-[nginx_proxy_manager]
-docker.marcellodb.local
-
-[docker:children]
-minecraft_server
-nginx_proxy_manager

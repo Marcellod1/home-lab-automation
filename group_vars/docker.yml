@@ -5,3 +5,13 @@ ansible_become_pass: !vault |
           33626464326266366463646438386663653130303731346337373236663765636561313166623730
           3830356336376665360a336461316439306137393065623765666631373763363137316231353332
           3466
+
+npm_container_name: nginx_proxy_manager01
+
+mc_container_name: minecraft_server01
+mc_uid: 9999
+mc_gid: 9999
+mc_seed: -1541124385142397106
+mc_jvm_memory_gb: 4
+mc_ops: ['EqualMarcello']
+mc_icon_url: https://marcellod1.github.io/resources/img/server-icon.png
