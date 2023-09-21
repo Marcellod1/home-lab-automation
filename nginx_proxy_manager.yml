@@ -1,4 +1,4 @@
 - name: Install and run Nginx Proxy Manager
-  hosts: nginx_proxy_manager
+  hosts: docker
   roles:
     - role: nginx_proxy_manager
