@@ -1,0 +1,20 @@
+- name: Start container {{ pi_hole_container_name }}
+  become: true
+  community.docker.docker_container:
+    name: "{{ pi_hole_container_name }}"
+    image: pihole/pihole:latest
+    state: started
+    restart: true
+    network_mode: bridge
+    ports:
+      - 53:53/tcp
+      - 53:53/udp
+      # - 67:67/udp
+      - 82:80/tcp
+    mounts:
+      - source: "{{ pi_hole_container_name }}_dnsmasq"
+        target: /etc/dnsmasq.d
+        type: volume
+      - source: "{{ pi_hole_container_name }}_pihole"
+        target: /etc/pihole
+        type: volume

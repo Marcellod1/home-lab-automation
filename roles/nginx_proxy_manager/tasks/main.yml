@@ -5,6 +5,7 @@
     image: jc21/nginx-proxy-manager:latest
     state: started
     restart: true
+    network_mode: bridge
     ports:
       - 80:80
       - 81:81
