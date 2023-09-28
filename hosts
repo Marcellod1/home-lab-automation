@@ -1,2 +1,13 @@
 [docker]
-docker.marcellodb.local
+docker01.marcellodb.local
+docker02.marcellodb.local
+
+[nginx_proxy_manager]
+docker01.marcellodb.local
+
+[minecraft_server]
+docker01.marcellodb.local
+
+[pi_hole]
+docker01.marcellodb.local
+docker02.marcellodb.local

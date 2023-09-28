@@ -1,4 +1,4 @@
 - name: Install and run a Minecraft Server container on target hosts
-  hosts: docker
+  hosts: minecraft_server
   roles:
     - role: minecraft_server
