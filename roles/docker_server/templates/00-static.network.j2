@@ -1,0 +1,6 @@
+[Match]
+Name={{ ansible_default_ipv4.interface }}
+
+[Network]
+Address={{ ansible_default_ipv4.address }}/{{ ansible_default_ipv4.prefix }}
+Gateway={{ ansible_default_ipv4.gateway }}
