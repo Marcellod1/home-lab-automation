@@ -1,4 +1,4 @@
-[docker]
+[docker_server]
 docker01.marcellodb.local
 docker02.marcellodb.local
 
@@ -10,4 +10,3 @@ docker01.marcellodb.local
 
 [pi_hole]
 docker01.marcellodb.local
-docker02.marcellodb.local

@@ -1,0 +1,5 @@
+- name: Import tasks from configure_systemd_resolved.yml
+  ansible.builtin.import_tasks: configure_systemd_resolved.yml
+
+- name: Import tasks from install_docker.yml
+  ansible.builtin.import_tasks: install_docker.yml
