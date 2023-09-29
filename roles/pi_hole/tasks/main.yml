@@ -7,10 +7,9 @@
     restart: true
     network_mode: bridge
     ports:
-      - 53:53/tcp
-      - 53:53/udp
-      # - 67:67/udp
-      - 82:80/tcp
+      - "53:53"
+      - "67:67"
+      - "{{ pi_hole_admin_web_port }}:80"
     mounts:
       - source: "{{ pi_hole_container_name }}_dnsmasq"
         target: /etc/dnsmasq.d
@@ -18,3 +17,10 @@
       - source: "{{ pi_hole_container_name }}_pihole"
         target: /etc/pihole
         type: volume
+    env:
+      TZ: America/Edmonton
+      WEBPASSWORD: "{{ pi_hole_admin_web_password }}"
+    dns_servers:
+      - 127.0.0.1
+    capabilities:
+      - NET_ADMIN
