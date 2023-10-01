@@ -1,22 +1,5 @@
-- name: Start container {{ pi_hole_container_name }}
-  become: true
-  community.docker.docker_container:
-    name: "{{ pi_hole_container_name }}"
-    image: pihole/pihole:latest
-    state: started
-    restart: true
-    network_mode: host
-    mounts:
-      - source: "{{ pi_hole_container_name }}_dnsmasq"
-        target: /etc/dnsmasq.d
-        type: volume
-      - source: "{{ pi_hole_container_name }}_pihole"
-        target: /etc/pihole
-        type: volume
-    env:
-      TZ: America/Edmonton
-      WEBPASSWORD: "{{ pi_hole_admin_web_password }}"
-      WEB_PORT: "{{ pi_hole_admin_web_port | string }}"
-      DNSMASQ_LISTENING: all
-    capabilities:
-      - NET_ADMIN
+- name: Import tasks from create_pi_hole_user.yml
+  ansible.builtin.import_tasks: create_pi_hole_user.yml
+
+- name: Import tasks from create_pi_hole_server.yml
+  ansible.builtin.import_tasks: create_pi_hole_server.yml
