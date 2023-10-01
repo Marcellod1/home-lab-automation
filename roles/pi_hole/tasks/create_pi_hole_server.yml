@@ -22,3 +22,12 @@
       PIHOLE_GID: "{{ pi_hole_gid | string }}"
     capabilities:
       - NET_ADMIN
+
+- name: Template custom.list for local DNS entries
+  become: true
+  ansible.builtin.template:
+    src: custom.list.j2
+    dest: /var/lib/docker/volumes/{{ pi_hole_container_name }}_pihole/_data/custom.list
+    mode: '644'
+    owner: "{{ pi_hole_user }}"
+    group: "{{ pi_hole_user }}"
