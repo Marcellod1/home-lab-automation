@@ -14,12 +14,14 @@
         target: /etc/pihole
         type: volume
     env:
-      TZ: America/Edmonton
+      TZ: "{{ pi_hole_time_zone }}"
+      DNSMASQ_LISTENING: all
       WEBPASSWORD: "{{ pi_hole_admin_web_password }}"
       WEB_PORT: "{{ pi_hole_web_port | string }}"
-      DNSMASQ_LISTENING: all
       PIHOLE_UID: "{{ pi_hole_uid | string }}"
       PIHOLE_GID: "{{ pi_hole_gid | string }}"
+    dns_servers:
+      - 127.0.0.1
     capabilities:
       - NET_ADMIN
 
