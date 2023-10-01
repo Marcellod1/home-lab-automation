@@ -5,11 +5,7 @@
     image: pihole/pihole:latest
     state: started
     restart: true
-    network_mode: bridge
-    ports:
-      - "53:53"
-      - "67:67"
-      - "{{ pi_hole_admin_web_port }}:80"
+    network_mode: host
     mounts:
       - source: "{{ pi_hole_container_name }}_dnsmasq"
         target: /etc/dnsmasq.d
@@ -20,6 +16,8 @@
     env:
       TZ: America/Edmonton
       WEBPASSWORD: "{{ pi_hole_admin_web_password }}"
+      WEB_PORT: "{{ pi_hole_admin_web_port | string }}"
+      DNSMASQ_LISTENING: all
     dns_servers:
       - 127.0.0.1
     capabilities:

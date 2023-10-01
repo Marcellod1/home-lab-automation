@@ -1,5 +1,5 @@
 [docker_server]
-docker01.marcellodb.local 'ansible_host=10.0.17.20'
+docker01.marcellodb.local 'ansible_host=10.0.17.11'
 docker02.marcellodb.local 'ansible_host=10.0.17.21'
 
 [nginx_proxy_manager]
@@ -10,3 +10,4 @@ docker01.marcellodb.local
 
 [pi_hole]
 docker01.marcellodb.local
+docker02.marcellodb.local
