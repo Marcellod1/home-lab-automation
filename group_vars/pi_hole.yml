@@ -16,7 +16,7 @@ pi_hole_local_dns_records:
     ip_address: 10.0.17.55
   - domain_name: sc01.mdb.lan
     ip_address: 10.0.17.60
-  - domain_name: truenas.mdb.local
+  - domain_name: truenas.mdb.lan
     ip_address: 10.0.17.50
   - domain_name: truenas-idrac.mdb.lan
     ip_address: 10.0.17.51
