@@ -8,8 +8,8 @@
     network_mode: bridge
     ports:
       - 80:80
-      - "{{ npm_admin_web_port }}:81"
       - 443:443
+      - "{{ npm_web_port }}:81"
     mounts:
       - source: "{{ npm_container_name }}_data"
         target: /data

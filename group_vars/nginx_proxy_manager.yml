@@ -1,2 +1,2 @@
 npm_container_name: nginx_proxy_manager01
-npm_admin_web_port: 81
+npm_web_port: 81
