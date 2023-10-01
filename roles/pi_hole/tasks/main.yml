@@ -18,7 +18,5 @@
       WEBPASSWORD: "{{ pi_hole_admin_web_password }}"
       WEB_PORT: "{{ pi_hole_admin_web_port | string }}"
       DNSMASQ_LISTENING: all
-    dns_servers:
-      - 127.0.0.1
     capabilities:
       - NET_ADMIN

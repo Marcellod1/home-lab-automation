@@ -1,13 +1,13 @@
 [docker_server]
-docker01.marcellodb.local 'ansible_host=10.0.17.11'
-docker02.marcellodb.local 'ansible_host=10.0.17.21'
+docker01.mdb.lan
+docker02.mdb.lan
 
 [nginx_proxy_manager]
-docker01.marcellodb.local
+docker01.mdb.lan
 
 [minecraft_server]
-docker01.marcellodb.local
+docker01.mdb.lan
 
 [pi_hole]
-docker01.marcellodb.local
-docker02.marcellodb.local
+docker01.mdb.lan 
+docker02.mdb.lan 
