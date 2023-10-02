@@ -13,15 +13,15 @@ cd ansible-home-lab
 source ./setup.sh
 ```
 # Playbooks
-## setup_docker.yml
+## install_docker.yml
 Installs docker, associated plugins, and configures a docker user and group for a ready to go "out of the box" docker development experience.
 
 ```
-ansible-playbook setup_docker.yml -l <INVENTORY_HOST_OR_GROUP>
+ansible-playbook install_docker.yml -l <INVENTORY_HOST_OR_GROUP>
 ```
 
-## setup_nginx_proxy_manager.yml
+## nginx_proxy_manager.yml
 Installs and configures Docker, along with pulling down and running a containerized instance of Nginx Proxy Manger.
 ```
-ansible-playbook setup_nginx_proxy_manager.yml -l <INVENTORY_HOST_OR_GROUP>
+ansible-playbook nginx_proxy_manager.yml -l <INVENTORY_HOST_OR_GROUP>
 ```
