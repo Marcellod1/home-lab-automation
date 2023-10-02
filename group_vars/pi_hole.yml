@@ -30,3 +30,5 @@ pi_hole_local_dns_records:
     ip_address: 10.0.17.20
   - domain_name: ap01.mdb.lab
     ip_address: 10.0.17.5
+  - domain_name: edgerouterx.mdb.lab
+    ip_address: 10.0.17.5
