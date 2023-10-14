@@ -1,0 +1,25 @@
+argument_specs:
+  main:
+    options:
+      pi_hole_container_name:
+        type: str
+        required: true
+      pi_hole_web_port:
+        type: str
+        required: true
+      pi_hole_admin_web_password:
+        type: str
+        required: true
+      pi_hole_uid:
+        type: str
+        required: true
+      pi_hole_gid:
+        type: str
+        required: true
+      pi_hole_time_zone:
+        type: str
+        default: America/Edmonton
+      pi_hole_local_dns_records:
+        type: list
+        elements: dict
+        default: []

@@ -5,10 +5,11 @@
     image: jc21/nginx-proxy-manager:latest
     state: started
     restart: true
+    network_mode: bridge
     ports:
       - 80:80
-      - 81:81
       - 443:443
+      - "{{ npm_web_port }}:81"
     mounts:
       - source: "{{ npm_container_name }}_data"
         target: /data
