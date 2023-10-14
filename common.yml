@@ -1,0 +1,4 @@
+- name: Run common tasks on remote hosts
+  hosts: docker_server
+  roles:
+    - role: common

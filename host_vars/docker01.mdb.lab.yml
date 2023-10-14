@@ -6,6 +6,7 @@ ansible_become_pass: !vault |
           3830356336376665360a336461316439306137393065623765666631373763363137316231353332
           3466
 
-dns_servers:
-  - 127.0.0.1
-  - 8.8.8.8
+nfs_server_hostname: truenas.mdb.lab
+nfs_mounts:
+  - src: "{{ nfs_server_hostname }}:/backups"
+    dest: /mnt/backup

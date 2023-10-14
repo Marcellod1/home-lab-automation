@@ -1,0 +1,14 @@
+- name: Installed required packages
+  become: true
+  apt:
+    name:
+      - nfs-common
+    state: present
+
+- name: Ensure that nfs mount points are created
+  become: true
+  file:
+    path: "{{ item.dest }}"
+    state: directory
+  with_items: "{{ nfs_mounts }}"
+  
