@@ -5,6 +5,7 @@
     image: itzg/minecraft-server:latest
     state: started
     restart: true
+    restart_policy: always
     tty: true
     interactive: true
     ports:

@@ -5,6 +5,7 @@
     image: pihole/pihole:latest
     state: started
     restart: true
+    restart_policy: always
     network_mode: host
     mounts:
       - source: "{{ pi_hole_container_name }}_dnsmasq"
