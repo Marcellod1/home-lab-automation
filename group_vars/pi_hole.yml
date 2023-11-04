@@ -28,7 +28,7 @@ pi_hole_local_dns_records:
     ip_address: 10.0.17.10
   - domain_name: pve02.mdb.lab
     ip_address: 10.0.17.20
-  - domain_name: ap01.mdb.lab
+  - domain_name: lab-ap01.mdb.lab
     ip_address: 10.0.17.110
   - domain_name: edgerouterx.mdb.lab
     ip_address: 10.0.17.1
