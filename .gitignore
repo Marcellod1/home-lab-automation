@@ -161,3 +161,7 @@ cython_debug/
 
 # Ansible Vault secrets files
 vaultpass.txt
+
+# Visual Studio Code Configs
+.vscode
+.vscode/*

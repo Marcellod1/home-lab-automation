@@ -1,7 +1,7 @@
 - name: Create minecraft group
   become: true
   ansible.builtin.group:
-    gid: "{{ mc_gid }}"
+    gid: "{{ mc_uid }}"
     name: minecraft
     state: present
 

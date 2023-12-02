@@ -1,4 +1,5 @@
 mc_seed: 1785852800490497919
 mc_java_memory_gb: 2
 mc_ops: []
+mc_port: 25565
 mc_difficulty: normal

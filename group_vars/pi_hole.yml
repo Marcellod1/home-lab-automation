@@ -1,4 +1,6 @@
 pi_hole_container_name: pi_hole01
+pi_hole_web_port: 82
+pi_hole_uid: 9998
 pi_hole_admin_web_password: !vault |
           $ANSIBLE_VAULT;1.1;AES256
           33313030336365663735613331663263623734373830343534663134363636613139633061373261
@@ -6,10 +8,7 @@ pi_hole_admin_web_password: !vault |
           36323264333464663430653839663735393331356261346238363532303534383132396232396531
           6565306431373164620a343262326431616339613136363265636435636438666361353732333461
           65336637613033346538353235306666346139383266626230353932383064623662
-pi_hole_web_port: 82
-pi_hole_uid: 9998
-pi_hole_gid: 9998
-pi_hole_local_dns_records:
+pi_hole_dns_records:
   - domain_name: firelink.mdb.lab
     ip_address: 10.0.17.130
   - domain_name: plex.mdb.lab

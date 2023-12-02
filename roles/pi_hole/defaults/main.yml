@@ -1,2 +1,2 @@
-pi_hole_local_dns_records: []
 pi_hole_time_zone: America/Edmonton
+pi_hole_dns_records: []

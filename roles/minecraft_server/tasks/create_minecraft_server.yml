@@ -5,11 +5,12 @@
     image: itzg/minecraft-server:latest
     state: started
     restart: true
+    network_mode: bridge
     restart_policy: always
     tty: true
     interactive: true
     ports:
-      - 25565:25565
+      - '{{ mc_port }}:25565'
     mounts:
       - source: "{{ mc_container_name }}_data"
         target: /data
@@ -19,7 +20,7 @@
       ALLOW_FLIGHT: "TRUE"
       MEMORY: "{{ mc_jvm_memory_gb | string }}G"
       UID: "{{ mc_uid | string }}"
-      GID: "{{ mc_gid | string }}"
+      GID: "{{ mc_uid | string }}"
       SEED: "{{ mc_seed | string }}"
       DIFFICULTY: "{{ mc_difficulty }}"
       OPS: "{{ mc_ops | join(',') }}"

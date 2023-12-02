@@ -1,14 +1,14 @@
-- name: Create "{{ pi_hole_user }}" group
+- name: Create pihole group
   become: true
   ansible.builtin.group:
     gid: "{{ pi_hole_uid }}"
     name: pihole
     state: present
 
-- name: Create "{{ pi_hole_user }}" user
+- name: Create pihole user
   become: true
   ansible.builtin.user:
-    uid: "{{ pi_hole_gid }}"
+    uid: "{{ pi_hole_uid }}"
     name: pihole
     shell: /bin/bash
     group: pihole

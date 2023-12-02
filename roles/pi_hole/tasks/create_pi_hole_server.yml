@@ -15,14 +15,12 @@
         target: /etc/pihole
         type: volume
     env:
-      TZ: "{{ pi_hole_time_zone }}"
       DNSMASQ_LISTENING: all
+      TZ: "{{ pi_hole_time_zone }}"
       WEBPASSWORD: "{{ pi_hole_admin_web_password }}"
       WEB_PORT: "{{ pi_hole_web_port | string }}"
       PIHOLE_UID: "{{ pi_hole_uid | string }}"
-      PIHOLE_GID: "{{ pi_hole_gid | string }}"
-    dns_servers:
-      - 127.0.0.1
+      PIHOLE_GID: "{{ pi_hole_uid | string }}"
     capabilities:
       - NET_ADMIN
 
@@ -32,5 +30,5 @@
     src: custom.list.j2
     dest: /var/lib/docker/volumes/{{ pi_hole_container_name }}_pihole/_data/custom.list
     mode: '644'
-    owner: "{{ pi_hole_user }}"
-    group: "{{ pi_hole_user }}"
+    owner: pihole
+    group: pihole
