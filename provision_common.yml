@@ -1,0 +1,4 @@
+- name: Run common configuration steps
+  hosts: all
+  roles:
+    - role: common

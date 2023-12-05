@@ -1,4 +1,5 @@
 - name: Install and run Nginx Proxy Manager container on target hosts
   hosts: nginx_proxy_manager
   roles:
+    - role: common
     - role: nginx_proxy_manager
