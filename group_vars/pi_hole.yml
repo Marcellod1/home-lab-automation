@@ -13,6 +13,8 @@ pi_hole_dns_records:
     ip_address: 10.0.17.130
   - domain_name: plex.mdb.lab
     ip_address: 10.0.17.55
+  - domain_name: sftp.mdb.lab
+    ip_address: 10.0.17.56
   - domain_name: sc01.mdb.lab
     ip_address: 10.0.17.60
   - domain_name: truenas.mdb.lab
@@ -30,4 +32,6 @@ pi_hole_dns_records:
   - domain_name: lab-ap01.mdb.lab
     ip_address: 10.0.17.110
   - domain_name: lab-gw01.mdb.lab
+    ip_address: 10.0.17.1
+  - domain_name: sftp.mdb.lab
     ip_address: 10.0.17.1
