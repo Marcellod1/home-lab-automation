@@ -12,19 +12,19 @@ pi_hole_dns_records:
   - domain_name: firelink.mdb.lab
     ip_address: 10.0.17.130
   - domain_name: plex.mdb.lab
-    ip_address: 10.0.17.55
+    ip_address: 10.0.17.100
   - domain_name: sftp.mdb.lab
-    ip_address: 10.0.17.56
+    ip_address: 10.0.17.115
   - domain_name: sc01.mdb.lab
-    ip_address: 10.0.17.60
+    ip_address: 10.0.17.105
   - domain_name: truenas.mdb.lab
     ip_address: 10.0.17.50
   - domain_name: truenas-idrac.mdb.lab
     ip_address: 10.0.17.51
   - domain_name: docker01.mdb.lab
-    ip_address: 10.0.17.11
+    ip_address: 10.0.17.15
   - domain_name: docker02.mdb.lab
-    ip_address: 10.0.17.21
+    ip_address: 10.0.17.25
   - domain_name: pve01.mdb.lab
     ip_address: 10.0.17.10
   - domain_name: pve02.mdb.lab
@@ -32,6 +32,4 @@ pi_hole_dns_records:
   - domain_name: lab-ap01.mdb.lab
     ip_address: 10.0.17.110
   - domain_name: lab-gw01.mdb.lab
-    ip_address: 10.0.17.1
-  - domain_name: sftp.mdb.lab
     ip_address: 10.0.17.1

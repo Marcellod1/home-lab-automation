@@ -1,13 +1,23 @@
-[docker]
+[docker01]
 docker01.mdb.lab
+
+[docker02]
 docker02.mdb.lab
 
-[nginx_proxy_manager]
-docker01.mdb.lab
+[docker:children]
+docker01
+docker02
 
-[minecraft_server]
-docker01.mdb.lab
+[nginx_proxy_manager:children]
+docker01
 
-[pi_hole]
-docker01.mdb.lab 
-docker02.mdb.lab 
+[minecraft_server:children]
+docker01
+
+[pi_hole:children]
+docker01
+docker02
+
+[dns:children]
+docker01
+docker02
