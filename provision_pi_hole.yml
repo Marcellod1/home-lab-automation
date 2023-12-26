@@ -1,5 +1,4 @@
 - name: Install and run a pi hole container on target hosts
   hosts: pi_hole
   roles:
-    - role: common
     - role: pi_hole

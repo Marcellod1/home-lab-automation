@@ -1,2 +1,3 @@
 dependencies:
-  - docker
+  - role: common
+  - role: docker
