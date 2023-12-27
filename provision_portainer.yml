@@ -1,0 +1,4 @@
+- name: Install and run a portainer container on target hosts
+  hosts: portainer
+  roles:
+    - role: portainer

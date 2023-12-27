@@ -1,20 +1,19 @@
-- name: Start container {{ npm_container_name }}
+- name: Start container {{ portainer_container_name }}
   become: true
   community.docker.docker_container:
-    name: "{{ npm_container_name }}"
-    image: jc21/nginx-proxy-manager:latest
+    name: "{{ portainer_container_name }}"
+    image: portainer/portainer-ce:latest
     state: started
     restart: true
     restart_policy: always
     network_mode: bridge
     ports:
-      - 80:80
-      - 443:443
-      - "{{ npm_web_port }}:81"
+      - "{{ portainer_agent_port }}:8000"
+      - "{{ portainer_web_port }}:9443"
     mounts:
-      - source: "{{ npm_container_name }}_data"
+      - source: "{{ portainer_container_name }}_data"
         target: /data
         type: volume
-      - source: "{{ npm_container_name }}_letsencrypt"
-        target: /etc/letsencrypt
-        type: volume
+      - source: "/var/run/docker.sock"
+        target: "/var/run/docker.sock"
+        type: bind

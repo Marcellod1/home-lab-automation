@@ -18,6 +18,5 @@ docker01
 docker01
 docker02
 
-[dns:children]
+[portainer:children]
 docker01
-docker02
