@@ -20,3 +20,6 @@ docker02
 
 [portainer:children]
 docker01
+
+[portainer_agent:children]
+docker02

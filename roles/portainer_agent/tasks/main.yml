@@ -1,0 +1,18 @@
+- name: Start container {{ portainer_agent_container_name }}
+  become: true
+  community.docker.docker_container:
+    name: "{{ portainer_agent_container_name }}"
+    image:  portainer/agent:latest
+    state: started
+    restart: true
+    restart_policy: always
+    network_mode: bridge
+    ports:
+      - "{{ portainer_agent_port }}:9001"
+    mounts:
+      - source: /var/lib/docker/volumes
+        target: /var/lib/docker/volumes
+        type: bind
+      - source: "/var/run/docker.sock"
+        target: "/var/run/docker.sock"
+        type: bind
