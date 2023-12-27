@@ -8,4 +8,3 @@ ansible_become_pass: !vault |
 dns_servers:
   - 127.0.0.1
   - 8.8.8.8
-  - 8.8.4.4

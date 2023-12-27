@@ -1,5 +1,3 @@
-pi_hole_container_name: pi_hole01
-pi_hole_web_port: 82
 pi_hole_uid: 9998
 pi_hole_admin_web_password: !vault |
           $ANSIBLE_VAULT;1.1;AES256
