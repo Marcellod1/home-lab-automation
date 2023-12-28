@@ -1,0 +1,7 @@
+- name: Ensure the docker service is reloaded
+  become: true
+  systemd:
+    name: docker
+    enabled: true
+    state: restarted
+    daemon_reload: true
