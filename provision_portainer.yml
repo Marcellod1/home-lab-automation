@@ -2,3 +2,9 @@
   hosts: portainer
   roles:
     - role: portainer
+      # container_restart: true
+      admin_user: "{{ portainer_admin_user }}"
+      admin_password: "{{ portainer_admin_password }}"
+      
+      
+      

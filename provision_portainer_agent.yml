@@ -1,4 +1,0 @@
-- name: Install and run a portainer agent container on target hosts
-  hosts: portainer_agent
-  roles:
-    - role: portainer_agent
