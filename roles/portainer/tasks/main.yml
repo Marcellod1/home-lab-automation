@@ -19,7 +19,8 @@
         type: bind
   register: portainer_container
 
-- set_fact:
+- name: Template the base API path from container settings
+  set_fact:
     portainer_api_base_url: https://{{ portainer_container.container.NetworkSettings.IPAddress }}:{{ web_host_port }}/api
 
 - name: Initialize admin user password
@@ -45,4 +46,39 @@
     body: 
       Username: "{{ admin_user }}"
       Password: "{{ admin_password }}"
-  register: auth_token
+  register: authentication_response
+
+- name: Get authetication token from API response
+  set_fact:
+    authentication_token: "{{ authentication_response.json.jwt }}"
+
+- name: Get exisiting portainer endpoints
+  uri:
+    url: "{{ portainer_api_base_url }}/endpoints"
+    method: GET
+    validate_certs: false
+    return_content: true
+    headers:
+      Authorization: "{{ authentication_token }}"
+  register: endpoints_api_response
+
+- name: Get exisitng endpoints from API response 
+  set_fact:
+    existing_endpoints: "{{ endpoints_api_response.json | map(attribute='Name') | list }}"
+
+- name: Create endpoint environments
+  uri:
+    url: "{{ portainer_api_base_url }}/endpoints"
+    method: POST
+    validate_certs: false
+    body_format: form-multipart
+    headers:
+      Authorization: "{{ authentication_token }}"
+    body:
+      Name: "{{ endpoint.name }}"
+      EndpointCreationType: "1"
+      URL: "tcp://{{ endpoint.ip_address }}:{{ endpoint.port | default(2375, true) }}"
+  when: endpoint.name not in existing_endpoints
+  with_items: "{{ endpoints }}"
+  loop_control:
+    loop_var: endpoint
