@@ -1,33 +1,39 @@
+pi_hole_web_host_port: 85
+pi_hole_time_zone: America/Edmonton
 pi_hole_uid: 9998
-pi_hole_admin_web_password: !vault |
+pi_hole_admin_password: !vault |
           $ANSIBLE_VAULT;1.1;AES256
           33313030336365663735613331663263623734373830343534663134363636613139633061373261
           6266353562653363636461366362656530393437343565340a633533663662303166353839333331
           36323264333464663430653839663735393331356261346238363532303534383132396232396531
           6565306431373164620a343262326431616339613136363265636435636438666361353732333461
           65336637613033346538353235306666346139383266626230353932383064623662
-pi_hole_dns_records:
-  - domain_name: firelink.mdb.lab
-    ip_address: 10.0.17.130
-  - domain_name: plex.mdb.lab
-    ip_address: 10.0.17.125
-  - domain_name: sftp.mdb.lab
-    ip_address: 10.0.17.120
-  - domain_name: sc01.mdb.lab
-    ip_address: 10.0.17.105
-  - domain_name: truenas.mdb.lab
-    ip_address: 10.0.17.50
-  - domain_name: truenas-idrac.mdb.lab
-    ip_address: 10.0.17.51
-  - domain_name: docker01.mdb.lab
-    ip_address: 10.0.17.15
-  - domain_name: docker02.mdb.lab
-    ip_address: 10.0.17.25
+pi_hole_local_dns_records:
+  - domain_name: lab-gw01.mdb.lab
+    ip_address: 10.0.17.1
   - domain_name: pve01.mdb.lab
     ip_address: 10.0.17.10
   - domain_name: pve02.mdb.lab
     ip_address: 10.0.17.20
+  - domain_name: docker01.mdb.lab
+    ip_address: 10.0.17.15
+  - domain_name: docker02.mdb.lab
+    ip_address: 10.0.17.25
+  - domain_name: truenas.mdb.lab
+    ip_address: 10.0.17.50
+  - domain_name: truenas-idrac.mdb.lab
+    ip_address: 10.0.17.51
+  - domain_name: docker03.mdb.lab
+    ip_address: 10.0.17.80
+  - domain_name: docker04.mdb.lab
+    ip_address: 10.0.17.90
+  - domain_name: sc01.mdb.lab
+    ip_address: 10.0.17.105
   - domain_name: lab-ap01.mdb.lab
     ip_address: 10.0.17.110
-  - domain_name: lab-gw01.mdb.lab
-    ip_address: 10.0.17.1
+  - domain_name: sftp.mdb.lab
+    ip_address: 10.0.17.120
+  - domain_name: plex.mdb.lab
+    ip_address: 10.0.17.125
+  - domain_name: firelink.mdb.lab
+    ip_address: 10.0.17.130

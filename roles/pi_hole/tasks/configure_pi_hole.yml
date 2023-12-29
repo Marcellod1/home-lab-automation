@@ -1,0 +1,9 @@
+- name: Template custom.list for local DNS entries
+  become: true
+  ansible.builtin.template:
+    src: custom.list.j2
+    dest: /var/lib/docker/volumes/{{ container_name }}_pihole/_data/custom.list
+    mode: '644'
+    owner: pihole
+    group: pihole
+  notify: Restart container

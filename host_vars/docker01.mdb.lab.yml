@@ -5,17 +5,14 @@ ansible_become_pass: !vault |
           33626464326266366463646438386663653130303731346337373236663765636561313166623730
           3830356336376665360a336461316439306137393065623765666631373763363137316231353332
           3466
-dns_servers:
+
+resolved_dns_domains:
+  - mdb.lab
+resolved_dns_servers:
   - 127.0.0.1
+  - 10.0.17.25
   - 8.8.8.8
 
-mc_seed: -1541124385142397106
-mc_uid: 9999
-mc_jvm_memory_gb: 4
-mc_icon_url: https://marcellod1.github.io/resources/img/server-icon.png
-mc_ops:
-  - EqualMarcello
-  
 portainer_admin_user: admin
 portainer_admin_password: !vault |
           $ANSIBLE_VAULT;1.1;AES256
@@ -28,3 +25,10 @@ portainer_admin_password: !vault |
 portainer_endpoints:
   - name: docker02
     ip_address: 10.0.17.25
+
+mc_seed: -1541124385142397106
+mc_uid: 9999
+mc_jvm_memory_gb: 4
+mc_icon_url: https://marcellod1.github.io/resources/img/server-icon.png
+mc_ops:
+  - EqualMarcello

@@ -1,4 +1,8 @@
-pi_hole_container_name: pi_hole
-pi_hole_web_port: 82
-pi_hole_time_zone: America/Edmonton
-pi_hole_dns_records: []
+container_name: pi_hole
+web_host_port: 81
+container_restart: false
+container_restart_policy: always
+container_state: started
+version: latest
+time_zone: America/Edmonton
+local_dns_records: []
