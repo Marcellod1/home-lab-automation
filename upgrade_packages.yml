@@ -1,0 +1,8 @@
+- name: Update packages on remote hosts
+  hosts: all
+  tasks:
+    - name: Upgrade apt packages
+      become: true
+      ansible.builtin.apt:
+        update_cache: true
+        upgrade: true
