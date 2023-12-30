@@ -1,5 +1,11 @@
-- name: Ensure the systemd-resolved service is restarted
+- name: Restart systemd-resolved
   become: true
   ansible.builtin.service:
     name: systemd-resolved
+    state: restarted
+
+- name: Restart sshd
+  become: true
+  ansible.builtin.service:
+    name: sshd
     state: restarted
