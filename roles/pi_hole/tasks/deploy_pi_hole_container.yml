@@ -1,14 +1,3 @@
-- name: Set the container environment
-  set_fact:
-    container_env:
-      DNSMASQ_LISTENING: all
-      TZ: "{{ time_zone }}"
-      WEBPASSWORD: "{{ admin_password }}"
-      WEB_PORT: "{{ web_host_port | string }}"
-      PIHOLE_UID: "{{ uid | string }}"
-      PIHOLE_GID: "{{ uid | string }}"
-      FTLCONF_LOCAL_IPV4: "{{ ansible_default_ipv4.address }}"
-
 - name: Start container {{ container_name }}
   become: true
   community.docker.docker_container:
@@ -17,7 +6,11 @@
     state: "{{ container_state }}"
     restart: "{{ container_restart }}"
     restart_policy: "{{ container_restart_policy }}"
-    network_mode: host
+    network_mode: bridge
+    published_ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+      - "{{ web_host_port }}:80"
     mounts:
       - source: "{{ container_name }}_dnsmasq"
         target: /etc/dnsmasq.d
@@ -29,3 +22,12 @@
     capabilities:
       - NET_ADMIN
 
+- name: Template custom.list for local DNS entries
+  become: true
+  ansible.builtin.template:
+    src: custom.list.j2
+    dest: /var/lib/docker/volumes/{{ container_name }}_pihole/_data/custom.list
+    mode: '644'
+    owner: pihole
+    group: pihole
+  notify: Restart container

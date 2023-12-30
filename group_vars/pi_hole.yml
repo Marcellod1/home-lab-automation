@@ -19,14 +19,14 @@ pi_hole_local_dns_records:
     ip_address: 10.0.17.15
   - domain_name: docker02.mdb.lab
     ip_address: 10.0.17.25
+  - domain_name: docker03.mdb.lab
+    ip_address: 10.0.17.35
+  - domain_name: docker04.mdb.lab
+    ip_address: 10.0.17.45
   - domain_name: truenas.mdb.lab
     ip_address: 10.0.17.50
   - domain_name: truenas-idrac.mdb.lab
     ip_address: 10.0.17.51
-  - domain_name: docker03.mdb.lab
-    ip_address: 10.0.17.80
-  - domain_name: docker04.mdb.lab
-    ip_address: 10.0.17.90
   - domain_name: sc01.mdb.lab
     ip_address: 10.0.17.105
   - domain_name: lab-ap01.mdb.lab
