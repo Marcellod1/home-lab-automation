@@ -1,29 +1,33 @@
-- name: Start container {{ mc_container_name }}
+- name: Set the container environment
+  set_fact:
+    container_env:
+      EULA: "TRUE"
+      ALLOW_FLIGHT: "TRUE"
+      MEMORY: "{{ minecraft_server_memory_gb | string }}G"
+      UID: "{{ minecraft_server_container_uid | string }}"
+      GID: "{{ minecraft_server_container_gid | string }}"
+      SEED: "{{ minecraft_server_seed | string }}"
+      DIFFICULTY: "{{ minecraft_server_difficulty }}"
+      OPS: "{{ minecraft_server_ops | join(',') }}"
+      OVERRIDE_OPS: "TRUE"
+      ICON: "{{ minecraft_server_icon_url }}"
+      OVERRIDE_ICON: "TRUE"
+
+- name: Start container {{ minecraft_server_container_name }}
   become: true
   community.docker.docker_container:
-    name: "{{ mc_container_name }}"
+    name: "{{ minecraft_server_container_name }}"
     image: itzg/minecraft-server:latest
-    state: started
-    restart: true
+    state: "{{ minecraft_server_container_state }}"
+    restart: "{{ minecraft_server_container_restart }}"
     network_mode: bridge
-    restart_policy: always
+    restart_policy: "{{ minecraft_server_container_restart_policy }}"
     tty: true
     interactive: true
     ports:
-      - '{{ mc_port }}:25565'
+      - '{{ minecraft_server_host_port }}:25565'
     mounts:
-      - source: "{{ mc_container_name }}_data"
+      - source: "{{ minecraft_server_container_name }}"
         target: /data
         type: volume
-    env:
-      EULA: "TRUE"
-      ALLOW_FLIGHT: "TRUE"
-      MEMORY: "{{ mc_jvm_memory_gb | string }}G"
-      UID: "{{ mc_uid | string }}"
-      GID: "{{ mc_uid | string }}"
-      SEED: "{{ mc_seed | string }}"
-      DIFFICULTY: "{{ mc_difficulty }}"
-      OPS: "{{ mc_ops | join(',') }}"
-      OVERRIDE_OPS: "TRUE"
-      ICON: "{{ mc_icon_url | default(omit, true) }}"
-      OVERRIDE_ICON: "TRUE"
+    env: "{{ container_env }}"

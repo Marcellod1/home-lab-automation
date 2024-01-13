@@ -1,21 +1,31 @@
-- name: Start container {{ container_name }}
+- name: Set the container environment
+  set_fact:
+    container_env:
+      TZ: "{{ pi_hole_time_zone }}"
+      DNSMASQ_LISTENING: all
+      WEBPASSWORD: "{{ pi_hole_admin_password }}"
+      PIHOLE_UID: "{{ pi_hole_container_uid | string }}"
+      PIHOLE_GID: "{{ pi_hole_container_gid | string }}"
+      FTLCONF_LOCAL_IPV4: "{{ ansible_default_ipv4.address }}"
+
+- name: Start container {{ pi_hole_container_name }}
   become: true
   community.docker.docker_container:
-    name: "{{ container_name }}"
-    image: pihole/pihole:{{ version }}
-    state: "{{ container_state }}"
-    restart: "{{ container_restart }}"
-    restart_policy: "{{ container_restart_policy }}"
+    name: "{{ pi_hole_container_name }}"
+    image: pihole/pihole:{{ pi_hole_version }}
+    state: "{{ pi_hole_container_state }}"
+    restart: "{{ pi_hole_container_restart }}"
+    restart_policy: "{{ pi_hole_container_restart_policy }}"
     network_mode: bridge
     published_ports:
       - "53:53/tcp"
       - "53:53/udp"
-      - "{{ web_host_port }}:80"
+      - "{{ pi_hole_web_host_port }}:80"
     mounts:
-      - source: "{{ container_name }}_dnsmasq"
+      - source: "{{ pi_hole_container_name }}_dnsmasq"
         target: /etc/dnsmasq.d
         type: volume
-      - source: "{{ container_name }}_pihole"
+      - source: "{{ pi_hole_container_name }}_pihole"
         target: /etc/pihole
         type: volume
     env: "{{ container_env }}"
@@ -26,7 +36,7 @@
   become: true
   ansible.builtin.template:
     src: custom.list.j2
-    dest: /var/lib/docker/volumes/{{ container_name }}_pihole/_data/custom.list
+    dest: /var/lib/docker/volumes/{{ pi_hole_container_name }}_pihole/_data/custom.list
     mode: '644'
     owner: pihole
     group: pihole

@@ -1,7 +1,8 @@
-container_name: portainer
-web_host_port: 9443
-agent_host_port: 8000
-container_restart: false
-container_restart_policy: always
-container_state: started
-version: latest
+portainer_container_name: portainer
+portainer_web_host_port: 9443
+portainer_agent_host_port: 8000
+portainer_container_restart: false
+portainer_container_restart_policy: always
+portainer_container_state: started
+portainer_version: latest
+portainer_endpoints: []

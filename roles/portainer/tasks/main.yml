@@ -1,17 +1,17 @@
-- name: Start container {{ container_name }}
+- name: Start container {{ portainer_container_name }}
   become: true
   community.docker.docker_container:
-    name: "{{ container_name }}"
-    image: portainer/portainer-ce:{{ version }}
-    state: "{{ container_state }}"
-    restart: "{{ container_restart }}"
-    restart_policy: "{{ container_restart_policy }}"
+    name: "{{ portainer_container_name }}"
+    image: portainer/portainer-ce:{{ portainer_version }}
+    state: "{{ portainer_container_state }}"
+    restart: "{{ portainer_container_restart }}"
+    restart_policy: "{{ portainer_container_restart_policy }}"
     network_mode: bridge
     ports:
-      - "{{ web_host_port }}:9443"
-      - "{{ agent_host_port }}:8000"
+      - "{{ portainer_web_host_port }}:9443"
+      - "{{ portainer_agent_host_port }}:8000"
     mounts:
-      - source: "{{ container_name }}_data"
+      - source: "{{ portainer_container_name }}_data"
         target: /data
         type: volume
       - source: "/var/run/docker.sock"
@@ -21,7 +21,7 @@
 
 - name: Template the base API path from container settings
   set_fact:
-    portainer_api_base_url: https://{{ portainer_container.container.NetworkSettings.IPAddress }}:{{ web_host_port }}/api
+    portainer_api_base_url: https://{{ portainer_container.container.NetworkSettings.IPAddress }}:{{ portainer_web_host_port }}/api
 
 - name: Initialize admin user password
   uri:
@@ -30,8 +30,8 @@
     validate_certs: false
     body_format: json
     body: 
-      Username: "{{ admin_user }}"
-      Password: "{{ admin_password }}"
+      Username: "{{ portainer_admin_user }}"
+      Password: "{{ portainer_admin_password }}"
     status_code: 
       - 200
       - 409
@@ -44,8 +44,8 @@
     return_content: true
     body_format: json
     body: 
-      Username: "{{ admin_user }}"
-      Password: "{{ admin_password }}"
+      Username: "{{ portainer_admin_user }}"
+      Password: "{{ portainer_admin_password }}"
   register: authentication_response
 
 - name: Get authetication token from API response
@@ -79,6 +79,6 @@
       EndpointCreationType: "1"
       URL: "tcp://{{ endpoint.ip_address }}:{{ endpoint.port | default(2375, true) }}"
   when: endpoint.name not in existing_endpoints
-  with_items: "{{ endpoints }}"
+  with_items: "{{ portainer_endpoints }}"
   loop_control:
     loop_var: endpoint

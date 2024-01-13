@@ -1,14 +1,14 @@
 - name: Create minecraft group
   become: true
   ansible.builtin.group:
-    gid: "{{ mc_uid }}"
+    gid: "{{ minecraft_server_container_gid }}"
     name: minecraft
     state: present
 
 - name: Create minecraft user
   become: true
   ansible.builtin.user:
-    uid: "{{ mc_uid }}"
+    uid: "{{ minecraft_server_container_uid }}"
     name: minecraft
     shell: /bin/bash
     group: minecraft

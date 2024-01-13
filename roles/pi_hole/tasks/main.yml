@@ -1,13 +1,3 @@
-- name: Set the container environment
-  set_fact:
-    container_env:
-      TZ: "{{ time_zone }}"
-      DNSMASQ_LISTENING: all
-      WEBPASSWORD: "{{ admin_password }}"
-      PIHOLE_UID: "{{ uid | string }}"
-      PIHOLE_GID: "{{ uid | string }}"
-      FTLCONF_LOCAL_IPV4: "{{ ansible_default_ipv4.address }}"
-
 - name: Import tasks from create_pi_hole_user.yml
   ansible.builtin.import_tasks: create_pi_hole_user.yml
 
