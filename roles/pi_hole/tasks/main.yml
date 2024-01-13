@@ -1,5 +1,5 @@
 - name: Import tasks from create_pi_hole_user.yml
   ansible.builtin.import_tasks: create_pi_hole_user.yml
 
-- name: Import tasks from deploy_pi_hole_container.yml
-  ansible.builtin.import_tasks: deploy_pi_hole_container.yml
+- name: Import tasks from deploy_pi_hole.yml
+  ansible.builtin.import_tasks: deploy_pi_hole.yml
