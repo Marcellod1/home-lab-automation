@@ -27,6 +27,8 @@ pi_hole_local_dns_records:
     ip_address: 10.0.17.51
   - domain_name: sc01.mdb.lab
     ip_address: 10.0.17.105
+  - domain_name: sc02.mdb.lab
+    ip_address: 10.0.17.115
   - domain_name: lab-ap01.mdb.lab
     ip_address: 10.0.17.110
   - domain_name: sftp.mdb.lab
