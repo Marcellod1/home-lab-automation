@@ -20,7 +20,6 @@ minecraft_server_seed: -1541124385142397106
 minecraft_server_container_uid: 9999
 minecraft_server_container_gid: 9999
 minecraft_server_memory_gb: 4
-minecraft_server_container_version: 
 minecraft_server_icon_url: https://marcellod1.github.io/resources/img/server-icon.png
 minecraft_server_ops:
   - EqualMarcello
