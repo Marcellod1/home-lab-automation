@@ -22,8 +22,8 @@ minecraft_server_container_gid: 9999
 minecraft_server_memory_gb: 4
 minecraft_server_container_version: 
 minecraft_server_icon_url: https://marcellod1.github.io/resources/img/server-icon.png
-# minecraft_server_ops:
-#   - EqualMarcello
+minecraft_server_ops:
+  - EqualMarcello
 
 portainer_admin_user: admin
 portainer_admin_password: !vault |
@@ -40,3 +40,32 @@ portainer_endpoints:
     ip_address: 10.0.17.35
   - name: docker04
     ip_address: 10.0.17.45
+
+plex_container_uid: 9997
+plex_container_gid: 9997
+plex_time_zone: America/Edmonton
+cifs_username: plex
+cifs_password: !vault |
+          $ANSIBLE_VAULT;1.1;AES256
+          35323435316463393264323439653666303361396135383439663833393435633734316131313336
+          6363363062663833643265653136383637333035316334640a336239613065313431393163666664
+          61626231383535656362396661666534633534353034323535303831633535386339653036333637
+          3832663966626538380a663864353733333438623331376530316339393832313839343133656330
+          65316136373338376461623730313937623035376438343335303861376666396462363037323131
+          3836353934333638623861306636356231633936386133313137
+cifs_mounts:
+  - source: "//{{ groups['nas'] | first }}/Multimedia/TV/"
+    host_target: /mnt/plex/tv
+  - source: "//{{ groups['nas'] | first }}/Multimedia/Movies/"
+    host_target: /mnt/plex/movies
+
+plex_container_mounts:
+  - source: plex_config
+    target: /config
+    type: volume
+  - source: /mnt/plex/movies
+    target: /movies
+    type: bind
+  - source: /mnt/plex/tv
+    target: /tv
+    type: bind

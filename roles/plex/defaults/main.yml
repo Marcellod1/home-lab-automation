@@ -1,0 +1,7 @@
+plex_container_name: plex
+plex_web_host_port: 32400
+plex_container_restart: false
+plex_container_restart_policy: always
+plex_container_state: started
+plex_version: latest
+plex_time_zone: America/Edmonton

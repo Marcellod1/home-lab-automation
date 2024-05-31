@@ -26,5 +26,11 @@ docker01
 docker01
 docker02
 
+[plex:children]
+docker01
+
 [portainer:children]
 docker01
+
+[nas]
+nas01.mdb.lab

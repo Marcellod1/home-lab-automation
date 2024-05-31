@@ -1,0 +1,63 @@
+- name: Create plex group
+  become: true
+  ansible.builtin.group:
+    gid: "{{ plex_container_gid }}"
+    name: plex
+    state: present
+
+- name: Create plex user
+  become: true
+  ansible.builtin.user:
+    uid: "{{ plex_container_uid }}"
+    name: plex
+    shell: /bin/bash
+    group: plex
+    state: present
+
+- name: Install mount utils
+  become: true
+  apt:
+    name: 
+      - nfs-common
+      - cifs-utils
+    update_cache: true
+
+- name: Ensure CIFS mount targets exists
+  become: true
+  file:
+    path: "{{ item.host_target }}"
+    owner: plex
+    group: plex
+    mode: "750"
+    recurse: true
+    state: directory
+  with_items: "{{ cifs_mounts }}"
+
+- name: Mount CIFS shares
+  become: true
+  ansible.posix.mount:
+    src: "{{ item.source }}"
+    path: "{{ item.host_target }}"
+    opts: "username={{ cifs_username }},password={{ cifs_password }},rw,vers=3,file_mode=0777,dir_mode=0777"
+    fstype: cifs
+    state: mounted
+  with_items: "{{ cifs_mounts }}"
+
+- name: Set the container environment
+  set_fact:
+    container_env:
+      PUID: "{{ plex_container_uid }}"
+      PGID: "{{ plex_container_gid }}"
+      VERSION: docker
+      TZ: "{{ plex_time_zone }}"
+
+- name: Start container {{ plex_container_name }}
+  become: true
+  community.docker.docker_container:
+    name: "{{ plex_container_name }}"
+    image: lscr.io/linuxserver/plex:{{ plex_version }}
+    state: "{{ plex_container_state }}"
+    restart: "{{ plex_container_restart }}"
+    restart_policy: "{{ plex_container_restart_policy }}"
+    network_mode: host
+    mounts: "{{ plex_container_mounts }}"
