@@ -41,9 +41,6 @@ portainer_endpoints:
   - name: docker04
     ip_address: 10.0.17.45
 
-plex_container_uid: 9997
-plex_container_gid: 9997
-plex_time_zone: America/Edmonton
 cifs_username: plex
 cifs_password: !vault |
           $ANSIBLE_VAULT;1.1;AES256
@@ -59,6 +56,16 @@ cifs_mounts:
   - source: "//{{ groups['nas'] | first }}/Multimedia/Movies/"
     host_target: /mnt/plex/movies
 
+plex_container_uid: 9997
+plex_container_gid: 9997
+plex_time_zone: America/Edmonton
+plex_claim_token: !vault |
+          $ANSIBLE_VAULT;1.1;AES256
+          35306565393434633535323636623839343130383931653261616637313266336164633833383664
+          6436643932386331316339346236623639363331386661370a653564303236626135376335376331
+          63633666383738326530316565656530323130613563356237353331333664353530343163396438
+          3630663538613162660a343535376239633363633133323038306439646364376430646662626166
+          38666663323831356665396264336236666434396533643965313064663966653965
 plex_container_mounts:
   - source: plex_config
     target: /config

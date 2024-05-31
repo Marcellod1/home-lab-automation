@@ -49,6 +49,7 @@
       PUID: "{{ plex_container_uid }}"
       PGID: "{{ plex_container_gid }}"
       VERSION: docker
+      PLEX_CLAIM: "{{ plex_claim_token }}"
       TZ: "{{ plex_time_zone }}"
 
 - name: Start container {{ plex_container_name }}
@@ -59,5 +60,15 @@
     state: "{{ plex_container_state }}"
     restart: "{{ plex_container_restart }}"
     restart_policy: "{{ plex_container_restart_policy }}"
-    network_mode: host
+    network_mode: bridge
+    published_ports:
+      - "{{ plex_web_host_port }}:32400"
+      - "1900:1900/udp"
+      - "5353:5353/udp"
+      - "8324:8324"
+      - "32410:32410/udp"
+      - "32412:32412/udp"
+      - "32413:32413/udp"
+      - "32414:32414/udp"
+      - "32469:32469"
     mounts: "{{ plex_container_mounts }}"
