@@ -4,5 +4,5 @@ pi_hole_container_restart: false
 pi_hole_container_restart_policy: always
 pi_hole_container_state: started
 pi_hole_version: latest
-pi_hole_time_zone: America/Edmonton
+time_zone: America/Edmonton
 pi_hole_local_dns_records: []

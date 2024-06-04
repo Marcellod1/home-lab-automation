@@ -1,0 +1,6 @@
+time_zone: America/Edmonton
+resolved_dns_domains:
+  - mdb.lab
+resolved_dns_servers:
+  - 10.0.17.15
+  - 10.0.17.25

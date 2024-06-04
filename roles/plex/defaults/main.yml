@@ -4,4 +4,4 @@ plex_container_restart: false
 plex_container_restart_policy: always
 plex_container_state: started
 plex_version: latest
-plex_time_zone: America/Edmonton
+time_zone: America/Edmonton

@@ -19,3 +19,31 @@
     group: root
   notify: Restart sshd
 
+- name: Install mount utils
+  become: true
+  apt:
+    name: 
+      - nfs-common
+      - cifs-utils
+    update_cache: true
+
+- name: Ensure CIFS mount targets exists
+  become: true
+  file:
+    path: "{{ item.target }}"
+    owner: root
+    group: root
+    mode: "750"
+    recurse: true
+    state: directory
+  with_items: "{{ cifs_mounts }}"
+
+- name: Mount CIFS shares
+  become: true
+  ansible.posix.mount:
+    src: "{{ item.source }}"
+    path: "{{ item.target }}"
+    opts: "username={{ cifs_username }},password={{ cifs_password }},{{ item.permissions }},file_mode={{ item.file_mode }},dir_mode={{ item.file_mode }},vers=3"
+    fstype: cifs
+    state: mounted
+  with_items: "{{ cifs_mounts }}"

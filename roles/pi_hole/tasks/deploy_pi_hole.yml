@@ -1,7 +1,7 @@
 - name: Set the container environment
   set_fact:
     container_env:
-      TZ: "{{ pi_hole_time_zone }}"
+      TZ: "{{ time_zone }}"
       DNSMASQ_LISTENING: all
       WEBPASSWORD: "{{ pi_hole_admin_password }}"
       PIHOLE_UID: "{{ pi_hole_container_uid | string }}"

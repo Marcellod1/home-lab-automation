@@ -7,11 +7,11 @@ ansible_become_pass: !vault |
           3466
 resolved_dns_domains:
   - mdb.lab
+
 resolved_dns_servers:
   - 127.0.0.1
   - 10.0.17.15
 
 pi_hole_web_host_port: 85
-pi_hole_time_zone: America/Edmonton
 pi_hole_container_uid: 9998
 pi_hole_container_gid: 9998
