@@ -1,10 +1,10 @@
-- name: Start container {{ portainer_container_name }}
+- name: Create container {{ portainer_container_name }}
   become: true
   community.docker.docker_container:
     name: "{{ portainer_container_name }}"
     image: portainer/portainer-ce:{{ portainer_version }}
-    state: "{{ portainer_container_state }}"
-    restart: "{{ portainer_container_restart }}"
+    state: "{{ container_state }}"
+    restart: "{{ container_restart }}"
     restart_policy: "{{ portainer_container_restart_policy }}"
     network_mode: bridge
     ports:

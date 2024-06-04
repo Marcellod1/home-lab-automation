@@ -1,5 +1,5 @@
 - name: Update packages on remote hosts
-  hosts: all
+  hosts: all:!nas
   tasks:
     - name: Upgrade apt packages
       become: true

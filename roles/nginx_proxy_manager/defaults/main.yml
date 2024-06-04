@@ -1,2 +1,5 @@
-npm_container_name: nginx_proxy_manager
 npm_web_port: 81
+npm_container_version: latest
+npm_container_restart_policy: always
+container_state: started
+container_restart: false

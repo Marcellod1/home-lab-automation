@@ -13,13 +13,13 @@
       ICON: "{{ minecraft_server_icon_url }}"
       OVERRIDE_ICON: "TRUE"
 
-- name: Start container {{ minecraft_server_container_name }}
+- name: Create container {{ minecraft_server_container_name }}
   become: true
   community.docker.docker_container:
     name: "{{ minecraft_server_container_name }}"
     image: itzg/minecraft-server:latest
-    state: "{{ minecraft_server_container_state }}"
-    restart: "{{ minecraft_server_container_restart }}"
+    state: "{{ container_state }}"
+    restart: "{{ container_restart }}"
     network_mode: bridge
     restart_policy: "{{ minecraft_server_container_restart_policy }}"
     tty: true

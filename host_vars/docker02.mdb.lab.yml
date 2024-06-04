@@ -7,7 +7,6 @@ ansible_become_pass: !vault |
           3466
 resolved_dns_domains:
   - mdb.lab
-
 resolved_dns_servers:
   - 127.0.0.1
   - 10.0.17.15

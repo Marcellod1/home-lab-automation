@@ -1,7 +1,4 @@
-minecraft_server_container_name: minecraft_server
-minecraft_server_container_restart: false
 minecraft_server_container_restart_policy: always
-minecraft_server_container_state: started
 minecraft_server_memory_gb: 2
 minecraft_server_host_port: 25565
 minecraft_server_version: latest
@@ -9,3 +6,6 @@ minecraft_server_seed: 1785852800490497919
 minecraft_server_icon_url: ''
 minecraft_server_ops: []
 minecraft_server_difficulty: normal
+container_state: started
+container_restart: false
+

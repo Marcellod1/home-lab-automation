@@ -7,7 +7,6 @@ ansible_become_pass: !vault |
           3466
 resolved_dns_domains:
   - mdb.lab
-
 resolved_dns_servers:
   - 127.0.0.1
   - 10.0.17.25
@@ -34,10 +33,9 @@ cifs_mounts:
     file_mode: "0777"
     dir_mode: "0777"
 
-pi_hole_web_host_port: 85
-pi_hole_container_uid: 9998
-pi_hole_container_gid: 9998
+npm_container_name: nginx_proxy_manager
 
+minecraft_server_container_name: minecraft_server
 minecraft_server_seed: -1541124385142397106
 minecraft_server_container_uid: 9999
 minecraft_server_container_gid: 9999
@@ -46,6 +44,7 @@ minecraft_server_icon_url: https://marcellod1.github.io/resources/img/server-ico
 minecraft_server_ops:
   - EqualMarcello
 
+portainer_container_name: portainer
 portainer_admin_user: admin
 portainer_admin_password: !vault |
           $ANSIBLE_VAULT;1.1;AES256
@@ -62,6 +61,7 @@ portainer_endpoints:
   - name: docker04
     ip_address: 10.0.17.45
 
+plex_container_name: plex
 plex_container_uid: 9997
 plex_container_gid: 9997
 plex_claim_token: !vault |

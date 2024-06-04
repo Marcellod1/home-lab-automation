@@ -8,19 +8,19 @@
       PIHOLE_GID: "{{ pi_hole_container_gid | string }}"
       FTLCONF_LOCAL_IPV4: "{{ ansible_default_ipv4.address }}"
 
-- name: Start container {{ pi_hole_container_name }}
+- name: Create container {{ pi_hole_container_name }}
   become: true
   community.docker.docker_container:
     name: "{{ pi_hole_container_name }}"
-    image: pihole/pihole:{{ pi_hole_version }}
-    state: "{{ pi_hole_container_state }}"
-    restart: "{{ pi_hole_container_restart }}"
+    image: pihole/pihole:{{ pi_hole_container_version }}
+    state: "{{ container_state }}"
+    restart: "{{ container_restart }}"
     restart_policy: "{{ pi_hole_container_restart_policy }}"
     network_mode: bridge
     published_ports:
+      - "{{ pi_hole_web_host_port }}:80"
       - "53:53/tcp"
       - "53:53/udp"
-      - "{{ pi_hole_web_host_port }}:80"
     mounts:
       - source: "{{ pi_hole_container_name }}_dnsmasq"
         target: /etc/dnsmasq.d

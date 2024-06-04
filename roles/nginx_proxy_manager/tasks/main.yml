@@ -1,16 +1,16 @@
-- name: Start container {{ npm_container_name }}
+- name: Create container {{ npm_container_name }}
   become: true
   community.docker.docker_container:
     name: "{{ npm_container_name }}"
-    image: jc21/nginx-proxy-manager:latest
-    state: started
-    restart: true
-    restart_policy: always
+    image: jc21/nginx-proxy-manager:{{ npm_container_version }}
+    state: "{{ container_state }}"
+    restart: "{{ container_restart }}"
+    restart_policy: "{{ npm_container_restart_policy }}"
     network_mode: bridge
     ports:
+      - "{{ npm_web_port }}:81"
       - 80:80
       - 443:443
-      - "{{ npm_web_port }}:81"
     mounts:
       - source: "{{ npm_container_name }}_data"
         target: /data

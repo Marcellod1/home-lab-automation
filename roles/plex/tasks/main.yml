@@ -23,13 +23,13 @@
       PLEX_CLAIM: "{{ plex_claim_token }}"
       TZ: "{{ time_zone }}"
 
-- name: Start container {{ plex_container_name }}
+- name: Create container {{ plex_container_name }}
   become: true
   community.docker.docker_container:
     name: "{{ plex_container_name }}"
-    image: lscr.io/linuxserver/plex:{{ plex_version }}
-    state: "{{ plex_container_state }}"
-    restart: "{{ plex_container_restart }}"
+    image: lscr.io/linuxserver/plex:{{ plex_container_version }}
+    state: "{{ container_state }}"
+    restart: "{{ container_restart }}"
     restart_policy: "{{ plex_container_restart_policy }}"
     network_mode: bridge
     published_ports:
