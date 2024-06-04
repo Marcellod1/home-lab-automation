@@ -1,8 +1,8 @@
 [docker01]
-docker01.mdb.lab ansible_host="10.0.17.15"
+docker01.mdb.lab
 
 [docker02]
-docker02.mdb.lab ansible_host="10.0.17.25"
+docker02.mdb.lab
 
 [docker03]
 docker03.mdb.lab
