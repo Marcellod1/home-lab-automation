@@ -1,5 +1,59 @@
-- name: Import tasks from create_pi_hole_user.yml
-  ansible.builtin.import_tasks: create_pi_hole_user.yml
+- name: Create pihole group
+  become: true
+  ansible.builtin.group:
+    gid: "{{ pi_hole_container_gid }}"
+    name: pihole
+    state: present
 
-- name: Import tasks from deploy_pi_hole.yml
-  ansible.builtin.import_tasks: deploy_pi_hole.yml
+- name: Create pihole user
+  become: true
+  ansible.builtin.user:
+    uid: "{{ pi_hole_container_uid }}"
+    name: pihole
+    shell: /bin/bash
+    group: pihole
+    state: present
+
+- name: Set the container environment
+  set_fact:
+    container_env:
+      TZ: "{{ time_zone }}"
+      DNSMASQ_LISTENING: all
+      WEBPASSWORD: "{{ pi_hole_admin_password }}"
+      PIHOLE_UID: "{{ pi_hole_container_uid | string }}"
+      PIHOLE_GID: "{{ pi_hole_container_gid | string }}"
+      FTLCONF_LOCAL_IPV4: "{{ ansible_default_ipv4.address }}"
+
+- name: Create container {{ pi_hole_container_name }}
+  become: true
+  community.docker.docker_container:
+    name: "{{ pi_hole_container_name }}"
+    image: pihole/pihole:{{ pi_hole_container_version }}
+    state: "{{ container_state }}"
+    restart: "{{ container_restart }}"
+    restart_policy: "{{ pi_hole_container_restart_policy }}"
+    network_mode: bridge
+    published_ports:
+      - "{{ pi_hole_web_host_port }}:80"
+      - "53:53/tcp"
+      - "53:53/udp"
+    mounts:
+      - source: "{{ pi_hole_container_name }}_dnsmasq"
+        target: /etc/dnsmasq.d
+        type: volume
+      - source: "{{ pi_hole_container_name }}_pihole"
+        target: /etc/pihole
+        type: volume
+    env: "{{ container_env }}"
+    capabilities:
+      - NET_ADMIN
+
+- name: Template custom.list for local DNS entries
+  become: true
+  ansible.builtin.template:
+    src: custom.list.j2
+    dest: /var/lib/docker/volumes/{{ pi_hole_container_name }}_pihole/_data/custom.list
+    mode: '644'
+    owner: pihole
+    group: pihole
+  notify: Restart container
