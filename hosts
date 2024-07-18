@@ -32,5 +32,8 @@ docker01
 [portainer:children]
 docker01
 
+[heimdall:children]
+docker02
+
 [nas]
 nas01.mdb.lab

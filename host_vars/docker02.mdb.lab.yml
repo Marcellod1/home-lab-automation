@@ -8,3 +8,8 @@ ansible_become_pass: !vault |
 resolved_dns_servers:
   - 127.0.0.1
   - 10.0.17.15
+
+heimdall_container_name: heimdall
+heimdall_container_ports:
+  - 80:80
+  - 443:443
