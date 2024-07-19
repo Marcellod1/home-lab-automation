@@ -1,14 +1,14 @@
 [docker01]
-docker01.mdb.lab
+docker01.marcellodb.net
 
 [docker02]
-docker02.mdb.lab
+docker02.marcellodb.net
 
 [docker03]
-docker03.mdb.lab
+docker03.marcellodb.net
 
 [docker04]
-docker04.mdb.lab
+docker04.marcellodb.net
 
 [docker:children]
 docker01
@@ -36,4 +36,4 @@ docker01
 docker02
 
 [nas]
-nas01.mdb.lab
+nas01.marcellodb.net
