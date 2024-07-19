@@ -1,14 +1,14 @@
 [docker01]
-docker01.marcellodb.net
+docker01.lab.marcellodb.ca
 
 [docker02]
-docker02.marcellodb.net
+docker02.lab.marcellodb.ca
 
 [docker03]
-docker03.marcellodb.net
+docker03.lab.marcellodb.ca
 
 [docker04]
-docker04.marcellodb.net
+docker04.lab.marcellodb.ca
 
 [docker:children]
 docker01
@@ -36,4 +36,4 @@ docker01
 docker02
 
 [nas]
-nas01.marcellodb.net
+nas01.lab.marcellodb.ca
