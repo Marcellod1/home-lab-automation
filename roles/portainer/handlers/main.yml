@@ -4,4 +4,3 @@
     name: "{{ portainer_container_name }}"
     state: started
     restart: true
-    env: "{{ container_env }}"

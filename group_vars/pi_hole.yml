@@ -11,7 +11,7 @@ pi_hole_admin_password: !vault |
           65336637613033346538353235306666346139383266626230353932383064623662
 
 pi_hole_local_dns_records:
-  - domain_name: lab-gw01.lab.marcellodb.ca
+  - domain_name: igw.lab.marcellodb.ca
     ip_address: 10.0.17.1
   - domain_name: pve01.lab.marcellodb.ca
     ip_address: 10.0.17.10
@@ -45,5 +45,11 @@ pi_hole_local_dns_records:
     ip_address: 10.0.17.130
   - domain_name: portainer.lab.marcellodb.ca
     ip_address: 10.0.17.15
-  - domain_name: heimdall.lab.marcellodb.ca
+  - domain_name: home.lab.marcellodb.ca
+    ip_address: 10.0.17.15
+  - domain_name: pihole01.lab.marcellodb.ca
+    ip_address: 10.0.17.15
+  - domain_name: pihole02.lab.marcellodb.ca
+    ip_address: 10.0.17.15
+  - domain_name: npm.lab.marcellodb.ca
     ip_address: 10.0.17.15
