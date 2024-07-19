@@ -53,3 +53,5 @@ pi_hole_local_dns_records:
     ip_address: 10.0.17.15
   - domain_name: npm.lab.marcellodb.ca
     ip_address: 10.0.17.15
+  - domain_name: pve.lab.marcellodb.ca
+    ip_address: 10.0.17.15
