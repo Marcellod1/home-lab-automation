@@ -4,3 +4,4 @@ resolved_dns_domains:
 resolved_dns_servers:
   - 10.0.17.15
   - 10.0.17.25
+  - 8.8.8.8

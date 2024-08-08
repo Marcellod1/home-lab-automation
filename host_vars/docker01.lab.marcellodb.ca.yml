@@ -8,6 +8,7 @@ ansible_become_pass: !vault |
 resolved_dns_servers:
   - 127.0.0.1
   - 10.0.17.25
+  - 8.8.8.8
 
 cifs_username: docker
 cifs_password: !vault |
@@ -18,18 +19,6 @@ cifs_password: !vault |
           3832663966626538380a663864353733333438623331376530316339393832313839343133656330
           65316136373338376461623730313937623035376438343335303861376666396462363037323131
           3836353934333638623861306636356231633936386133313137
-
-cifs_mounts:
-  - source: "//{{ groups['nas'] | first }}/Multimedia/TV/"
-    target: /mnt/plex/tv
-    permissions: rw
-    file_mode: "0777"
-    dir_mode: "0777"
-  - source: "//{{ groups['nas'] | first }}/Multimedia/Movies/"
-    target: /mnt/plex/movies
-    permissions: rw
-    file_mode: "0777"
-    dir_mode: "0777"
 
 npm_container_name: nginx_proxy_manager
 
@@ -58,24 +47,3 @@ portainer_endpoints:
     ip_address: 10.0.17.35
   - name: docker04
     ip_address: 10.0.17.45
-
-plex_container_name: plex
-plex_container_uid: 9997
-plex_container_gid: 9997
-plex_claim_token: !vault |
-          $ANSIBLE_VAULT;1.1;AES256
-          35306565393434633535323636623839343130383931653261616637313266336164633833383664
-          6436643932386331316339346236623639363331386661370a653564303236626135376335376331
-          63633666383738326530316565656530323130613563356237353331333664353530343163396438
-          3630663538613162660a343535376239633363633133323038306439646364376430646662626166
-          38666663323831356665396264336236666434396533643965313064663966653965
-plex_container_mounts:
-  - source: plex_config
-    target: /config
-    type: volume
-  - source: /mnt/plex/movies
-    target: /movies
-    type: bind
-  - source: /mnt/plex/tv
-    target: /tv
-    type: bind
