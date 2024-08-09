@@ -33,7 +33,3 @@ portainer_admin_password: !vault |
 portainer_endpoints:
   - name: docker02
     ip_address: 10.0.17.25
-  - name: docker03
-    ip_address: 10.0.17.35
-  - name: docker04
-    ip_address: 10.0.17.45
