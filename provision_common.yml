@@ -1,4 +1,4 @@
 - name: Run common configuration steps
-  hosts: all:!nas
+  hosts: all
   roles:
     - role: common
