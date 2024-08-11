@@ -10,6 +10,13 @@ docker03.lab.marcellodb.ca
 [docker04]
 docker04.lab.marcellodb.ca
 
+[kube_master]
+kube-master01.lab.marcellodb.ca
+
+[kube_worker]
+kube-worker01.lab.marcellodb.ca
+kube-worker02.lab.marcellodb.ca
+
 [docker:children]
 docker01
 docker02
@@ -34,6 +41,3 @@ docker01
 
 [heimdall:children]
 docker02
-
-[nas]
-nas01.lab.marcellodb.ca
