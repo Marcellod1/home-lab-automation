@@ -9,35 +9,3 @@ pi_hole_admin_password: !vault |
           36323264333464663430653839663735393331356261346238363532303534383132396232396531
           6565306431373164620a343262326431616339613136363265636435636438666361353732333461
           65336637613033346538353235306666346139383266626230353932383064623662
-
-pi_hole_local_dns_records:
-  - domain_name: igw.lab.marcellodb.ca
-    ip_address: 10.0.17.1
-  - domain_name: docker01.lab.marcellodb.ca
-    ip_address: 10.0.17.15
-  - domain_name: docker02.lab.marcellodb.ca
-    ip_address: 10.0.17.25
-  - domain_name: sc02.lab.marcellodb.ca
-    ip_address: 10.0.17.115
-  - domain_name: lab-ap01.lab.marcellodb.ca
-    ip_address: 10.0.17.110
-  - domain_name: plex.lab.marcellodb.ca
-    ip_address: 10.0.17.125
-  - domain_name: firelink.lab.marcellodb.ca
-    ip_address: 10.0.17.130
-  - domain_name: portainer.lab.marcellodb.ca
-    ip_address: 10.0.17.15
-  - domain_name: home.lab.marcellodb.ca
-    ip_address: 10.0.17.15
-  - domain_name: pihole.lab.marcellodb.ca
-    ip_address: 10.0.17.15
-  - domain_name: pihole01.lab.marcellodb.ca
-    ip_address: 10.0.17.15
-  - domain_name: pihole02.lab.marcellodb.ca
-    ip_address: 10.0.17.15
-  - domain_name: npm.lab.marcellodb.ca
-    ip_address: 10.0.17.15
-  - domain_name: pve.lab.marcellodb.ca
-    ip_address: 10.0.17.15
-  - domain_name: truenas.lab.marcellodb.ca
-    ip_address: 10.0.17.15
