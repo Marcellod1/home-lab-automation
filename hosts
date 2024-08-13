@@ -41,3 +41,6 @@ docker01
 
 [heimdall:children]
 docker02
+
+[flame:children]
+docker02

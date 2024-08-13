@@ -48,4 +48,4 @@
       - source: "{{ heimdall_container_name }}_config"
         target: /config
         type: volume
-  environment: "{{ container_env }}"
+    env: "{{ container_env }}"
