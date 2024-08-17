@@ -17,7 +17,7 @@ variable "pve_vms" {
     node       = string
     template   = string
     cores      = number
-    memory_mb  = number
+    memory_gb  = number
     storage_gb = number
   }))
 }
