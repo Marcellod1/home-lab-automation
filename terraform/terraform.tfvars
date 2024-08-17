@@ -16,6 +16,7 @@ pve_vms = {
     cores      = 4
     memory_gb  = 4
     storage_gb = 24
+    state      = "stopped"
   }
 
   kube-worker01 = {
@@ -24,6 +25,7 @@ pve_vms = {
     cores      = 4
     memory_gb  = 4
     storage_gb = 24
+    state      = "stopped"
   }
 
   kube-worker02 = {
@@ -32,5 +34,6 @@ pve_vms = {
     cores      = 4
     memory_gb  = 4
     storage_gb = 24
+    state      = "stopped"
   }
 }
