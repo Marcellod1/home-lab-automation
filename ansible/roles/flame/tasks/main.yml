@@ -7,12 +7,14 @@
   become: true
   community.docker.docker_container:
     name: "{{ flame_container_name }}"
-    image: pawelmalak/flame:{{ flame_container_version }}
+    image: pawelmalak/flame:{{ flame_version }}
     state: "{{ container_state }}"
     restart: "{{ container_restart }}"
     restart_policy: "{{ flame_container_restart_policy }}"
     network_mode: bridge
     published_ports: "{{ flame_container_ports }}"
+    interactive: true
+    tty: true
     mounts:
       - source: "{{ flame_container_name }}_data"
         target: /app/data

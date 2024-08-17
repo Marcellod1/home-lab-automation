@@ -11,6 +11,7 @@ minecraft_server_ops:
 
 portainer_container_name: portainer
 portainer_admin_user: admin
+portainer_version: 2.21.0-rc1-alpine
 portainer_admin_password: !vault |
           $ANSIBLE_VAULT;1.1;AES256
           31613631303331383735363830663432633238373162656266643161303163393163373135363132

@@ -1,5 +1,5 @@
 flame_container_restart_policy: always
-flame_container_version: latest
+flame_version: latest
 time_zone: America/Edmonton
 container_state: started
 container_restart: true
