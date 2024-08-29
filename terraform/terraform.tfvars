@@ -18,30 +18,27 @@ pve_vms = {
     storage_gb = 24
   }
 
-  kube-master01 = {
+  k3s-master01 = {
     node       = "pve05"
     template   = "ubu-noble-template"
     cores      = 4
     memory_gb  = 4
-    storage_gb = 24
-    state      = "stopped"
+    storage_gb = 36
   }
 
-  kube-worker01 = {
+  k3s-worker01 = {
     node       = "pve05"
     template   = "ubu-noble-template"
     cores      = 4
     memory_gb  = 4
-    storage_gb = 24
-    state      = "stopped"
+    storage_gb = 36
   }
 
-  kube-worker02 = {
+  k3s-worker02 = {
     node       = "pve05"
     template   = "ubu-noble-template"
     cores      = 4
     memory_gb  = 4
-    storage_gb = 24
-    state      = "stopped"
+    storage_gb = 36
   }
 }
