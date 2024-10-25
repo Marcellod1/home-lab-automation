@@ -1,0 +1,44 @@
+- name: Create qbittorrent group
+  become: true
+  ansible.builtin.group:
+    name: qbittorrent
+    state: present
+
+- name: Create qbittorrent user
+  become: true
+  ansible.builtin.user:
+    name: qbittorrent
+    shell: /bin/bash
+    group: qbittorrent
+    state: present
+
+- name: Get user details
+  ansible.builtin.getent:
+    database: passwd
+    key: qbittorrent
+
+- name: Get group details
+  getent:
+    database: group
+    key: qbittorrent
+
+- name: Set user and group id
+  set_fact:
+    container_uid: "{{ ansible_facts.getent_passwd.qbittorrent.1 }}"
+    container_gid: "{{ ansible_facts.getent_group.qbittorrent.1 }}"
+
+- name: Ensure project directory exists
+  file:
+    path: ~/docker/qbittorrent/
+    state: directory
+
+- name: Copy docker compose to project directory
+  template:
+    src: docker-compose.yml.j2
+    dest: ~/docker/qbittorrent/docker-compose.yml
+
+- name: Run docker compose up
+  community.docker.docker_compose_v2:
+    project_src: ~/docker/qbittorrent/
+    state: present
+  register: output

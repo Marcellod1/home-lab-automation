@@ -1,8 +1,3 @@
-heimdall_container_name: heimdall
-heimdall_container_ports:
-  - 8080:80
-  - 9443:443
-
 flame_container_name: flame
 flame_container_ports:
     - 5005:5005
