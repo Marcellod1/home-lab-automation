@@ -44,3 +44,6 @@ docker02
 
 [flame:children]
 docker02
+
+[servarr:children]
+docker02

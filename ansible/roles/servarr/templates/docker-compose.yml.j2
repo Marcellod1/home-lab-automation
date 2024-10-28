@@ -1,0 +1,48 @@
+services:
+  qbittorrent:
+    image: lscr.io/linuxserver/qbittorrent:latest
+    container_name: qbittorrent
+    environment:
+      - PUID={{ qbittorrent_uid }}
+      - PGID={{ qbittorrent_gid }}
+      - TZ={{ time_zone }}
+      - WEBUI_PORT=8080
+      - TORRENTING_PORT=6881
+    volumes:
+      - qbittorrent:/config
+    ports:
+      - {{ qbittorrent_web_host_port }}:8080
+      - 6881:6881
+      - 6881:6881/udp
+    stdin_open: true
+    tty: true
+    restart: unless-stopped
+
+  gluetun:
+    image: qmcgaw/gluetun
+    container_name: gluetun
+    hostname: gluetun
+    environment:
+      - VPN_SERVICE_PROVIDER=nordvpn
+      - VPN_TYPE=openvpn
+      - OPENVPN_USER={{ gluetun_openvpn_username }}
+      - OPENVPN_PASSWORD={{ gluetun_openvpn_password }}
+      - TZ={{ time_zone }}
+      - SERVER_COUNTRIES=Netherlands
+    cap_add:
+      - NET_ADMIN
+    devices:
+      - /dev/net/tun:/dev/net/tun
+    volumes:
+      - gluetun:/gluetun
+    ports:
+      - 8888:8888/tcp # HTTP proxy
+      - 8388:8388/tcp # Shadowsocks
+      - 8388:8388/udp # Sha
+    stdin_open: true
+    tty: true
+    restart: unless-stopped
+
+volumes:
+  qbittorrent:
+  gluetun:

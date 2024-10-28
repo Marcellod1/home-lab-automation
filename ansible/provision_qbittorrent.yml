@@ -1,4 +1,0 @@
-- name: Install and configure qBitTorrent
-  hosts: docker02
-  roles:
-    - role: qbittorrent
