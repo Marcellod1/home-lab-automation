@@ -10,12 +10,11 @@ services:
       - TORRENTING_PORT=6881
     volumes:
       - qbittorrent:/config
+      - qbittorrent_downloads:/downloads
     ports:
-      - {{ qbittorrent_web_host_port }}:8080
+      - 8080:8080
       - 6881:6881
       - 6881:6881/udp
-    stdin_open: true
-    tty: true
     restart: unless-stopped
 
   gluetun:
@@ -36,13 +35,17 @@ services:
     volumes:
       - gluetun:/gluetun
     ports:
-      - 8888:8888/tcp # HTTP proxy
-      - 8388:8388/tcp # Shadowsocks
-      - 8388:8388/udp # Sha
-    stdin_open: true
-    tty: true
+      - 8888:8888/tcp
+      - 8388:8388/tcp
+      - 8388:8388/udp
     restart: unless-stopped
 
 volumes:
-  qbittorrent:
   gluetun:
+  qbittorrent:
+  qbittorrent_downloads:
+    driver: local
+    driver_opts:
+      type: "nfs"
+      o: "nfsvers=4,addr=10.0.17.55,nolock,soft,rw"
+      device: ":/mnt/data01/nfs/docker/qbittorrent"
