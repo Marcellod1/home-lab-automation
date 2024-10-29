@@ -2,6 +2,7 @@ services:
   qbittorrent:
     image: lscr.io/linuxserver/qbittorrent:latest
     container_name: qbittorrent
+    network_mode: container:gluetun
     environment:
       - PUID={{ qbittorrent_uid }}
       - PGID={{ qbittorrent_gid }}
@@ -11,10 +12,6 @@ services:
     volumes:
       - qbittorrent:/config
       - qbittorrent_downloads:/downloads
-    ports:
-      - 8080:8080
-      - 6881:6881
-      - 6881:6881/udp
     restart: unless-stopped
 
   gluetun:
@@ -27,7 +24,8 @@ services:
       - OPENVPN_USER={{ gluetun_openvpn_username }}
       - OPENVPN_PASSWORD={{ gluetun_openvpn_password }}
       - TZ={{ time_zone }}
-      - SERVER_COUNTRIES=Netherlands
+      - SERVER_COUNTRIES=Canada
+      - UPDATER_PERIOD=24h
     cap_add:
       - NET_ADMIN
     devices:
@@ -35,6 +33,7 @@ services:
     volumes:
       - gluetun:/gluetun
     ports:
+      - 8080:8080 # qbittorrent web
       - 8888:8888/tcp
       - 8388:8388/tcp
       - 8388:8388/udp
