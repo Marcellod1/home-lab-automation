@@ -1,6 +1,6 @@
 services:
   gluetun:
-    image: qmcgaw/gluetun
+    image: qmcgaw/gluetun:latest
     container_name: gluetun
     environment:
       - VPN_SERVICE_PROVIDER=nordvpn
@@ -20,6 +20,7 @@ services:
       - 6881:6881     # qbittorrent
       - 6881:6881/udp # qbittorrent
       - 8080:8080     # qbittorrent web
+      - 8989:8989     # sonarr
     restart: unless-stopped
 
   qbittorrent:
@@ -34,19 +35,60 @@ services:
       - TORRENTING_PORT=6881
     volumes:
       - qbittorrent:/config
-      - qbittorrent_downloads:/downloads
+      - truenas_downloads:/downloads
     restart: unless-stopped
     depends_on:
       gluetun:
         condition: service_healthy
         restart: true
+  
+  plex:
+    image: lscr.io/linuxserver/plex:latest
+    container_name: plex
+    environment:
+      - PUID={{ plex_uid }}
+      - PGID={{ plex_gid }}
+      - TZ={{ time_zone}}
+      - VERSION=docker
+      - PLEX_CLAIM={{ plex_claim_token }}
+    volumes:
+      - plex:/config
+      - truenas_tv:/tv
+      - truenas_movies:/movies
+    ports:
+      - 32400:32400
+      - 1900:1900/udp
+      - 5353:5353/udp
+      - 8324:8324
+      - 32410:32410/udp
+      - 32412:32412/udp
+      - 32413:32413/udp
+      - 32414:32414/udp
+      - 32469:32469
+    restart: unless-stopped
 
 volumes:
   gluetun:
   qbittorrent:
-  qbittorrent_downloads:
+  sonarr:
+  plex:
+  truenas_tv:
     driver: local
     driver_opts:
       type: "nfs"
       o: "nfsvers=4,addr=10.0.17.55,nolock,soft,rw"
-      device: ":/mnt/data01/nfs/docker/qbittorrent"
+      device: ":/mnt/data/media/tv"
+  
+  truenas_downloads:
+    driver: local
+    driver_opts:
+      type: "nfs"
+      o: "nfsvers=4,addr=10.0.17.55,nolock,soft,rw"
+      device: ":/mnt/data/media/downloads"
+  
+  truenas_movies:
+    driver: local
+    driver_opts:
+      type: "nfs"
+      o: "nfsvers=4,addr=10.0.17.55,nolock,soft,rw"
+      device: ":/mnt/data/media/movies"
