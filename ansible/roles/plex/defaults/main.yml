@@ -1,6 +1,0 @@
-plex_web_host_port: 32400
-plex_container_restart_policy: always
-plex_container_version: latest
-time_zone: America/Edmonton
-container_state: started
-container_restart: false
