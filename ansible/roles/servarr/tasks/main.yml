@@ -143,6 +143,35 @@
     sonarr_uid: "{{ ansible_facts.getent_passwd.sonarr.1 }}"
     sonarr_gid: "{{ ansible_facts.getent_group.sonarr.1 }}"
 
+- name: Create overseerr group
+  become: true
+  ansible.builtin.group:
+    name: overseerr
+    state: present
+
+- name: Create overseerr user
+  become: true
+  ansible.builtin.user:
+    name: overseerr
+    shell: /bin/bash
+    group: overseerr
+    state: present
+
+- name: Get user details
+  ansible.builtin.getent:
+    database: passwd
+    key: overseerr
+
+- name: Get group details
+  getent:
+    database: group
+    key: overseerr
+
+- name: Set user and group id
+  set_fact:
+    overseerr_uid: "{{ ansible_facts.getent_passwd.overseerr.1 }}"
+    overseerr_gid: "{{ ansible_facts.getent_group.overseerr.1 }}"
+
 - name: Ensure project directory exists
   file:
     path: ~/docker/servarr/

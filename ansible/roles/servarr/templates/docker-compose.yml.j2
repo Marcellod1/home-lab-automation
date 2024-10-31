@@ -2,6 +2,7 @@ services:
   gluetun:
     image: qmcgaw/gluetun:latest
     container_name: gluetun
+    hostname: gluetun
     environment:
       - VPN_SERVICE_PROVIDER=nordvpn
       - VPN_TYPE=openvpn
@@ -39,6 +40,10 @@ services:
       - qbittorrent:/config
       - truenas_downloads:/downloads
     restart: unless-stopped
+    depends_on:
+      gluetun:
+        condition: service_healthy
+        restart: true
   
   prowlarr:
     image: lscr.io/linuxserver/prowlarr:latest
@@ -52,6 +57,10 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - prowlarr:/config
     restart: unless-stopped
+    depends_on:
+      gluetun:
+        condition: service_healthy
+        restart: true
 
   sonarr:
     image: lscr.io/linuxserver/sonarr:latest
@@ -67,6 +76,10 @@ services:
       - sonarr:/config
       - truenas_tv:/tv 
       - truenas_downloads:/downloads
+    depends_on:
+      gluetun:
+        condition: service_healthy
+        restart: true
 
   radarr:
     image: lscr.io/linuxserver/radarr:latest
@@ -82,6 +95,10 @@ services:
       - radarr:/config
       - truenas_movies:/movies 
       - truenas_downloads:/downloads
+    depends_on:
+      gluetun:
+        condition: service_healthy
+        restart: true
 
   flaresolverr:
     image: ghcr.io/flaresolverr/flaresolverr:latest
@@ -92,11 +109,16 @@ services:
       - LOG_HTML=false
       - CAPTCHA_SOLVER=none
       - TZ={{ time_zone }}
-    restart: unless-stopped 
+    restart: unless-stopped
+    depends_on:
+      gluetun:
+        condition: service_healthy
+        restart: true
 
   plex:
     image: lscr.io/linuxserver/plex:latest
     container_name: plex
+    hostname: plex
     environment:
       - PUID={{ plex_uid }}
       - PGID={{ plex_gid }}
@@ -125,6 +147,7 @@ volumes:
   prowlarr:
   sonarr:
   radarr:
+  overseerr:
   plex:
   truenas_tv:
     driver: local
