@@ -17,10 +17,12 @@ services:
     volumes:
       - gluetun:/gluetun
     ports:
-      - 6881:6881     # qbittorrent
-      - 6881:6881/udp # qbittorrent
+      - 6881:6881     # qbittorrent torrents
+      - 6881:6881/udp # qbittorrent torrents
       - 8080:8080     # qbittorrent web
+      - 9696:9696     # prowlarr
       - 8989:8989     # sonarr
+      - 7878:7878     # radarr
     restart: unless-stopped
 
   qbittorrent:
@@ -37,11 +39,50 @@ services:
       - qbittorrent:/config
       - truenas_downloads:/downloads
     restart: unless-stopped
-    depends_on:
-      gluetun:
-        condition: service_healthy
-        restart: true
   
+  prowlarr:
+    image: lscr.io/linuxserver/prowlarr:latest
+    container_name: prowlarr
+    network_mode: container:gluetun
+    environment:
+      - PUID={{ prowlarr_uid }}
+      - PGID={{ prowlarr_gid }}
+      - TZ={{ time_zone }}
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - prowlarr:/config
+    restart: unless-stopped
+
+  sonarr:
+    image: lscr.io/linuxserver/sonarr:latest
+    container_name: sonarr
+    restart: unless-stopped
+    network_mode: container:gluetun
+    environment:
+      - PUID={{ sonarr_uid }}
+      - PGID={{ sonarr_gid }}
+      - TZ={{ time_zone }}    
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - sonarr:/config
+      - truenas_tv:/tv 
+      - truenas_downloads:/downloads
+
+  radarr:
+    image: lscr.io/linuxserver/radarr:latest
+    container_name: radarr
+    restart: unless-stopped
+    network_mode: container:gluetun
+    environment:
+      - PUID={{ radarr_uid }}
+      - PGID={{ radarr_gid }}
+      - TZ={{ time_zone }}    
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - radarr:/config
+      - truenas_movies:/movies 
+      - truenas_downloads:/downloads
+
   plex:
     image: lscr.io/linuxserver/plex:latest
     container_name: plex
@@ -70,7 +111,9 @@ services:
 volumes:
   gluetun:
   qbittorrent:
+  prowlarr:
   sonarr:
+  radarr:
   plex:
   truenas_tv:
     driver: local
