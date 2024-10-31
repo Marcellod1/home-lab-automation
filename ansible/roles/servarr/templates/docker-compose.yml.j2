@@ -83,6 +83,17 @@ services:
       - truenas_movies:/movies 
       - truenas_downloads:/downloads
 
+  flaresolverr:
+    image: ghcr.io/flaresolverr/flaresolverr:latest
+    container_name: flaresolverr
+    network_mode: container:gluetun
+    environment:
+      - LOG_LEVEL=info
+      - LOG_HTML=false
+      - CAPTCHA_SOLVER=none
+      - TZ={{ time_zone }}
+    restart: unless-stopped 
+
   plex:
     image: lscr.io/linuxserver/plex:latest
     container_name: plex
