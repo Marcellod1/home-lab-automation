@@ -171,19 +171,28 @@
   set_fact:
     overseerr_uid: "{{ ansible_facts.getent_passwd.overseerr.1 }}"
     overseerr_gid: "{{ ansible_facts.getent_group.overseerr.1 }}"
-
+  
 - name: Ensure project directory exists
+  become: true
   file:
-    path: ~/docker/servarr/
+    path: "{{ projects_directory }}/servarr/"
+    owner: docker
+    group: docker
+    mode: "755"
     state: directory
 
 - name: Copy docker compose to project directory
+  become: true
   template:
     src: docker-compose.yml.j2
-    dest: ~/docker/servarr/docker-compose.yml
+    dest: "{{ projects_directory }}/servarr/docker-compose.yml"
+    owner: docker
+    group: docker
+    mode: "755"
 
-- name: Run docker compose up
+- name: Run docker compose
+  become: true
   community.docker.docker_compose_v2:
-    project_src: ~/docker/servarr/
+    project_src: "{{ projects_directory }}/servarr"
     state: present
   register: output
