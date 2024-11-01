@@ -6,8 +6,8 @@ services:
     environment:
       - VPN_SERVICE_PROVIDER=nordvpn
       - VPN_TYPE=openvpn
-      - OPENVPN_USER={{ gluetun_openvpn_username }}
-      - OPENVPN_PASSWORD={{ gluetun_openvpn_password }}
+      - OPENVPN_USER={{ servarr_openvpn_username }}
+      - OPENVPN_PASSWORD={{ servarr_openvpn_password }}
       - TZ={{ time_zone }}
       - SERVER_COUNTRIES=Canada
       - UPDATER_PERIOD=24h
@@ -39,7 +39,7 @@ services:
       - TORRENTING_PORT=6881
     volumes:
       - qbittorrent:/config
-      - truenas_downloads:/downloads
+      - downloads:/downloads
     restart: unless-stopped
     depends_on:
       gluetun:
@@ -75,8 +75,8 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - sonarr:/config
-      - truenas_tv:/tv 
-      - truenas_downloads:/downloads
+      - tv:/tv 
+      - downloads:/downloads
     depends_on:
       gluetun:
         condition: service_healthy
@@ -94,8 +94,8 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - radarr:/config
-      - truenas_movies:/movies 
-      - truenas_downloads:/downloads
+      - movies:/movies 
+      - downloads:/downloads
     depends_on:
       gluetun:
         condition: service_healthy
@@ -126,8 +126,8 @@ services:
       - TZ={{ time_zone }}   
     volumes:
       - bazarr:/config
-      - truenas_tv:/tv
-      - truenas_movies:/movies
+      - tv:/tv
+      - movies:/movies
     restart: unless-stopped
 
   plex:
@@ -139,11 +139,11 @@ services:
       - PGID={{ plex_gid }}
       - TZ={{ time_zone}}
       - VERSION=docker
-      - PLEX_CLAIM={{ plex_claim_token }}
+      - PLEX_CLAIM={{ servarr_plex_claim_token }}
     volumes:
       - plex:/config
-      - truenas_tv:/tv
-      - truenas_movies:/movies
+      - tv:/tv
+      - movies:/movies
     ports:
       - 32400:32400
       - 1900:1900/udp
@@ -164,23 +164,6 @@ volumes:
   radarr:
   bazarr:
   plex:
-  truenas_tv:
-    driver: local
-    driver_opts:
-      type: "nfs"
-      o: "nfsvers=4,addr=10.0.17.55,nolock,soft,rw"
-      device: ":/mnt/data/media/tv"
-  
-  truenas_downloads:
-    driver: local
-    driver_opts:
-      type: "nfs"
-      o: "nfsvers=4,addr=10.0.17.55,nolock,soft,rw"
-      device: ":/mnt/data/media/downloads"
-  
-  truenas_movies:
-    driver: local
-    driver_opts:
-      type: "nfs"
-      o: "nfsvers=4,addr=10.0.17.55,nolock,soft,rw"
-      device: ":/mnt/data/media/movies"
+  tv: {{ servarr_tv_volume}}
+  downloads: {{ servarr_downloads_volume}}
+  movies: {{ servarr_movies_volume }}
