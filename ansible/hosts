@@ -47,3 +47,6 @@ docker02
 
 [servarr:children]
 docker02
+
+[homepage:children]
+docker01

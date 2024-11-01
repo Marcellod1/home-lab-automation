@@ -1,0 +1,4 @@
+- name: Install and configure homepage
+  hosts: homepage
+  roles:
+    - role: homepage
