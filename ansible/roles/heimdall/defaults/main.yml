@@ -1,6 +1,0 @@
-heimdall_web_host_port: 32400
-heimdall_container_restart_policy: always
-heimdall_container_version: latest
-time_zone: America/Edmonton
-container_state: started
-container_restart: false

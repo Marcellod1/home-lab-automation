@@ -24,6 +24,7 @@ services:
       - 9696:9696     # prowlarr
       - 8989:8989     # sonarr
       - 7878:7878     # radarr
+      - 6767:6767     # bazarr
     restart: unless-stopped
 
   qbittorrent:
@@ -115,6 +116,20 @@ services:
         condition: service_healthy
         restart: true
 
+  bazarr:
+    image: lscr.io/linuxserver/bazarr:latest
+    container_name: bazarr
+    network_mode: container:gluetun
+    environment:
+      - PUID={{ bazarr_uid }}
+      - PGID={{ bazarr_gid }}
+      - TZ={{ time_zone }}   
+    volumes:
+      - bazarr:/config
+      - truenas_tv:/tv
+      - truenas_movies:/movies
+    restart: unless-stopped
+
   plex:
     image: lscr.io/linuxserver/plex:latest
     container_name: plex
@@ -147,7 +162,7 @@ volumes:
   prowlarr:
   sonarr:
   radarr:
-  overseerr:
+  bazarr:
   plex:
   truenas_tv:
     driver: local
