@@ -26,7 +26,7 @@ docker04
 [nginx_proxy_manager:children]
 docker01
 
-[minecraft_server:children]
+[minecraft:children]
 docker01
 
 [pi_hole:children]

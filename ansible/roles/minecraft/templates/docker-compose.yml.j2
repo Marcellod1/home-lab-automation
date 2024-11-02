@@ -1,0 +1,26 @@
+services:
+  minecraft:
+    container_name: {{ minecraft_container_name }}
+    image: itzg/minecraft-server:{{ minecraft_version }}
+    ports:
+      - "25565:25565"
+    environment:
+      EULA: "TRUE"
+      ALLOW_FLIGHT: "TRUE"
+      MEMORY: "{{ minecraft_memory_gb | string }}G"
+      UID: "{{ minecraft_uid | string }}"
+      GID: "{{ minecraft_gid | string }}"
+      SEED: "{{ minecraft_seed | string }}"
+      DIFFICULTY: "{{ minecraft_difficulty }}"
+      OPS: "{{ minecraft_ops | join(',') }}"
+      OVERRIDE_OPS: "TRUE"
+      ICON: "{{ minecraft_icon_url }}"
+      OVERRIDE_ICON: "TRUE"
+    volumes:
+      - data:/data
+    restart: unless-stopped
+    tty: true
+    stdin_open: true
+
+volumes: 
+  data:

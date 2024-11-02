@@ -1,7 +1,0 @@
-- name: Restart container
-  become: true
-  community.docker.docker_container:
-    name: "{{ minecraft_server_container_name }}"
-    state: started
-    restart: true
-    env: "{{ container_env }}"

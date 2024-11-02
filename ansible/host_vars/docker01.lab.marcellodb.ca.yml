@@ -1,12 +1,8 @@
-npm_container_name: nginx_proxy_manager
-
-minecraft_server_container_name: minecraft_server
-minecraft_server_seed: -1541124385142397106
-minecraft_server_container_uid: 9999
-minecraft_server_container_gid: 9999
-minecraft_server_memory_gb: 4
-minecraft_server_icon_url: https://marcellod1.github.io/resources/img/server-icon.png
-minecraft_server_ops:
+minecraft_container_name: minecraft
+minecraft_seed: -1541124385142397106
+minecraft_memory_gb: 4
+minecraft_icon_url: https://marcellod1.github.io/resources/img/server-icon.png
+minecraft_ops:
   - EqualMarcello
 
 portainer_admin_user: admin

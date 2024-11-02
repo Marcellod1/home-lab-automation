@@ -1,0 +1,11 @@
+docker_projects_directory: /opt/docker/
+minecraft_container_name: minecraft
+minecraft_memory_gb: 2
+minecraft_port: 25565
+minecraft_version: latest
+minecraft_icon_url: ''
+minecraft_seed: 134124145151235151
+minecraft_ops: []
+minecraft_difficulty: normal
+container_state: started
+container_restart: false
