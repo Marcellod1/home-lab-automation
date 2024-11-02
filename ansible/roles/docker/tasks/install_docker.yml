@@ -25,11 +25,12 @@
   ansible.builtin.apt:
     update_cache: true
     package:
-      - docker-ce
-      - docker-ce-cli
+      - docker-ce={{ docker_version }}~{{ ansible_distribution | lower }}.{{ ansible_distribution_version }}~{{ ansible_distribution_release}}
+      - docker-ce-cli={{ docker_version }}~{{ ansible_distribution | lower }}.{{ ansible_distribution_version }}~{{ ansible_distribution_release}}
       - containerd.io
       - docker-buildx-plugin
       - docker-compose-plugin
+    state: present
 
 - name: Create docker user
   become: true
@@ -46,5 +47,5 @@
     path: /opt/docker/
     state: directory
     owner: docker
-    mode: "750"
+    mode: "755"
     group: docker
