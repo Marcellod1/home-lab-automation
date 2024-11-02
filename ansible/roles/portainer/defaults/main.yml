@@ -1,6 +1,5 @@
-portainer_web_host_port: 9443
-portainer_agent_host_port: 8000
-portainer_container_restart_policy: always
+docker_projects_directory: /opt/docker/
+portainer_container_name: portainer
+portainer_admin_port: 9443
+portainer_agent_port: 8000
 portainer_version: latest
-container_restart: false
-container_state: started

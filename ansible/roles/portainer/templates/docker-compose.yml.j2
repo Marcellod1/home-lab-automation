@@ -1,0 +1,16 @@
+services:
+  portainer:
+    container_name: {{ portainer_container_name }}
+    image: portainer/portainer-ce:{{ portainer_version }}
+    ports:
+      - "{{ portainer_admin_port }}:9443"
+      - "{{ portainer_agent_port }}:8000"
+    environment:
+      TZ: {{ time_zone }}
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - data:/data
+    restart: unless-stopped
+
+volumes:
+  data:

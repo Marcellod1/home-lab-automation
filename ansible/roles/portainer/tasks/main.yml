@@ -1,20 +1,24 @@
-- name: Create container {{ portainer_container_name }}
+- name: Ensure project directory exists
   become: true
-  community.docker.docker_container:
-    name: "{{ portainer_container_name }}"
-    image: portainer/portainer-ce:{{ portainer_version }}
-    state: "{{ container_state }}"
-    restart: "{{ container_restart }}"
-    restart_policy: "{{ portainer_container_restart_policy }}"
-    network_mode: bridge
-    ports:
-      - "{{ portainer_web_host_port }}:9443"
-      - "{{ portainer_agent_host_port }}:8000"
-    mounts:
-      - source: "{{ portainer_container_name }}_data"
-        target: /data
-        type: volume
-      - source: "/var/run/docker.sock"
-        target: "/var/run/docker.sock"
-        type: bind
-  register: portainer_container
+  file:
+    path: "{{ docker_projects_directory }}/portainer/"
+    owner: docker
+    group: docker
+    mode: "750"
+    state: directory
+
+- name: Copy docker compose to project directory
+  become: true
+  template:
+    src: docker-compose.yml.j2
+    dest: "{{ docker_projects_directory }}/portainer/docker-compose.yml"
+    owner: docker
+    group: docker
+    mode: "750"
+
+- name: Run docker compose
+  become: true
+  community.docker.docker_compose_v2:
+    project_src: "{{ docker_projects_directory }}/portainer"
+    state: present
+  register: output
