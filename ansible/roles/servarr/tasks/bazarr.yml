@@ -1,0 +1,28 @@
+- name: Create bazarr group
+  become: true
+  ansible.builtin.group:
+    name: bazarr
+    state: present
+
+- name: Create bazarr user
+  become: true
+  ansible.builtin.user:
+    name: bazarr
+    shell: /bin/bash
+    group: bazarr
+    state: present
+
+- name: Get user details
+  ansible.builtin.getent:
+    database: passwd
+    key: bazarr
+
+- name: Get group details
+  getent:
+    database: group
+    key: bazarr
+
+- name: Set user and group id
+  set_fact:
+    bazarr_uid: "{{ ansible_facts.getent_passwd.bazarr.1 }}"
+    bazarr_gid: "{{ ansible_facts.getent_group.bazarr.1 }}"

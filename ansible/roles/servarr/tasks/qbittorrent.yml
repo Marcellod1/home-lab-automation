@@ -1,0 +1,28 @@
+- name: Create qbittorrent group
+  become: true
+  ansible.builtin.group:
+    name: qbittorrent
+    state: present
+
+- name: Create qbittorrent user
+  become: true
+  ansible.builtin.user:
+    name: qbittorrent
+    shell: /bin/bash
+    group: qbittorrent
+    state: present
+
+- name: Get user details
+  ansible.builtin.getent:
+    database: passwd
+    key: qbittorrent
+
+- name: Get group details
+  getent:
+    database: group
+    key: qbittorrent
+
+- name: Set user and group id
+  set_fact:
+    qbittorrent_uid: "{{ ansible_facts.getent_passwd.qbittorrent.1 }}"
+    qbittorrent_gid: "{{ ansible_facts.getent_group.qbittorrent.1 }}"

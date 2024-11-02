@@ -1,0 +1,28 @@
+- name: Create radarr group
+  become: true
+  ansible.builtin.group:
+    name: radarr
+    state: present
+
+- name: Create radarr user
+  become: true
+  ansible.builtin.user:
+    name: radarr
+    shell: /bin/bash
+    group: radarr
+    state: present
+
+- name: Get user details
+  ansible.builtin.getent:
+    database: passwd
+    key: radarr
+
+- name: Get group details
+  getent:
+    database: group
+    key: radarr
+
+- name: Set user and group id
+  set_fact:
+    radarr_uid: "{{ ansible_facts.getent_passwd.radarr.1 }}"
+    radarr_gid: "{{ ansible_facts.getent_group.radarr.1 }}"
