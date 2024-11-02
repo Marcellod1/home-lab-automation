@@ -43,7 +43,7 @@
     dest: "{{ docker_projects_directory }}/homepage/docker-compose.yml"
     owner: homepage
     group: homepage
-    mode: "755"
+    mode: "750"
     
 - name: Copy config files to the project directory
   become: true
@@ -52,7 +52,7 @@
     dest: "{{ docker_projects_directory }}/homepage/config/"
     owner: homepage
     group: homepage
-    mode: "755"
+    mode: "750"
 
 - name: Run docker compose
   become: true

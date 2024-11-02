@@ -28,7 +28,7 @@
     path: "{{ docker_projects_directory }}/servarr/"
     owner: docker
     group: docker
-    mode: "755"
+    mode: "750"
     state: directory
 
 - name: Copy docker compose to project directory
@@ -38,7 +38,7 @@
     dest: "{{ docker_projects_directory }}/servarr/docker-compose.yml"
     owner: docker
     group: docker
-    mode: "755"
+    mode: "750"
 
 - name: Run docker compose
   become: true

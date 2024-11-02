@@ -4,7 +4,7 @@
     path: "{{ docker_projects_directory }}/nginx_proxy_manager/"
     owner: docker
     group: docker
-    mode: "755"
+    mode: "750"
     state: directory
 
 - name: Copy docker compose to project directory
@@ -14,7 +14,7 @@
     dest: "{{ docker_projects_directory }}/nginx_proxy_manager/docker-compose.yml"
     owner: docker
     group: docker
-    mode: "755"
+    mode: "750"
 
 - name: Run docker compose
   become: true

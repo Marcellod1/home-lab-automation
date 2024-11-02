@@ -1,59 +1,53 @@
 - name: Create pihole group
   become: true
   ansible.builtin.group:
-    gid: "{{ pi_hole_container_gid }}"
     name: pihole
     state: present
 
 - name: Create pihole user
   become: true
   ansible.builtin.user:
-    uid: "{{ pi_hole_container_uid }}"
     name: pihole
     shell: /bin/bash
     group: pihole
     state: present
 
-- name: Set the container environment
+- name: Get user details
+  ansible.builtin.getent:
+    database: passwd
+    key: pihole
+
+- name: Get group details
+  getent:
+    database: group
+    key: pihole
+
+- name: Set user and group id
   set_fact:
-    container_env:
-      TZ: "{{ time_zone }}"
-      DNSMASQ_LISTENING: all
-      WEBPASSWORD: "{{ pi_hole_admin_password }}"
-      PIHOLE_UID: "{{ pi_hole_container_uid | string }}"
-      PIHOLE_GID: "{{ pi_hole_container_gid | string }}"
-      FTLCONF_LOCAL_IPV4: "{{ ansible_default_ipv4.address }}"
+    pi_hole_uid: "{{ ansible_facts.getent_passwd.pihole.1 }}"
+    pi_hole_gid: "{{ ansible_facts.getent_group.pihole.1 }}"
 
-- name: Create container {{ pi_hole_container_name }}
+- name: Ensure project directory exists
   become: true
-  community.docker.docker_container:
-    name: "{{ pi_hole_container_name }}"
-    image: pihole/pihole:{{ pi_hole_container_version }}
-    state: "{{ container_state }}"
-    restart: "{{ container_restart }}"
-    restart_policy: "{{ pi_hole_container_restart_policy }}"
-    network_mode: bridge
-    published_ports:
-      - "{{ pi_hole_web_host_port }}:80"
-      - "53:53/tcp"
-      - "53:53/udp"
-    mounts:
-      - source: "{{ pi_hole_container_name }}_dnsmasq"
-        target: /etc/dnsmasq.d
-        type: volume
-      - source: "{{ pi_hole_container_name }}_pihole"
-        target: /etc/pihole
-        type: volume
-    env: "{{ container_env }}"
-    capabilities:
-      - NET_ADMIN
-
-- name: Template custom.list for local DNS entries
-  become: true
-  ansible.builtin.template:
-    src: custom.list.j2
-    dest: /var/lib/docker/volumes/{{ pi_hole_container_name }}_pihole/_data/custom.list
-    mode: '644'
+  file:
+    path: "{{ docker_projects_directory }}/pi_hole/"
     owner: pihole
     group: pihole
-  notify: Restart container
+    mode: "750"
+    state: directory
+
+- name: Copy docker compose to project directory
+  become: true
+  template:
+    src: docker-compose.yml.j2
+    dest: "{{ docker_projects_directory }}/pi_hole/docker-compose.yml"
+    owner: pihole
+    group: pihole
+    mode: "750"
+
+- name: Run docker compose
+  become: true
+  community.docker.docker_compose_v2:
+    project_src: "{{ docker_projects_directory }}/pi_hole"
+    state: present
+  register: output

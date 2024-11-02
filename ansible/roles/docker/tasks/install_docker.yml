@@ -46,5 +46,5 @@
     path: /opt/docker/
     state: directory
     owner: docker
-    mode: "755"
+    mode: "750"
     group: docker

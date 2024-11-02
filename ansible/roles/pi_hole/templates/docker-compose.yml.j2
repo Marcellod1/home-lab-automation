@@ -1,0 +1,23 @@
+services:
+  pihole:
+    container_name: {{ pi_hole_container_name }}
+    image: pihole/pihole:{{ pi_hole_version }}
+    ports:
+      - "53:53"
+      - "53:53/udp"
+      - "{{ pi_hole_admin_port }}:80"
+    environment:
+      TZ: {{ time_zone }}
+      WEBPASSWORD: {{ pi_hole_admin_password }}
+      PIHOLE_UID: {{ pi_hole_uid }}
+      PIHOLE_GID: {{ pi_hole_gid }}
+    volumes:
+      - data:/etc/pihole
+      - dnsmasq:/etc/dnsmasq.d
+    cap_add:
+      - NET_ADMIN
+    restart: unless-stopped
+
+volumes:
+  data:
+  dnsmasq:
