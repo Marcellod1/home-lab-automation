@@ -10,3 +10,4 @@ services:
     environment:
       PUID: {{ homepage_uid }}
       PGID: {{ homepage_gid }}
+    restart: unless-stopped
