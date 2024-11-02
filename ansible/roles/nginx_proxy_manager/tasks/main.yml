@@ -1,20 +1,24 @@
-- name: Create container {{ npm_container_name }}
+- name: Ensure project directory exists
   become: true
-  community.docker.docker_container:
-    name: "{{ npm_container_name }}"
-    image: jc21/nginx-proxy-manager:{{ npm_container_version }}
-    state: "{{ container_state }}"
-    restart: "{{ container_restart }}"
-    restart_policy: "{{ npm_container_restart_policy }}"
-    network_mode: bridge
-    ports:
-      - "{{ npm_web_port }}:81"
-      - 80:80
-      - 443:443
-    mounts:
-      - source: "{{ npm_container_name }}_data"
-        target: /data
-        type: volume
-      - source: "{{ npm_container_name }}_letsencrypt"
-        target: /etc/letsencrypt
-        type: volume
+  file:
+    path: "{{ projects_directory }}/nginx_proxy_manager/"
+    owner: docker
+    group: docker
+    mode: "755"
+    state: directory
+
+- name: Copy docker compose to project directory
+  become: true
+  template:
+    src: docker-compose.yml.j2
+    dest: "{{ projects_directory }}/nginx_proxy_manager/docker-compose.yml"
+    owner: docker
+    group: docker
+    mode: "755"
+
+- name: Run docker compose
+  become: true
+  community.docker.docker_compose_v2:
+    project_src: "{{ projects_directory }}/nginx_proxy_manager"
+    state: present
+  register: output
