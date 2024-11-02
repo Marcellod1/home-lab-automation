@@ -19,6 +19,7 @@ variable "pve_vms" {
     cores      = number
     memory_gb  = number
     storage_gb = number
+    storage    = optional(string, "local-lvm")
     state      = optional(string, "running")
   }))
 }

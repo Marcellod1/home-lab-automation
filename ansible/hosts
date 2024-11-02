@@ -7,9 +7,6 @@ docker02.lab.marcellodb.ca
 [docker03]
 docker03.lab.marcellodb.ca
 
-[docker04]
-docker04.lab.marcellodb.ca
-
 [k3s_master]
 k3s-master01.lab.marcellodb.ca
 
@@ -21,7 +18,6 @@ k3s-worker02.lab.marcellodb.ca
 docker01
 docker02
 docker03
-docker04
 
 [nginx_proxy_manager:children]
 docker01

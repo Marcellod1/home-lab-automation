@@ -7,7 +7,7 @@ pve_vms = {
     template   = "ubu-noble-template"
     cores      = 4
     memory_gb  = 8
-    storage_gb = 24
+    storage_gb = 36
   }
 
   docker02 = {
@@ -15,30 +15,15 @@ pve_vms = {
     template   = "ubu-noble-template"
     cores      = 4
     memory_gb  = 8
-    storage_gb = 24
-  }
-
-  k3s-master01 = {
-    node       = "pve05"
-    template   = "ubu-noble-template"
-    cores      = 4
-    memory_gb  = 4
     storage_gb = 36
   }
 
-  k3s-worker01 = {
+  docker03 = {
     node       = "pve05"
     template   = "ubu-noble-template"
     cores      = 4
-    memory_gb  = 4
+    memory_gb  = 8
     storage_gb = 36
-  }
-
-  k3s-worker02 = {
-    node       = "pve05"
-    template   = "ubu-noble-template"
-    cores      = 4
-    memory_gb  = 4
-    storage_gb = 36
+    storage    = "local-zfs"
   }
 }

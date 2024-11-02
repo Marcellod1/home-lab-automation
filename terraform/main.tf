@@ -28,9 +28,6 @@ resource "proxmox_vm_qemu" "vm" {
   memory      = each.value.memory_gb * 1024
   ciuser      = var.pve_cloud_init_user
   sshkeys     = var.pve_cloud_init_ssh_key
-  # https://forum.proxmox.com/threads/combining-custom-cloud-init-with-auto-generated.59008/page-3#post-428772EOF
-  # Custom vendor cloud init block to handle the install of the qemu guest agent and rebooting after cloud init runs to sync up DHCP leases
-  # The vendor.yaml cloud config file must be present locally on all proxmox hosts under var/lib/vz/snippets/vendor.yaml
   cicustom    = "vendor=local:snippets/vendor.yaml" 
   ipconfig0   = "ip=dhcp"
   vm_state    = each.value.state
@@ -39,14 +36,14 @@ resource "proxmox_vm_qemu" "vm" {
     ide {
       ide0 {
         cloudinit {
-          storage = "local-lvm"
+          storage = "${each.value.storage}"
         }
       }
     }
     scsi {
       scsi0 {
         disk {
-          storage = "local-lvm"
+          storage = "${each.value.storage}"
           size    = "${each.value.storage_gb}G"
         }
       }
