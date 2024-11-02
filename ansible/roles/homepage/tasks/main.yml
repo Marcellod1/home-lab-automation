@@ -30,7 +30,7 @@
 - name: Ensure project directory exists
   become: true
   file:
-    path: "{{ projects_directory }}/homepage/config"
+    path: "{{ docker_projects_directory }}/homepage/config"
     owner: homepage
     group: homepage
     mode: "755"
@@ -40,7 +40,7 @@
   become: true
   template:
     src: docker-compose.yml.j2
-    dest: "{{ projects_directory }}/homepage/docker-compose.yml"
+    dest: "{{ docker_projects_directory }}/homepage/docker-compose.yml"
     owner: homepage
     group: homepage
     mode: "755"
@@ -49,7 +49,7 @@
   become: true
   copy:
     src: config/
-    dest: "{{ projects_directory }}/homepage/config/"
+    dest: "{{ docker_projects_directory }}/homepage/config/"
     owner: homepage
     group: homepage
     mode: "755"
@@ -57,6 +57,6 @@
 - name: Run docker compose
   become: true
   community.docker.docker_compose_v2:
-    project_src: "{{ projects_directory }}/homepage"
+    project_src: "{{ docker_projects_directory }}/homepage"
     state: present
   register: output

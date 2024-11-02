@@ -25,7 +25,7 @@
 - name: Ensure project directory exists
   become: true
   file:
-    path: "{{ projects_directory }}/servarr/"
+    path: "{{ docker_projects_directory }}/servarr/"
     owner: docker
     group: docker
     mode: "755"
@@ -35,7 +35,7 @@
   become: true
   template:
     src: docker-compose.yml.j2
-    dest: "{{ projects_directory }}/servarr/docker-compose.yml"
+    dest: "{{ docker_projects_directory }}/servarr/docker-compose.yml"
     owner: docker
     group: docker
     mode: "755"
@@ -43,6 +43,6 @@
 - name: Run docker compose
   become: true
   community.docker.docker_compose_v2:
-    project_src: "{{ projects_directory }}/servarr"
+    project_src: "{{ docker_projects_directory }}/servarr"
     state: present
   register: output

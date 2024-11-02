@@ -6,7 +6,7 @@ services:
       - 3000:3000
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - {{ projects_directory }}/homepage/config:/app/config
+      - {{ docker_projects_directory }}/homepage/config:/app/config
     environment:
       PUID: {{ homepage_uid }}
       PGID: {{ homepage_gid }}
