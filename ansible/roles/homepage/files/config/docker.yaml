@@ -6,5 +6,14 @@
 #   host: 127.0.0.1
 #   port: 2375
 
-# my-docker:
-#   socket: /var/run/docker.sock
+docker01:
+  host: docker01.lab.marcellodb.ca
+  port: 2375
+
+docker02:
+  host: docker02.lab.marcellodb.ca
+  port: 2375
+
+docker03:
+  host: docker03.lab.marcellodb.ca
+  port: 2375

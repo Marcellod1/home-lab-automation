@@ -46,3 +46,6 @@ docker02
 
 [homepage:children]
 docker01
+
+[openvpn:children]
+docker01

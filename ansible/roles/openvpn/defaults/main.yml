@@ -1,0 +1,5 @@
+docker_projects_directory: /opt/docker/
+openvpn_container_name: openvpn
+openvpn_config_port: 80
+openvpn_tunnel_port: 1194
+openvpn_version: latest

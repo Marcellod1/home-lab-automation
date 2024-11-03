@@ -2,17 +2,24 @@
 # For configuration options and examples, please see:
 # https://gethomepage.dev/configs/services
 
-- My First Group:
-    - My First Service:
-        href: http://localhost/
-        description: Homepage is awesome
+- Core:
+    - Proxmox:
+        icon: proxmox.png
+        href: https://pve.lab.marcellodb.ca
+        description: Proxmox Virtual Environment
 
-- My Second Group:
-    - My Second Service:
-        href: http://localhost/
-        description: Homepage is the best
+    - TrueNAS:
+        icon: truenas.png
+        href: https://truenas.lab.marcellodb.ca
+        description: Storage and Shares
 
-- My Third Group:
-    - My Third Service:
-        href: http://localhost/
-        description: Homepage is 😎
+    - Portainer:
+        icon: portainer.png
+        href: https://portainer.lab.marcellodb.ca
+        description: Container Deployment
+
+- Hypervisor:
+    - Proxmox:
+        icon: proxmox.png
+        href: https://pve.lab.marcellodb.ca
+        description: Proxmox Virtual Environment
