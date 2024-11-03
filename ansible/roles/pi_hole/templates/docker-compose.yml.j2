@@ -8,14 +8,17 @@ services:
       - "{{ pi_hole_admin_port }}:80"
     environment:
       TZ: {{ time_zone }}
+      PIHOLE_DNS_: {{ pi_hole_upstream_dns | join(";") }}
       WEBPASSWORD: {{ pi_hole_admin_password }}
       PIHOLE_UID: {{ pi_hole_uid }}
       PIHOLE_GID: {{ pi_hole_gid }}
+      FTLCONF_LOCAL_IPV4: "{{ ansible_default_ipv4.address }}"
     volumes:
       - data:/etc/pihole
       - dnsmasq:/etc/dnsmasq.d
     cap_add:
       - NET_ADMIN
+    dns: {{ pi_hole_upstream_dns }}
     restart: unless-stopped
 
 volumes:
