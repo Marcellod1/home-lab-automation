@@ -2,8 +2,8 @@
   become: true
   file:
     path: "{{ docker_projects_directory }}/openvpn/"
-    owner: pihole
-    group: pihole
+    owner: docker
+    group: docker
     mode: "750"
     state: directory
 
@@ -12,8 +12,8 @@
   template:
     src: docker-compose.yml.j2
     dest: "{{ docker_projects_directory }}/openvpn/docker-compose.yml"
-    owner: pihole
-    group: pihole
+    owner: docker
+    group: docker
     mode: "750"
 
 - name: Run docker compose

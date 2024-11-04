@@ -1,0 +1,2 @@
+wireguard_server_hostname: marcellodb.ca
+wireguard_peer_dns: 10.0.17.1

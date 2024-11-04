@@ -47,5 +47,5 @@ docker02
 [homepage:children]
 docker01
 
-[openvpn:children]
+[wireguard:children]
 docker01

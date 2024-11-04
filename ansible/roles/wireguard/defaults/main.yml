@@ -1,0 +1,7 @@
+docker_projects_directory: /opt/docker/
+wireguard_container_name: wireguard
+wireguard_container_version: latest
+wireguard_server_port: 51820
+wireguard_peers: 1
+wireguard_peer_dns: 8.8.8.8
+wireguard_internal_subnet: 10.13.13.0

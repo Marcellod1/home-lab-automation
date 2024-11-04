@@ -33,7 +33,7 @@
     path: "{{ docker_projects_directory }}/homepage/config"
     owner: homepage
     group: homepage
-    mode: "755"
+    mode: "750"
     state: directory
 
 - name: Copy docker compose to project directory
