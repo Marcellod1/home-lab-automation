@@ -1,0 +1,5 @@
+docker_projects_directory: /opt/docker/
+pihole_container_name: pihole
+pihole_admin_port: 80
+pihole_version: latest
+time_zone: America/Edmonton

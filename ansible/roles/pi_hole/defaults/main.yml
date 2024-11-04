@@ -1,5 +1,0 @@
-docker_projects_directory: /opt/docker/
-pi_hole_container_name: pi_hole
-pi_hole_admin_port: 80
-pi_hole_version: latest
-time_zone: America/Edmonton

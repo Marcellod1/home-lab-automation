@@ -24,13 +24,13 @@
 
 - name: Set user and group id
   set_fact:
-    pi_hole_uid: "{{ ansible_facts.getent_passwd.pihole.1 }}"
-    pi_hole_gid: "{{ ansible_facts.getent_group.pihole.1 }}"
+    pihole_uid: "{{ ansible_facts.getent_passwd.pihole.1 }}"
+    pihole_gid: "{{ ansible_facts.getent_group.pihole.1 }}"
 
 - name: Ensure project directory exists
   become: true
   file:
-    path: "{{ docker_projects_directory }}/pi_hole/"
+    path: "{{ docker_projects_directory }}/pihole/"
     owner: pihole
     group: pihole
     mode: "750"
@@ -40,7 +40,7 @@
   become: true
   template:
     src: docker-compose.yml.j2
-    dest: "{{ docker_projects_directory }}/pi_hole/docker-compose.yml"
+    dest: "{{ docker_projects_directory }}/pihole/docker-compose.yml"
     owner: pihole
     group: pihole
     mode: "750"
@@ -48,6 +48,6 @@
 - name: Run docker compose
   become: true
   community.docker.docker_compose_v2:
-    project_src: "{{ docker_projects_directory }}/pi_hole"
+    project_src: "{{ docker_projects_directory }}/pihole"
     state: present
   register: output
