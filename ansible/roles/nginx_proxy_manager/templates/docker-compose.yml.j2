@@ -5,7 +5,7 @@ services:
     ports:
       - 80:80
       - 443:443
-      - {{ nginx_proxy_manager_version_admin_port }}:81
+      - {{ nginx_proxy_manager_admin_port }}:81
     volumes:
       - data:/data
       - letsencrypt:/etc/letsencrypt

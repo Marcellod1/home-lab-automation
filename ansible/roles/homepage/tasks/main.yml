@@ -45,14 +45,22 @@
     group: homepage
     mode: "750"
     
-- name: Copy config files to the project directory
+- name: Template config files
   become: true
-  copy:
-    src: config/
-    dest: "{{ docker_projects_directory }}/homepage/config/"
+  template:
+    src: config/{{ template_file }}.j2
+    dest: "{{ docker_projects_directory }}/homepage/config/{{ template_file }}"
     owner: homepage
     group: homepage
     mode: "750"
+  with_items:
+    - settings.yaml
+    - services.yaml
+    - bookmarks.yaml
+    - widgets.yaml
+    - docker.yaml
+  loop_control:
+    loop_var: template_file
 
 - name: Run docker compose
   become: true
