@@ -1,3 +1,4 @@
 docker_projects_directory: /opt/docker/
-nginx_proxy_manager_admin_port: 81
-nginx_proxy_manager_version: latest
+npm_container_name: nginx_proxy_manager
+npm_container_version: latest
+npm_admin_port: 81
