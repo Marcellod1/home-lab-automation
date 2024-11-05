@@ -1,7 +1,7 @@
 services:
   pihole:
     container_name: {{ pihole_container_name }}
-    image: pihole/pihole:{{ pihole_version }}
+    image: pihole/pihole:{{ pihole_container_version }}
     ports:
       - "53:53"
       - "53:53/udp"

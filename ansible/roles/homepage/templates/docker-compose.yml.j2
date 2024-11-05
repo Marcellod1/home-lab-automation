@@ -5,7 +5,6 @@ services:
     ports:
       - {{ homepage_admin_port }}:3000
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
       - {{ docker_projects_directory }}/homepage/config:/app/config
     environment:
       PUID: {{ homepage_uid }}

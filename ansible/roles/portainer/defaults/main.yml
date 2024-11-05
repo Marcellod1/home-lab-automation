@@ -1,5 +1,5 @@
 docker_projects_directory: /opt/docker/
 portainer_container_name: portainer
+portainer_container_version: latest
 portainer_admin_port: 9443
 portainer_agent_port: 8000
-portainer_version: latest

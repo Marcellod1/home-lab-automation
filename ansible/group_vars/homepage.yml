@@ -1,3 +1,4 @@
+homepage_container_version: v0.9.11
 hompage_openweathermap_token: !vault |
           $ANSIBLE_VAULT;1.1;AES256
           37393734646564336163326666326362666362333962386236316134666331663634313832623064
