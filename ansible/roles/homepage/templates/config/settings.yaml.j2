@@ -3,14 +3,12 @@
 # https://gethomepage.dev/configs/settings
 
 providers:
-  openweathermap: openweathermapapikey
-  weatherapi: weatherapiapikey
+  openweathermap: {{ hompage_openweathermap_token }}
 
 layout:
   Proxmox:
     style: row
     columns: 5
-
   Docker:
     style: row
     columns: 3
