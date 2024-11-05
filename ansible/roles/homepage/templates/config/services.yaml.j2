@@ -17,86 +17,144 @@
             node: {{ host.name }}
 {% endfor %}
 
-- Containers:
+- Docker:
     - docker01:
         icon: docker-moby.png
-        href: https://portainer.lab.marcellodb.ca
+        href: {{ homepage_portainer_url }}
         description: Container Deployment
         widget:
             type: portainer
-            url: https://portainer.lab.marcellodb.ca
+            url: {{ homepage_portainer_url }}
             env: 2
-            key: "{{ homepage_portainer_token }}"
+            key: {{ homepage_portainer_token }}
 
     - docker02:
         icon: docker-moby.png
-        href: https://portainer.lab.marcellodb.ca
+        href: {{ homepage_portainer_url }}
         description: Container Deployment
         widget:
             type: portainer
-            url: https://portainer.lab.marcellodb.ca
+            url: {{ homepage_portainer_url }}
             env: 3
-            key: "{{ homepage_portainer_token }}"
+            key: {{ homepage_portainer_token }}
 
     - docker03:
         icon: docker-moby.png
-        href: https://portainer.lab.marcellodb.ca
+        href: {{ homepage_portainer_url }}
         description: Container Deployment
         widget:
             type: portainer
-            url: https://portainer.lab.marcellodb.ca
+            url: {{ homepage_portainer_url }}
             env: 4
-            key: "{{ homepage_portainer_token }}"
+            key: {{ homepage_portainer_token }}
 
 - Servarr:
     - qbittorrent:
         icon: qbittorrent.png
-        href: https://qb.lab.marcellodb.ca
-        siteMonitor: https://qb.lab.marcellodb.ca
+        href: {{ homepage_qbittorrent_url }}
+        siteMonitor: {{ homepage_qbittorrent_url }}
         server: docker02
         container: qbittorrent
         widget:
             type: qbittorrent
-            url: https://qb.lab.marcellodb.ca
-            username: "{{ homepage_qbittorrent_credentials.username }}"
-            password: "{{ homepage_qbittorrent_credentials.password }}"
+            url: {{ homepage_qbittorrent_url }}
+            username: {{ homepage_qbittorrent_credentials.username }}
+            password: {{ homepage_qbittorrent_credentials.password }}
 
     - Sonarr:
         icon: sonarr.png
-        href: https://sonarr.lab.marcellodb.ca
-        siteMonitor: https://sonarr.lab.marcellodb.ca
+        href:  {{ homepage_sonarr_url }}
+        siteMonitor: {{ homepage_sonarr_url }}
         server: docker02
         container: sonarr
+        widget:
+            type: sonarr
+            url: {{ homepage_sonarr_url }}
+            key: {{ homepage_sonarr_token }}
+            enableQueue: true 
 
     - Radarr:
         icon: radarr.png
-        href: https://radarr.lab.marcellodb.ca
-        siteMonitor: https://radarr.lab.marcellodb.ca
+        href:  {{ homepage_radarr_url }}
+        siteMonitor:  {{ homepage_radarr_url }}
         server: docker02
         container: radarr
+        widget:
+            type: radarr
+            url: {{ homepage_radarr_url }}
+            key: {{ homepage_radarr_token }}
+            enableQueue: true 
 
     - Prowlarr:
         icon: prowlarr.png
-        href: https://prowlarr.lab.marcellodb.ca
-        siteMonitor: https://prowlarr.lab.marcellodb.ca
+        href:  {{ homepage_prowlarr_url }}
+        siteMonitor:  {{ homepage_prowlarr_url }}
         server: docker02
         container: prowlarr
+        widget:
+            type: prowlarr
+            url:  {{ homepage_prowlarr_url }}
+            key: {{ homepage_prowlarr_token }}
+            enableQueue: true 
 
     - Bazarr:
         icon: bazarr.png
-        href: https://bazarr.lab.marcellodb.ca
-        siteMonitor: https://bazarr.lab.marcellodb.ca
+        href: {{ homepage_bazarr_url }}
+        siteMonitor:  {{ homepage_bazarr_url }}
         server: docker02
         container: bazarr
+        widget:
+            type: bazarr
+            url:  {{ homepage_bazarr_url }}
+            key: {{ homepage_bazarr_token }}
+            enableQueue: true 
+
+- Services:
+    - Plex:
+        icon: plex.png
+        href: {{ homepage_plex_url }}
+        siteMonitor: {{ homepage_plex_url }}
+        description: Media Server
+        server: docker02
+        container: plex
+        widget:
+            type: plex
+            url: {{ homepage_plex_url }}
+            key: n1Cy2NvhX3u6EU7CPxwh 
+
+    - Pi-Hole:
+        icon: pi-hole.png
+        href: {{ homepage_pihole_url }}
+        siteMonitor: {{ homepage_pihole_url }}
+        description: DNS Filtering
+        server: docker01
+        container: pihole
+        widget:
+            type: pihole
+            url: {{ homepage_pihole_url }}
+            key: {{ homepage_pihole_token }}
+
+    - Nginx Proxy Manager:
+        icon: nginx-proxy-manager.png
+        href: {{ homepage_npm_url }}
+        siteMonitor: {{ homepage_npm_url }}
+        description: Reverse Proxy
+        server: docker01
+        container: nginx_proxy_manager
+        widget:
+            type: npm
+            url: {{ homepage_npm_url }}
+            username: {{ homepage_npm_credentials.username }}
+            password: {{ homepage_npm_credentials.password }}
 
 - Storage:
     - TrueNAS:
         icon: truenas.png
-        href: https://truenas.lab.marcellodb.ca
+        href: {{ homepage_truenas_url }}
         description: Storage and Shares
         widget:
             type: truenas
-            url: https://truenas.lab.marcellodb.ca
-            key: "{{ homepage_truenas_token }}"
+            url: {{ homepage_truenas_url }}
+            key: {{ homepage_truenas_token }}
             enablePools: true
             nasType: core
