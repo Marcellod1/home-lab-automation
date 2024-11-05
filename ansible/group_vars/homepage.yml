@@ -19,7 +19,6 @@ homepage_portainer_token: !vault |
           63343036643733306432663265383364353863353435346336613661323933353737646239663837
           646564353762396264323239306163366338
 
-
 homepage_truenas_url: https://truenas.lab.marcellodb.ca
 homepage_truenas_token: !vault |
           $ANSIBLE_VAULT;1.1;AES256
