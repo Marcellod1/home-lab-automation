@@ -1,5 +1,5 @@
 homepage_container_version: v0.9.11
-homepage_background_image_url: https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi9Ck13XMLbjZOwXujVr6rp_vzkSpCgx7-6bOwvPPsKmLYz4qaOyyt33Hk697NwwdcGHpv0Ctp4ZBQHidxqC4kM8U4a7eAgaLTxOm7I2LH40zVWSrgocNMsHy_MpScj_a0GTfAkp3MqDMR0Z-kyy5kHstGW53YoFR5y2j354ufjhZ2rk5hnhCwyGaMubhqo/s1600-rw/minimalist-purple-mountains-sunset-wallpaper.jpg
+homepage_background_image_url: https://images8.alphacoders.com/132/1323371.png
 hompage_openweathermap_token: !vault |
           $ANSIBLE_VAULT;1.1;AES256
           37393734646564336163326666326362666362333962386236316134666331663634313832623064
