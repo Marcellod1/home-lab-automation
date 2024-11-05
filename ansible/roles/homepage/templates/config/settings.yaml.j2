@@ -5,13 +5,23 @@
 providers:
   openweathermap: {{ hompage_openweathermap_token }}
 
-layout:
-  Proxmox:
-    style: row
-    columns: 5
-  Docker:
-    style: row
-    columns: 3
+{# background:
+  image: /images/background.png
+  blur: sm # sm, "", md, xl... see https://tailwindcss.com/docs/backdrop-blur
+  saturate: 50 # 0, 50, 100... see https://tailwindcss.com/docs/backdrop-saturate
+  brightness: 50 # 0, 50, 75... see https://tailwindcss.com/docs/backdrop-brightness
+  opacity: 50 # 0-100 #}
 
 theme: dark
 color: slate
+
+layout:
+  - Docker:
+      style: row
+      columns: 3
+  - Proxmox:
+      style: row
+      columns: 5
+  - Services:
+  - Servarr:
+  - Storage:
