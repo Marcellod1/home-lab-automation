@@ -6,7 +6,7 @@ providers:
   openweathermap: {{ hompage_openweathermap_token }}
 
 background:
-  image: https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi9Ck13XMLbjZOwXujVr6rp_vzkSpCgx7-6bOwvPPsKmLYz4qaOyyt33Hk697NwwdcGHpv0Ctp4ZBQHidxqC4kM8U4a7eAgaLTxOm7I2LH40zVWSrgocNMsHy_MpScj_a0GTfAkp3MqDMR0Z-kyy5kHstGW53YoFR5y2j354ufjhZ2rk5hnhCwyGaMubhqo/s1600-rw/minimalist-purple-mountains-sunset-wallpaper.jpg
+  image: {{ homepage_background_image_url }}
   saturate: 100
   brightness: 80
   opacity: 70
@@ -18,10 +18,10 @@ color: slate
 layout:
   - Docker:
       style: row
-      columns: 3
+      columns: {{ [homepage_portainer_docker_hosts | length, homepage_max_columns] | min }}
   - Proxmox:
       style: row
-      columns: 5
+      columns: {{ [homepage_proxmox_hosts | length, homepage_max_columns] | min }}
   - Services:
   - Servarr:
   - Storage:

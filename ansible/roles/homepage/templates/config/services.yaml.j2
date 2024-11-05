@@ -7,7 +7,7 @@
     - {{ host.name}}:
         icon: proxmox.png
         href: {{ homepage_proxmox_url }}
-        siteMonitor: {{ host.siteMonitor | default(homepage_proxmox_url, true)}}
+        siteMonitor: {{ host.url | default(homepage_proxmox_url, true)}}
         description: Proxmox Virtual Environment
         widget:
             type: proxmox
@@ -18,35 +18,18 @@
 {% endfor %}
 
 - Docker:
-    - docker01:
+{% for host in homepage_portainer_docker_hosts %}
+    - {{ host.name }}:
         icon: docker-moby.png
         href: {{ homepage_portainer_url }}
-        description: Container Deployment
+        siteMonitor: {{ homepage_portainer_url}}
+        description: Docker Host
         widget:
             type: portainer
             url: {{ homepage_portainer_url }}
-            env: 2
             key: {{ homepage_portainer_token }}
-
-    - docker02:
-        icon: docker-moby.png
-        href: {{ homepage_portainer_url }}
-        description: Container Deployment
-        widget:
-            type: portainer
-            url: {{ homepage_portainer_url }}
-            env: 3
-            key: {{ homepage_portainer_token }}
-
-    - docker03:
-        icon: docker-moby.png
-        href: {{ homepage_portainer_url }}
-        description: Container Deployment
-        widget:
-            type: portainer
-            url: {{ homepage_portainer_url }}
-            env: 4
-            key: {{ homepage_portainer_token }}
+            env: {{ host.environment_id }}
+{% endfor %}
 
 - Servarr:
     - qbittorrent:
