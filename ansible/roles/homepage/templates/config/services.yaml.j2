@@ -53,6 +53,7 @@
         icon: qbittorrent.png
         href: {{ homepage_qbittorrent_url }}
         siteMonitor: {{ homepage_qbittorrent_url }}
+        description: Torrent Client
         server: docker02
         container: qbittorrent
         widget:
@@ -65,6 +66,7 @@
         icon: sonarr.png
         href:  {{ homepage_sonarr_url }}
         siteMonitor: {{ homepage_sonarr_url }}
+        description: Series Monitoring
         server: docker02
         container: sonarr
         widget:
@@ -77,6 +79,7 @@
         icon: radarr.png
         href:  {{ homepage_radarr_url }}
         siteMonitor:  {{ homepage_radarr_url }}
+        description: Movie Monitoring
         server: docker02
         container: radarr
         widget:
@@ -89,6 +92,7 @@
         icon: prowlarr.png
         href:  {{ homepage_prowlarr_url }}
         siteMonitor:  {{ homepage_prowlarr_url }}
+        description: Torrent Indexing
         server: docker02
         container: prowlarr
         widget:
@@ -101,6 +105,7 @@
         icon: bazarr.png
         href: {{ homepage_bazarr_url }}
         siteMonitor:  {{ homepage_bazarr_url }}
+        description: Subtitle Monitoring
         server: docker02
         container: bazarr
         widget:
@@ -120,7 +125,7 @@
         widget:
             type: plex
             url: {{ homepage_plex_url }}
-            key: n1Cy2NvhX3u6EU7CPxwh 
+            key: {{ homepage_plex_token }} 
 
     - Pi-Hole:
         icon: pi-hole.png
