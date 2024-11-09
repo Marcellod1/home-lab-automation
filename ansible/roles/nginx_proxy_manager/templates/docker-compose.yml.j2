@@ -10,6 +10,17 @@ services:
       - data:/data
       - letsencrypt:/etc/letsencrypt
     restart: unless-stopped
+    labels:
+        - homepage.group=Services
+        - homepage.name=Nginx Proxy Manager
+        - homepage.icon=nginx-proxy-manager.png
+        - homepage.href={{ nginx_proxy_manager_url }}
+        - homepage.siteMonitor={{ nginx_proxy_manager_url }}
+        - homepage.description=Reverse Proxy
+        - homepage.widget.type=npm
+        - homepage.widget.url={{ nginx_proxy_manager_url }}
+        - homepage.widget.username={{ nginx_proxy_manager_username }}
+        - homepage.widget.password={{ nginx_proxy_manager_password }}
 
 volumes:
   letsencrypt:

@@ -1,4 +1,0 @@
-- name: Install and configure Plex
-  hosts: plex
-  roles:
-    - role: plex

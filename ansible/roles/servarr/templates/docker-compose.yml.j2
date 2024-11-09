@@ -45,7 +45,18 @@ services:
       gluetun:
         condition: service_healthy
         restart: true
-  
+    labels:
+        - homepage.group=Servarr
+        - homepage.name=qBittorrent
+        - homepage.icon=qbittorrent.png
+        - homepage.href={{ servarr_qbittorrent_url }}
+        - homepage.siteMonitor={{ servarr_qbittorrent_url }}
+        - homepage.description=Torrent Client
+        - homepage.widget.type=qbittorrent
+        - homepage.widget.url={{ servarr_qbittorrent_url }}
+        - homepage.widget.username={{ servarr_qbittorrent_username }}
+        - homepage.widget.password={{ servarr_qbittorrent_password }}
+
   prowlarr:
     image: lscr.io/linuxserver/prowlarr:latest
     container_name: prowlarr
@@ -62,6 +73,17 @@ services:
       gluetun:
         condition: service_healthy
         restart: true
+    labels:
+        - homepage.group=Servarr
+        - homepage.name=Prowlarr
+        - homepage.icon=prowlarr.png
+        - homepage.href={{ servarr_prowlarr_url }}
+        - homepage.siteMonitor={{ servarr_prowlarr_url }}
+        - homepage.description=Torrent Indexer
+        - homepage.widget.type=prowlarr
+        - homepage.widget.url={{ servarr_prowlarr_url }}
+        - homepage.widget.key={{ servarr_prowlarr_token }}
+        - homepage.widget.enableQueue=true
 
   sonarr:
     image: lscr.io/linuxserver/sonarr:latest
@@ -81,6 +103,17 @@ services:
       gluetun:
         condition: service_healthy
         restart: true
+    labels:
+        - homepage.group=Servarr
+        - homepage.name=Sonarr
+        - homepage.icon=sonarr.png
+        - homepage.href={{ servarr_sonarr_url }}
+        - homepage.siteMonitor={{ servarr_sonarr_url }}
+        - homepage.description=Movies Monitoring
+        - homepage.widget.type=sonarr
+        - homepage.widget.url={{ servarr_sonarr_url }}
+        - homepage.widget.key={{ servarr_sonarr_token }}
+        - homepage.widget.enableQueue=true
 
   radarr:
     image: lscr.io/linuxserver/radarr:latest
@@ -100,6 +133,17 @@ services:
       gluetun:
         condition: service_healthy
         restart: true
+    labels:
+        - homepage.group=Servarr
+        - homepage.name=Radarr
+        - homepage.icon=radarr.png
+        - homepage.href={{ servarr_radarr_url }}
+        - homepage.siteMonitor={{ servarr_radarr_url }}
+        - homepage.description=Series Monitoring
+        - homepage.widget.type=radarr
+        - homepage.widget.url={{ servarr_radarr_url }}
+        - homepage.widget.key={{ servarr_radarr_token }}
+        - homepage.widget.enableQueue=true
 
   flaresolverr:
     image: ghcr.io/flaresolverr/flaresolverr:latest
@@ -129,6 +173,17 @@ services:
       - tv:/tv
       - movies:/movies
     restart: unless-stopped
+    labels:
+        - homepage.group=Servarr
+        - homepage.name=Bazarr
+        - homepage.icon=bazarr.png
+        - homepage.href={{ servarr_bazarr_url }}
+        - homepage.siteMonitor={{ servarr_bazarr_url }}
+        - homepage.description=Subtitles Monitoring
+        - homepage.widget.type=bazarr
+        - homepage.widget.url={{ servarr_bazarr_url }}
+        - homepage.widget.key={{ servarr_bazarr_token }}
+        - homepage.widget.enableQueue=true
 
   plex:
     image: lscr.io/linuxserver/plex:latest
@@ -155,6 +210,16 @@ services:
       - 32414:32414/udp
       - 32469:32469
     restart: unless-stopped
+    labels:
+        - homepage.group=Services
+        - homepage.name=Plex
+        - homepage.icon=plex.png
+        - homepage.href={{ servarr_plex_url }}
+        - homepage.siteMonitor={{ servarr_plex_url }}
+        - homepage.description=Media Server
+        - homepage.widget.type=plex
+        - homepage.widget.url={{ servarr_plex_url }}
+        - homepage.widget.key={{ servarr_plex_token }}
 
 volumes:
   gluetun:

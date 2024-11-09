@@ -12,7 +12,7 @@ services:
       WEBPASSWORD: {{ pihole_admin_password }}
       PIHOLE_UID: {{ pihole_uid }}
       PIHOLE_GID: {{ pihole_gid }}
-      FTLCONF_LOCAL_IPV4: "{{ ansible_default_ipv4.address }}"
+      FTLCONF_LOCAL_IPV4: {{ ansible_default_ipv4.address }}
     volumes:
       - data:/etc/pihole
       - dnsmasq:/etc/dnsmasq.d
@@ -20,6 +20,16 @@ services:
       - NET_ADMIN
     dns: {{ pihole_upstream_dns }}
     restart: unless-stopped
+    labels:
+        - homepage.group=Services
+        - homepage.name=Pi-Hole
+        - homepage.icon=pi-hole.png
+        - homepage.href={{ pihole_url }}
+        - homepage.siteMonitor={{ pihole_url }}
+        - homepage.description=DNS Filtering 
+        - homepage.widget.type=pihole
+        - homepage.widget.url={{ pihole_url }}
+        - homepage.widget.key={{ pihole_token }}
 
 volumes:
   data:
