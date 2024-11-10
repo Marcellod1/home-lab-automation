@@ -3,3 +3,6 @@ pihole_container_name: pihole
 pihole_container_version: latest
 pihole_admin_port: 80
 time_zone: America/Edmonton
+pihole_homepage_name: ''
+pihole_url: ''
+pihole_token: ''
