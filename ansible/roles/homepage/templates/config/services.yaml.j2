@@ -3,23 +3,23 @@
 # https://gethomepage.dev/configs/services
 
 - Proxmox:
-{% for host in homepage_proxmox_hosts %}
-    - {{ host.name}}:
+{% for host in groups['pve'] %}
+    - {{ host | split('.') | first }}:
         icon: proxmox.png
         href: {{ homepage_proxmox_url }}
-        siteMonitor: {{ host.url | default(homepage_proxmox_url, true)}}
+        siteMonitor: https://{{ host }}:{{ homepage_proxmox_port}}
         description: Proxmox Virtual Environment
         widget:
             type: proxmox
             url: {{ homepage_proxmox_url }}
-            username: {{ homepage_proxmox_credentials.username }}
-            password: {{ homepage_proxmox_credentials.password }}
-            node: {{ host.name }}
+            username: {{ homepage_proxmox_username }}
+            password: {{ homepage_proxmox_token}}
+            node: {{ host | split('.') | first }}
 {% endfor %}
 
 - Docker:
-{% for host in homepage_portainer_docker_hosts %}
-    - {{ host.name }}:
+{% for host in homepage_portainer_endpoints %}
+    - {{ host.Name }}:
         icon: docker-moby.png
         href: {{ homepage_portainer_url }}
         siteMonitor: {{ homepage_portainer_url}}
@@ -28,7 +28,7 @@
             type: portainer
             url: {{ homepage_portainer_url }}
             key: {{ homepage_portainer_token }}
-            env: {{ host.environment_id }}
+            env: {{ host.Id }}
 {% endfor %}
 
 - Storage:

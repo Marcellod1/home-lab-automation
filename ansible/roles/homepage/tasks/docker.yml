@@ -1,0 +1,9 @@
+- name: Get portainer endpoints
+  uri:
+    url: "{{ homepage_portainer_url }}/api/endpoints"
+    headers:
+      X-API-Key: "{{ homepage_portainer_token }}"
+  register: api_response
+
+- set_fact:
+    homepage_portainer_endpoints: "{{ api_response.json | to_json | from_json }}"

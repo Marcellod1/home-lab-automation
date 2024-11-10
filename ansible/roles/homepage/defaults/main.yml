@@ -3,4 +3,5 @@ homepage_container_version: latest
 homepage_container_name: homepage
 homepage_admin_port: 3000
 homepage_max_columns: 5
-homepage_background_image_url: ''
+homepage_docker_port: 2375
+homepage_proxmox_port: 8006

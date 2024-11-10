@@ -7,17 +7,32 @@ docker02.lab.marcellodb.ca
 [docker03]
 docker03.lab.marcellodb.ca
 
-[k3s_master]
-k3s-master01.lab.marcellodb.ca
-
-[k3s_worker]
-k3s-worker01.lab.marcellodb.ca
-k3s-worker02.lab.marcellodb.ca
-
 [docker:children]
 docker01
 docker02
 docker03
+
+[pve01]
+pve01.lab.marcellodb.ca
+
+[pve02]
+pve02.lab.marcellodb.ca
+
+[pve03]
+pve03.lab.marcellodb.ca
+
+[pve04]
+pve04.lab.marcellodb.ca
+
+[pve05]
+pve05.lab.marcellodb.ca
+
+[pve:children]
+pve01
+pve02
+pve03
+pve04
+pve05
 
 [nginx_proxy_manager:children]
 docker01
@@ -28,9 +43,6 @@ docker01
 [pihole:children]
 docker01
 docker02
-
-[plex:children]
-docker01
 
 [portainer:children]
 docker01

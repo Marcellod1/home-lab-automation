@@ -1,0 +1,70 @@
+- name: Create homepage group
+  become: true
+  ansible.builtin.group:
+    name: homepage
+    state: present
+
+- name: Create homepage user
+  become: true
+  ansible.builtin.user:
+    name: homepage
+    shell: /bin/bash
+    group: homepage
+    state: present
+
+- name: Get user details
+  ansible.builtin.getent:
+    database: passwd
+    key: homepage
+
+- name: Get group details
+  getent:
+    database: group
+    key: homepage
+
+- name: Set user and group id
+  set_fact:
+    homepage_uid: "{{ ansible_facts.getent_passwd.homepage.1 }}"
+    homepage_gid: "{{ ansible_facts.getent_group.homepage.1 }}"
+
+- name: Ensure project directory exists
+  become: true
+  file:
+    path: "{{ docker_projects_directory }}/homepage/config"
+    owner: homepage
+    group: homepage
+    mode: "750"
+    state: directory
+
+- name: Copy docker compose to project directory
+  become: true
+  template:
+    src: docker-compose.yml.j2
+    dest: "{{ docker_projects_directory }}/homepage/docker-compose.yml"
+    owner: homepage
+    group: homepage
+    mode: "750"
+    
+- name: Template config files
+  become: true
+  template:
+    src: config/{{ template_file }}.j2
+    dest: "{{ docker_projects_directory }}/homepage/config/{{ template_file }}"
+    owner: homepage
+    group: homepage
+    mode: "750"
+  with_items:
+    - settings.yaml
+    - services.yaml
+    - bookmarks.yaml
+    - widgets.yaml
+    - docker.yaml
+  loop_control:
+    loop_var: template_file
+
+- name: Run docker compose
+  become: true
+  community.docker.docker_compose_v2:
+    project_src: "{{ docker_projects_directory }}/homepage"
+    state: present
+  register: output
