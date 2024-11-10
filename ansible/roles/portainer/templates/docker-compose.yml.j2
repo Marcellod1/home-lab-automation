@@ -4,7 +4,7 @@ services:
     image: portainer/portainer-ce:{{ portainer_container_version }}
     ports:
       - "{{ portainer_admin_port }}:9443"
-      - "{{ portainer_agent_port }}:8000"
+      - "{{ portainer_port }}:8000"
     environment:
       TZ: {{ time_zone }}
     volumes:

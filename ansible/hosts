@@ -47,6 +47,11 @@ docker02
 [portainer:children]
 docker01
 
+[portainer_agent:children]
+docker01
+docker02
+docker03
+
 [servarr:children]
 docker02
 

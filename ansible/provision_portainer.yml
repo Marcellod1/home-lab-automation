@@ -2,3 +2,8 @@
   hosts: portainer
   roles:
     - role: portainer
+
+- name: Install and run the portainer agent on target hosts
+  hosts: portainer_agent
+  roles:
+    - role: portainer_agent

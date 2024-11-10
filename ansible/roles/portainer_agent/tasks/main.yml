@@ -1,0 +1,24 @@
+- name: Ensure project directory exists
+  become: true
+  file:
+    path: "{{ docker_projects_directory }}/portainer_agent/"
+    owner: docker
+    group: docker
+    mode: "750"
+    state: directory
+
+- name: Copy docker compose to project directory
+  become: true
+  template:
+    src: docker-compose.yml.j2
+    dest: "{{ docker_projects_directory }}/portainer_agent/docker-compose.yml"
+    owner: docker
+    group: docker
+    mode: "750"
+
+- name: Run docker compose
+  become: true
+  community.docker.docker_compose_v2:
+    project_src: "{{ docker_projects_directory }}/portainer_agent"
+    state: present
+  register: output

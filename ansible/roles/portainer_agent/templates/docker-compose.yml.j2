@@ -1,0 +1,11 @@
+services:
+  portainer:
+    container_name: {{ portainer_agent_container_name }}
+    image: portainer/agent:{{ portainer_agent_container_version }}
+    ports:
+      - "{{ portainer_agent_port }}:9001"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/lib/docker/volumes:/var/lib/docker/volumes
+      - /:/host
+    restart: unless-stopped
