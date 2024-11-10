@@ -1,5 +1,5 @@
 pihole_url: https://pihole01.lab.marcellodb.ca
-pihole_container_name: pihole01
+pihole_homepage_name: "Pi-Hole 1"
 pihole_token: !vault |
           $ANSIBLE_VAULT;1.1;AES256
           30326664613932663339343062643031653236626462623439353637363431303733393564363035

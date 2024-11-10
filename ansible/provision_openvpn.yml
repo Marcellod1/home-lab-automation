@@ -1,4 +1,0 @@
-- name: Install and run an openvpn container on target hosts
-  hosts: openvpn
-  roles:
-    - role: openvpn

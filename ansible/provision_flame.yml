@@ -1,4 +1,0 @@
-- name: Install and configure Flame
-  hosts: flame
-  roles:
-    - role: flame

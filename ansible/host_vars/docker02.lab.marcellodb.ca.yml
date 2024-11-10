@@ -1,5 +1,5 @@
 pihole_url: https://pihole02.lab.marcellodb.ca
-pihole_container_name: pihole02
+pihole_homepage_name: "Pi-Hole 2"
 pihole_token: !vault |
           $ANSIBLE_VAULT;1.1;AES256
           31633938386631653537383065313439323431363939396262313633663061363438623363643339
