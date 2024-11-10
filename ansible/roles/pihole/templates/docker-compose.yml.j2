@@ -22,7 +22,7 @@ services:
     restart: unless-stopped
     labels:
         - homepage.group=Services
-        - homepage.name={{ pihole_homepage_name }}
+        - homepage.name={{ pihole_container_name }}
         - homepage.icon=pi-hole.png
         - homepage.href={{ pihole_url }}
         - homepage.siteMonitor={{ pihole_url }}
