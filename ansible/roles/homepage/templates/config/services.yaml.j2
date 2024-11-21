@@ -19,11 +19,11 @@
 
 - Docker:
 {% for host in homepage_portainer_endpoints %}
-    - {{ host.Name }}:
-        icon: docker-moby.png
+    - Portainer ({{ host.Name }}):
+        icon: portainer.png
         href: {{ homepage_portainer_url }}
         siteMonitor: {{ homepage_portainer_url}}
-        description: Docker Host
+        description: Portainer Environment
         widget:
             type: portainer
             url: {{ homepage_portainer_url }}
