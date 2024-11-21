@@ -10,10 +10,10 @@ theme: dark
 color: slate
 
 layout:
-  - Docker:
+  - Containers:
       style: row
       columns: {{ [homepage_portainer_endpoints | length, homepage_max_columns] | min }}
-  - Proxmox:
+  - Hypervisors:
       style: row
       columns: {{ [groups['pve'] | length, homepage_max_columns] | min }}
   - Services:

@@ -2,7 +2,7 @@
 # For configuration options and examples, please see:
 # https://gethomepage.dev/configs/services
 
-- Proxmox:
+- Hypervisors:
 {% for host in groups['pve'] %}
     - {{ host | split('.') | first }}:
         icon: proxmox.png
@@ -17,7 +17,7 @@
             node: {{ host | split('.') | first }}
 {% endfor %}
 
-- Docker:
+- Containers:
 {% for host in homepage_portainer_endpoints %}
     - Portainer ({{ host.Name }}):
         icon: portainer.png
