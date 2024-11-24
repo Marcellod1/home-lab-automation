@@ -44,5 +44,6 @@
   become: true
   community.docker.docker_compose_v2:
     project_src: "{{ docker_projects_directory }}/servarr"
-    state: present
+    state: present 
+    recreate: auto
   register: output
