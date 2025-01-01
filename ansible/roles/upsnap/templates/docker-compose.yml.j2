@@ -1,0 +1,24 @@
+services:
+  upsnap:
+    container_name: upsnap
+    image: ghcr.io/seriousm4x/upsnap:{{ upsnap_container_version }} # images are also available on docker hub: seriousm4x/upsnap:4
+    restart: unless-stopped
+    network_mode: host
+    volumes:
+      - data:/app/pb_data
+    environment:
+      TZ: {{ time_zone}} # Set container timezone for cron schedules
+      UPSNAP_SCAN_RANGE: {{ upsnap_scan_network }} # Scan range is used for device discovery on local network
+      UPSNAP_SCAN_TIMEOUT: 500ms # Scan timeout is nmap's --host-timeout value to wait for devices (https://nmap.org/book/man-performance.html)
+      UPSNAP_PING_PRIVILEGED: true # Set to false if you don't have root user permissions
+    tty: true
+    stdin_open: true
+    labels:
+        - homepage.group=Services
+        - homepage.name=UpSnap
+        - homepage.icon=https://www.marcellodb.ca/resources/img/upsnap-gopher.png
+        - homepage.href={{ upsnap_url }}
+        - homepage.siteMonitor={{ upsnap_url }}
+        - homepage.description=Wake on LAN
+volumes:
+  data:

@@ -60,3 +60,6 @@ docker01
 
 [wireguard:children]
 docker01
+
+[upsnap:children]
+docker01
