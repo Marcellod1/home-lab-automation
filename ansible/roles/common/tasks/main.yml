@@ -1,12 +1,21 @@
-- name: Template /etc/systemd/resolved.conf
+- name: Ensure /etc/systemd/resolved.conf.d exists
   become: true
-  ansible.builtin.template:
-    src: resolved.conf.j2
-    dest: /etc/systemd/resolved.conf
+  ansible.builtin.file:
+    dest: /etc/systemd/resolved.conf.d
+    mode: '755'
+    owner: root
+    group: root
+    state: directory
+
+- name: Copy /etc/systemd/resolved.conf.d/00-custom-resolved.conf
+  become: true
+  ansible.builtin.copy:
+    src: 00-custom-resolved.conf
+    dest: /etc/systemd/resolved.conf.d/00-custom-resolved.conf
     mode: '644'
     owner: root
     group: root
-  notify: Restart systemd-resolved
+  notify:  Restart systemd-resolved
 
 - name: Copy /etc/ssh/sshd_config.d
   become: true
