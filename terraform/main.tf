@@ -28,7 +28,7 @@ resource "proxmox_vm_qemu" "vm" {
   memory      = each.value.memory_gb * 1024
   ciuser      = var.pve_cloud_init_user
   sshkeys     = var.pve_cloud_init_ssh_key
-  cicustom    = "vendor=local:snippets/vendor.yaml" 
+  cicustom    = "vendor=local:snippets/vendor.yaml,network=local:snippets/network.yaml" 
   ipconfig0   = "ip=dhcp"
   vm_state    = each.value.state
 
