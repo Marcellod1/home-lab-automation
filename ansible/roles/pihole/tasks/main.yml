@@ -51,3 +51,13 @@
     project_src: "{{ docker_projects_directory }}/pihole"
     state: present
   register: output
+
+- name: Template custom.list for local DNS entries
+  become: true
+  template:
+    src: custom.list.j2
+    dest: /var/lib/docker/volumes/{{ pihole_container_name }}_data/_data/custom.list
+    mode: '644'
+    owner: pihole
+    group: pihole
+  notify: Restart pihole

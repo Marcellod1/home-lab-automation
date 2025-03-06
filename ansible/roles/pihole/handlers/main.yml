@@ -1,0 +1,6 @@
+- name: Restart pihole
+  become: true
+  community.docker.docker_compose_v2:
+    project_src: "{{ docker_projects_directory }}/pihole"
+    state: restarted
+  register: output

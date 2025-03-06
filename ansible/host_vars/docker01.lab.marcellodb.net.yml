@@ -1,4 +1,4 @@
-pihole_url: https://pihole01.lab.marcellodb.ca
+pihole_url: https://pihole01.lab.marcellodb.net
 pihole_homepage_name: "Pi-Hole 1"
 pihole_token: !vault |
           $ANSIBLE_VAULT;1.1;AES256
@@ -11,7 +11,7 @@ pihole_token: !vault |
           37643831356232346334616535626435356163616562663838313165333634656235313630396530
           33353739316335343130
 
-nginx_proxy_manager_url: https://npm.lab.marcellodb.ca
+nginx_proxy_manager_url: https://npm.lab.marcellodb.net
 nginx_proxy_manager_username: marcellodb17@gmail.com
 nginx_proxy_manager_password: !vault |
           $ANSIBLE_VAULT;1.1;AES256

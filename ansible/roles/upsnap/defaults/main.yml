@@ -2,4 +2,4 @@ docker_projects_directory: /opt/docker/
 upsnap_container_name: upsnap
 upsnap_container_version: latest
 upsnap_admin_port: 8090
-upsnap_url: https://upsnap.lab.marcellodb.ca
+upsnap_url: https://upsnap.lab.marcellodb.net
