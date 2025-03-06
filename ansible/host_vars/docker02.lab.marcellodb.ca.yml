@@ -1,4 +1,4 @@
-pihole_url: https://pihole02.lab.marcellodb.net
+pihole_url: https://pihole02.lab.marcellodb.ca
 pihole_homepage_name: "Pi-Hole 2"
 pihole_token: !vault |
           $ANSIBLE_VAULT;1.1;AES256

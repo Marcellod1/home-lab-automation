@@ -8,7 +8,7 @@ hompage_openweathermap_token: !vault |
           39363834623336306564356235366364363463613731623934393661333162363939313562623330
           3137373734343863663634383832643363303966666537646463
 
-homepage_portainer_url: https://portainer.lab.marcellodb.net
+homepage_portainer_url: https://portainer.lab.marcellodb.ca
 homepage_portainer_token: !vault |
           $ANSIBLE_VAULT;1.1;AES256
           61313931626162333635643162396337636332623866353637366433623964333734633561323038
@@ -19,7 +19,7 @@ homepage_portainer_token: !vault |
           37646637633261633830303765373531333963623234303735303939366466376639366636393338
           373734353064636131613537343633653737
 
-homepage_truenas_url: https://truenas.lab.marcellodb.net
+homepage_truenas_url: https://truenas.lab.marcellodb.ca
 homepage_truenas_token: !vault |
           $ANSIBLE_VAULT;1.1;AES256
           62393439363334383230653766346332633036616561346331623863346563333366316232616632
@@ -31,7 +31,7 @@ homepage_truenas_token: !vault |
           62396431323239623735373266386664313733666362303334623534666134653561653632333834
           36636137623666303534
 
-homepage_proxmox_url: https://pve.lab.marcellodb.net
+homepage_proxmox_url: https://pve.lab.marcellodb.ca
 homepage_proxmox_username: homepage@pam!homepage
 homepage_proxmox_token: !vault |
           $ANSIBLE_VAULT;1.1;AES256

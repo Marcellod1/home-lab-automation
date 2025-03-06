@@ -23,7 +23,7 @@ servarr_plex_claim_token: !vault |
           3332666166343038640a306439326531663630643132326333613637353638363233383037393930
           64666263386435313631656561623739646665346439333530383965646463346463
 
-servarr_qbittorrent_url: https://qb.lab.marcellodb.net
+servarr_qbittorrent_url: https://qb.lab.marcellodb.ca
 servarr_qbittorrent_username: marcello
 servarr_qbittorrent_password: !vault |
           $ANSIBLE_VAULT;1.1;AES256
@@ -33,7 +33,7 @@ servarr_qbittorrent_password: !vault |
           3034383531666138330a643138333633333964343835666132643534656161303538326235393631
           6230
 
-servarr_sonarr_url: https://sonarr.lab.marcellodb.net
+servarr_sonarr_url: https://sonarr.lab.marcellodb.ca
 servarr_sonarr_token: !vault |
           $ANSIBLE_VAULT;1.1;AES256
           32363837383566626339623061323536396564343063346165626330633338336630373839636366
@@ -43,7 +43,7 @@ servarr_sonarr_token: !vault |
           62326263616633376565306332643034656531336531313664643462333736383436393732323034
           3564646538363138306363353536336565393638626362656335
 
-servarr_radarr_url: https://radarr.lab.marcellodb.net
+servarr_radarr_url: https://radarr.lab.marcellodb.ca
 servarr_radarr_token: !vault |
           $ANSIBLE_VAULT;1.1;AES256
           64643036616466663039363133326530386532383838336234636233623564616161306137303532
@@ -53,7 +53,7 @@ servarr_radarr_token: !vault |
           35613135363031356137383339663032393030313464333064353135616339656138306461393833
           3133643330613766353266336666623535393237653662313063
 
-servarr_prowlarr_url: https://prowlarr.lab.marcellodb.net
+servarr_prowlarr_url: https://prowlarr.lab.marcellodb.ca
 servarr_prowlarr_token: !vault |
           $ANSIBLE_VAULT;1.1;AES256
           39393934363163383533306531643538616135633032663466613565303136616133393731353764
@@ -63,7 +63,7 @@ servarr_prowlarr_token: !vault |
           34393264376266383463303434623166393135316662363665663036366435346435396462373235
           6635663031333136623533323666323635373137633564653862
 
-servarr_bazarr_url: https://bazarr.lab.marcellodb.net
+servarr_bazarr_url: https://bazarr.lab.marcellodb.ca
 servarr_bazarr_token: !vault |
           $ANSIBLE_VAULT;1.1;AES256
           37376639373464346363343735636664373530316361663038313831383234366338353066303563

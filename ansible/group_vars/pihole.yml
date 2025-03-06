@@ -10,42 +10,42 @@ pihole_admin_password: !vault |
 pihole_upstream_dns:
   - 1.1.1.1
   - 1.0.0.1
-pihole_local_dns_records:
-  - domain_name: pve01.lab.marcellodb.net
-    ip_address: 10.0.17.10
-  - domain_name: pve02.lab.marcellodb.net
-    ip_address: 10.0.17.20
-  - domain_name: pve03.lab.marcellodb.net
-    ip_address: 10.0.17.30
-  - domain_name: pve04.lab.marcellodb.net
-    ip_address: 10.0.17.40
-  - domain_name: pve05.lab.marcellodb.net
-    ip_address: 10.0.17.50
-  - domain_name: truenas.lab.marcellodb.net
-    ip_address: 10.0.17.60
-  - domain_name: pve.lab.marcellodb.net
-    ip_address: 10.0.17.60
-  - domain_name: portainer.lab.marcellodb.net
-    ip_address: 10.0.17.60
-  - domain_name: home.lab.marcellodb.net
-    ip_address: 10.0.17.60
-  - domain_name: npm.lab.marcellodb.net
-    ip_address: 10.0.17.60
-  - domain_name: prowlarr.lab.marcellodb.net
-    ip_address: 10.0.17.60
-  - domain_name: qb.lab.marcellodb.net
-    ip_address: 10.0.17.60
-  - domain_name: radarr.lab.marcellodb.net
-    ip_address: 10.0.17.60
-  - domain_name: sonarr.lab.marcellodb.net
-    ip_address: 10.0.17.60
-  - domain_name: bazarr.lab.marcellodb.net
-    ip_address: 10.0.17.60
-  - domain_name: upsnap.lab.marcellodb.net
-    ip_address: 10.0.17.60
-  - domain_name: home.lab.marcellodb.net
-    ip_address: 10.0.17.60
-  - domain_name: pihole01.lab.marcellodb.net
-    ip_address: 10.0.17.60
-  - domain_name: pihole02.lab.marcellodb.net
-    ip_address: 10.0.17.60
+# pihole_local_dns_records:
+  # - domain_name: pve01.lab.marcellodb.ca
+  #   ip_address: 10.0.17.10
+  # - domain_name: pve02.lab.marcellodb.ca
+  #   ip_address: 10.0.17.20
+  # - domain_name: pve03.lab.marcellodb.ca
+  #   ip_address: 10.0.17.30
+  # - domain_name: pve04.lab.marcellodb.ca
+  #   ip_address: 10.0.17.40
+  # - domain_name: pve05.lab.marcellodb.ca
+  #   ip_address: 10.0.17.50
+  # - domain_name: truenas.lab.marcellodb.ca
+  #   ip_address: 10.0.17.60
+  # - domain_name: pve.lab.marcellodb.ca
+  #   ip_address: 10.0.17.60
+  # - domain_name: portainer.lab.marcellodb.ca
+  #   ip_address: 10.0.17.60
+  # - domain_name: home.lab.marcellodb.ca
+  #   ip_address: 10.0.17.60
+  # - domain_name: npm.lab.marcellodb.ca
+  #   ip_address: 10.0.17.60
+  # - domain_name: prowlarr.lab.marcellodb.ca
+  #   ip_address: 10.0.17.60
+  # - domain_name: qb.lab.marcellodb.ca
+  #   ip_address: 10.0.17.60
+  # - domain_name: radarr.lab.marcellodb.ca
+  #   ip_address: 10.0.17.60
+  # - domain_name: sonarr.lab.marcellodb.ca
+  #   ip_address: 10.0.17.60
+  # - domain_name: bazarr.lab.marcellodb.ca
+  #   ip_address: 10.0.17.60
+  # - domain_name: upsnap.lab.marcellodb.ca
+  #   ip_address: 10.0.17.60
+  # - domain_name: home.lab.marcellodb.ca
+  #   ip_address: 10.0.17.60
+  # - domain_name: pihole01.lab.marcellodb.ca
+  #   ip_address: 10.0.17.60
+  # - domain_name: pihole02.lab.marcellodb.ca
+  #   ip_address: 10.0.17.60

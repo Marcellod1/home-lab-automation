@@ -6,3 +6,4 @@ time_zone: America/Edmonton
 pihole_homepage_name: ''
 pihole_url: ''
 pihole_token: ''
+pihole_local_dns_records: []
