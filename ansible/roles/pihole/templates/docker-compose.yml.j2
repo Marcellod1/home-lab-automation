@@ -18,7 +18,6 @@ services:
       - dnsmasq:/etc/dnsmasq.d
     cap_add:
       - NET_ADMIN
-    dns: {{ pihole_upstream_dns }}
     restart: unless-stopped
     labels:
         - homepage.group=Services
