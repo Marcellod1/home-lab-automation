@@ -44,6 +44,7 @@
     owner: homepage
     group: homepage
     mode: "750"
+  notify: Restart container
     
 - name: Template config files
   become: true

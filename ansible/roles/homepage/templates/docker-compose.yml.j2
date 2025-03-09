@@ -9,4 +9,6 @@ services:
     environment:
       PUID: {{ homepage_uid }}
       PGID: {{ homepage_gid }}
+    tty: true
+    stdin_open: true
     restart: unless-stopped

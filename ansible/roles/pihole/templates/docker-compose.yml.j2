@@ -19,6 +19,7 @@ services:
     cap_add:
       - NET_ADMIN
     restart: unless-stopped
+    dns: {{ pihole_upstream_dns }}
     labels:
         - homepage.group=Services
         - homepage.name={{ pihole_homepage_name }}
