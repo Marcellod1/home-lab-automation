@@ -12,17 +12,17 @@ pihole_upstream_dns:
   - 1.0.0.1
 
 pihole_local_dns_records:
-  - domain_name: pve01.lab.marcellodb.ca
+  - domain_name: pve01.lab.marcellodb.local
     ip_address: 10.0.17.10
-  - domain_name: pve02.lab.marcellodb.ca
+  - domain_name: pve02.lab.marcellodb.local
     ip_address: 10.0.17.20
-  - domain_name: pve03.lab.marcellodb.ca
+  - domain_name: pve03.lab.marcellodb.local
     ip_address: 10.0.17.30
-  - domain_name: pve04.lab.marcellodb.ca
+  - domain_name: pve04.lab.marcellodb.local
     ip_address: 10.0.17.40
-  - domain_name: pve05.lab.marcellodb.ca
+  - domain_name: pve05.lab.marcellodb.local
     ip_address: 10.0.17.50
-  - domain_name: truenas.lab.marcellodb.ca
+  - domain_name: truenas.lab.marcellodb.local
     ip_address: 10.0.17.60
   - domain_name: pve.lab.marcellodb.ca
     ip_address: 10.0.17.60
