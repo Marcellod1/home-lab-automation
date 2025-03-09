@@ -61,6 +61,7 @@
     - docker.yaml
   loop_control:
     loop_var: template_file
+  notify: Restart container
 
 - name: Run docker compose
   become: true
