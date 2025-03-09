@@ -22,7 +22,7 @@ pihole_local_dns_records:
     ip_address: 10.0.17.40
   - domain_name: pve05.lab.marcellodb.local
     ip_address: 10.0.17.50
-  - domain_name: truenas.lab.marcellodb.local
+  - domain_name: truenas.lab.marcellodb.ca
     ip_address: 10.0.17.60
   - domain_name: pve.lab.marcellodb.ca
     ip_address: 10.0.17.60
