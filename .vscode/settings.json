@@ -1,4 +1,4 @@
 {
-    "ansible.python.interpreterPath": "/home/marcello/dev/home-lab-automation/ansible/.venv/bin/python",
-    "ansible.validation.lint.enabled": false
+    "ansible.validation.lint.enabled": false,
+    "ansible.python.interpreterPath": "/home/marcello/dev/home-lab-automation/ansible/.venv/bin/python"
 }

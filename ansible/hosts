@@ -10,7 +10,6 @@ docker03.lab.marcellodb.local
 [docker:children]
 docker01
 docker02
-docker03
 
 [pve01]
 pve01.lab.marcellodb.local
@@ -50,7 +49,6 @@ docker01
 [portainer_agent:children]
 docker01
 docker02
-docker03
 
 [servarr:children]
 docker02
@@ -62,4 +60,7 @@ docker01
 docker01
 
 [upsnap:children]
+docker01
+
+[unifi:children]
 docker01
