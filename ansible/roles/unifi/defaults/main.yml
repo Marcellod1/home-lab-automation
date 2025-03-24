@@ -1,0 +1,8 @@
+docker_projects_directory: /opt/docker/
+unifi_container_name: unifi
+unifi_container_version: latest
+mongodb_container_version: latest
+mongodb_initdb_root_username: root
+mongodb_initdb_root_password:
+mongodb_username: unifi
+mongodb_password:

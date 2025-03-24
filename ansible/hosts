@@ -10,6 +10,7 @@ docker03.lab.marcellodb.local
 [docker:children]
 docker01
 docker02
+docker03
 
 [pve01]
 pve01.lab.marcellodb.local
@@ -36,9 +37,6 @@ pve05
 [nginx_proxy_manager:children]
 docker01
 
-[minecraft:children]
-docker01
-
 [pihole:children]
 docker01
 docker02
@@ -48,6 +46,7 @@ docker01
 
 [portainer_agent:children]
 docker01
+docker02
 docker02
 
 [servarr:children]
@@ -63,4 +62,4 @@ docker01
 docker01
 
 [unifi:children]
-docker01
+docker03
