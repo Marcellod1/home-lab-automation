@@ -77,19 +77,19 @@ servarr_tv_volume:
     driver: local
     driver_opts:
       type: "nfs"
-      o: "nfsvers=4,addr=10.0.17.55,nolock,soft,rw"
+      o: "nfsvers=4,addr=10.0.19.60,nolock,soft,rw"
       device: ":/mnt/data/media/tv"
   
 servarr_downloads_volume:
     driver: local
     driver_opts:
       type: "nfs"
-      o: "nfsvers=4,addr=10.0.17.55,nolock,soft,rw"
+      o: "nfsvers=4,addr=10.0.19.60,nolock,soft,rw"
       device: ":/mnt/data/media/downloads"
   
 servarr_movies_volume:
     driver: local
     driver_opts:
       type: "nfs"
-      o: "nfsvers=4,addr=10.0.17.55,nolock,soft,rw"
+      o: "nfsvers=4,addr=10.0.19.60,nolock,soft,rw"
       device: ":/mnt/data/media/movies"
