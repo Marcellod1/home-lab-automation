@@ -1,5 +1,5 @@
-# unifi_container_version: 8.0.24
-# mongodb_container_version: 6.0.21
+unifi_container_version: 9.0.114
+mongodb_container_version: 8.0.5
 mongodb_initdb_root_password: !vault |
           $ANSIBLE_VAULT;1.1;AES256
           65326435336430383865623565383035666338663931303564313237343266363139356365646466
