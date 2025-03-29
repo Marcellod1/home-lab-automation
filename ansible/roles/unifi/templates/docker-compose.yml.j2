@@ -25,6 +25,17 @@ services:
       - 6789:6789 #optional
       - 5514:5514/udp #optional
     restart: unless-stopped
+    labels:
+      - homepage.group=Services
+      - homepage.name=Unifi
+      - homepage.icon=unifi.png
+      - homepage.href={{ unifi_url }}
+      - homepage.siteMonitor={{ unifi_url }}
+      - homepage.description=Unifi Controller
+      - homepage.widget.type=unifi
+      - homepage.widget.url={{ unifi_url }}
+      - homepage.widget.username={{ unifi_username }}
+      - homepage.widget.password={{ unifi_password }}
 
   unifi_db:
     image: docker.io/mongo:{{ mongodb_container_version }}
