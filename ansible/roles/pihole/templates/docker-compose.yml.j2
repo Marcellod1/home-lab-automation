@@ -13,7 +13,6 @@ services:
       PIHOLE_UID: {{ pihole_uid }}
       PIHOLE_GID: {{ pihole_gid }}
       FTLCONF_LOCAL_IPV4: {{ ansible_default_ipv4.address }}
-      FTLCONF_RATE_LIMIT: 0/0
     dns: {{ pihole_upstream_dns }}
     volumes:
       - data:/etc/pihole
