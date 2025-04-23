@@ -1,23 +1,23 @@
 services:
   minecraft:
-    container_name: {{ minecraft_container_name }}
-    image: itzg/minecraft-server:{{ minecraft_container_version }}
+    container_name: "{{ minecraft_container_name }}"
+    image: "itzg/minecraft-server:{{ minecraft_container_version }}"
     tty: true
     stdin_open: true
     ports:
-      - "25565:25565"
+      - "{{ minecraft_port }}:25565"
     environment:
       EULA: true
       ALLOW_FLIGHT: true
-      MEMORY: "{{ minecraft_memory_gb | string }}G"
+      OVERRIDE_ICON: true
+      OVERRIDE_OPS: true
       UID: "{{ minecraft_uid | string }}"
       GID: "{{ minecraft_gid | string }}"
+      MEMORY: "{{ minecraft_memory_gb | string }}G"
       DIFFICULTY: "{{ minecraft_difficulty }}"
       OPS: "{{ minecraft_ops | join(',') }}"
-      OVERRIDE_OPS: true
-      ICON: "{{ minecraft_icon_url }}"
-      OVERRIDE_ICON: true
-      TYPE: AUTO_CURSEFORGE
+      ICON: "{{ minecraft_icon }}"
+      TYPE: "{{ minecraft_type }}"
       CF_API_KEY: "{{ minecraft_cf_api_key | replace('$', '$$') }}"
       CF_PAGE_URL: "{{ minecraft_cf_modpack_url }}"
     volumes:
