@@ -11,6 +11,7 @@ services:
       ALLOW_FLIGHT: true
       OVERRIDE_ICON: true
       OVERRIDE_OPS: true
+      TZ: "{{ time_zone }}"
       UID: "{{ minecraft_uid | string }}"
       GID: "{{ minecraft_gid | string }}"
       MEMORY: "{{ minecraft_memory_gb | string }}G"
