@@ -1,0 +1,35 @@
+services:
+  hbbs:
+    container_name: {{ rustdesk_container_name }}_id
+    image: rustdesk/rustdesk-server:{{ rustdesk_container_version }}
+    restart: unless-stopped
+    ports:
+      - "21114:21114"
+      - "21115:21115"
+      - "21116:21116"
+      - "21116:21116/udp"
+      - "21118:21118"
+    environment:
+      TZ: {{ time_zone }}
+    volumes:
+      - hbbs_data:/root
+    command: hbbs
+    depends_on:
+      - hbbr
+
+  hbbr:
+    container_name: {{ rustdesk_container_name }}_relay
+    image: rustdesk/rustdesk-server:{{ rustdesk_container_version }}
+    restart: unless-stopped
+    ports:
+      - "21117:21117"
+      - "21119:21119"
+    environment:
+      TZ: {{ time_zone }}
+    volumes:
+      - hbbr_data:/root
+    command: hbbr
+
+volumes:
+  hbbr_data:
+  hbbs_data:

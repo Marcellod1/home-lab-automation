@@ -1,11 +1,11 @@
 [docker01]
-docker01.lab.marcellodb.local
+docker01.lab.marcellodb.local ansible_host=10.0.19.15
 
 [docker02]
-docker02.lab.marcellodb.local
+docker02.lab.marcellodb.local ansible_host=10.0.19.25
 
 [docker03]
-docker03.lab.marcellodb.local
+docker03.lab.marcellodb.local ansible_host=10.0.19.35
 
 [docker:children]
 docker01
@@ -65,4 +65,7 @@ docker01
 docker03
 
 [minecraft:children]
+docker03
+
+[rustdesk:children]
 docker03

@@ -1,0 +1,4 @@
+- name: Install and run a rustdesk container on target hosts
+  hosts: rustdesk
+  roles:
+    - role: rustdesk

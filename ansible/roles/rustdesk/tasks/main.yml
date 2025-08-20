@@ -1,0 +1,53 @@
+- name: Create rustdesk group
+  become: true
+  ansible.builtin.group:
+    name: rustdesk
+    state: present
+
+- name: Create rustdesk user
+  become: true
+  ansible.builtin.user:
+    name: rustdesk
+    shell: /bin/bash
+    group: rustdesk
+    state: present
+
+- name: Get user details
+  ansible.builtin.getent:
+    database: passwd
+    key: rustdesk
+
+- name: Get group details
+  getent:
+    database: group
+    key: rustdesk
+
+- name: Set user and group id
+  set_fact:
+    rustdesk_uid: "{{ ansible_facts.getent_passwd.rustdesk.1 }}"
+    rustdesk_gid: "{{ ansible_facts.getent_group.rustdesk.1 }}"
+
+- name: Ensure project directory exists
+  become: true
+  file:
+    path: "{{ docker_projects_directory }}/rustdesk/"
+    owner: rustdesk
+    group: rustdesk
+    mode: "750"
+    state: directory
+
+- name: Copy docker compose to project directory
+  become: true
+  template:
+    src: docker-compose.yml.j2
+    dest: "{{ docker_projects_directory }}/rustdesk/docker-compose.yml"
+    owner: rustdesk
+    group: rustdesk
+    mode: "750"
+
+- name: Run docker compose
+  become: true
+  community.docker.docker_compose_v2:
+    project_src: "{{ docker_projects_directory }}/rustdesk"
+    state: present
+  register: output
