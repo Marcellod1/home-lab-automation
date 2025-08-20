@@ -13,6 +13,8 @@ services:
       TZ: {{ time_zone }}
     volumes:
       - hbbs_data:/root
+    stdin_open: true
+    tty: true
     command: hbbs
     depends_on:
       - hbbr
@@ -28,6 +30,8 @@ services:
       TZ: {{ time_zone }}
     volumes:
       - hbbr_data:/root
+    stdin_open: true
+    tty: true
     command: hbbr
 
 volumes:
