@@ -29,7 +29,8 @@ services:
         - homepage.description=DNS Filtering 
         - homepage.widget.type=pihole
         - homepage.widget.url={{ pihole_url }}
-        - homepage.widget.key={{ pihole_token }}
+        - homepage.widget.key={{ pihole_admin_password }}
+        - homepage.widget.version={{ pihole_homepage_widget_version }}
 
 volumes:
   data:

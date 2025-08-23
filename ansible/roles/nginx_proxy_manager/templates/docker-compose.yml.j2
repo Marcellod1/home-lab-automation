@@ -14,13 +14,13 @@ services:
         - homepage.group=Services
         - homepage.name=Nginx Proxy Manager
         - homepage.icon=nginx-proxy-manager.png
-        - homepage.href={{ nginx_proxy_manager_url }}
-        - homepage.siteMonitor={{ nginx_proxy_manager_url }}
+        - homepage.href={{ npm_url }}
+        - homepage.siteMonitor={{ npm_url }}
         - homepage.description=Reverse Proxy
         - homepage.widget.type=npm
-        - homepage.widget.url={{ nginx_proxy_manager_url }}
-        - homepage.widget.username={{ nginx_proxy_manager_username }}
-        - homepage.widget.password={{ nginx_proxy_manager_password }}
+        - homepage.widget.url={{ npm_url }}
+        - homepage.widget.username={{ npm_username }}
+        - homepage.widget.password={{ npm_password }}
 
 volumes:
   letsencrypt:

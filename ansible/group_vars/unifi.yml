@@ -1,4 +1,4 @@
-unifi_container_version: 9.0.114
+unifi_container_version: 9.3.45
 unifi_url: https://unifi.lab.marcellodb.ca
 unifi_username: homepage
 unifi_password: !vault |

@@ -9,6 +9,7 @@ services:
     environment:
       PUID: {{ homepage_uid }}
       PGID: {{ homepage_gid }}
+      HOMEPAGE_ALLOWED_HOSTS: {{ homepage_domain_name }}
     tty: true
     stdin_open: true
     restart: unless-stopped
