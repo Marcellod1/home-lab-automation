@@ -34,7 +34,7 @@ pve03
 pve04
 pve05
 
-[nginx_proxy_manager:children]
+[npm:children]
 docker01
 
 [pihole:children]
