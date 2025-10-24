@@ -76,20 +76,21 @@ servarr_bazarr_token: !vault |
 servarr_tv_volume:
     driver: local
     driver_opts:
-      type: "nfs"
-      o: "nfsvers=4,addr=10.0.19.60,nolock,soft,rw"
-      device: ":/mnt/data/media/tv"
-  
+      type: nfs
+      o: nfsvers=4,addr=10.0.19.60,rw,nolock,hard,nointr
+      device: ":/mnt/data01/media/tv"
+
 servarr_downloads_volume:
     driver: local
     driver_opts:
-      type: "nfs"
-      o: "nfsvers=4,addr=10.0.19.60,nolock,soft,rw"
-      device: ":/mnt/data/media/downloads"
+      type: nfs
+      o: nfsvers=4,addr=10.0.19.60,rw,nolock,hard,nointr
+      device: ":/mnt/data01/media/downloads"
   
 servarr_movies_volume:
     driver: local
     driver_opts:
-      type: "nfs"
-      o: "nfsvers=4,addr=10.0.19.60,nolock,soft,rw"
-      device: ":/mnt/data/media/movies"
+      type: nfs
+      o: nfsvers=4,addr=10.0.19.60,rw,nolock,hard,nointr
+      device: ":/mnt/data01/media/movies"
+  
