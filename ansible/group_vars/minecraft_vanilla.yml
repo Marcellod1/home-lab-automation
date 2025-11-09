@@ -1,0 +1,5 @@
+minecraft_container_name: minecraft-vanilla
+minecraft_memory_gb: 12
+minecraft_icon_url: https://www.marcellodb.ca/resources/img/mc-server-icon.png
+minecraft_ops:
+  - EqualMarcello

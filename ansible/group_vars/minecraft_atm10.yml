@@ -1,3 +1,4 @@
+minecraft_container_name: minecraft
 minecraft_memory_gb: 16
 minecraft_icon_url: https://www.marcellodb.ca/resources/img/mc-server-icon.png
 minecraft_ops:

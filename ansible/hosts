@@ -65,7 +65,14 @@ docker01
 docker03
 
 [minecraft:children]
-docker03
+minecraft_atm10
+minecraft_vanilla
+
+[minecraft_atm10:children]
+; docker03
+
+[minecraft_vanilla:children]
+docker02
 
 [rustdesk:children]
 docker03
