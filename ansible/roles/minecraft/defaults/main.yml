@@ -5,6 +5,8 @@ minecraft_memory_gb: 4
 minecraft_port: 25565
 minecraft_icon: ''
 minecraft_ops: []
+minecraft_whitelist_enabled: false
+minecraft_whitelist: []
 minecraft_difficulty: normal
 minecraft_type: VANILLA
 minecraft_cf_api_key: ''

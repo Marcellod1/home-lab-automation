@@ -14,3 +14,15 @@ minecraft_cf_api_key: !vault |
           636661616163666266626163623630646631
 minecraft_type: AUTO_CURSEFORGE
 minecraft_cf_modpack_url: https://www.curseforge.com/minecraft/modpacks/all-the-mods-10/files/6427275
+minecraft_difficulty: hard
+minecraft_whitelist_enabled: true
+minecraft_whitelist:
+  - ItsBacara
+  - Steve_Ohhhhh
+  - heckinkiki
+  - ShadOblivion
+  - MastrIgnis9
+  - MorganDoesStuff
+  - EqualMarcello
+  - theshortchris
+  - Sir_Mannington

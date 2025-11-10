@@ -11,12 +11,15 @@ services:
       ALLOW_FLIGHT: true
       OVERRIDE_ICON: true
       OVERRIDE_OPS: true
+      OVERRIDE_WHITELIST: true
       TZ: "{{ time_zone }}"
       UID: "{{ minecraft_uid | string }}"
       GID: "{{ minecraft_gid | string }}"
       MEMORY: "{{ minecraft_memory_gb | string }}G"
       DIFFICULTY: "{{ minecraft_difficulty }}"
       OPS: "{{ minecraft_ops | join(',') }}"
+      ENABLE_WHITELIST: "{{ minecraft_whitelist_enabled }}"
+      WHITELIST: "{{ minecraft_whitelist | join(',') }}"
       ICON: "{{ minecraft_icon }}"
       TYPE: "{{ minecraft_type }}"
       CF_API_KEY: "{{ minecraft_cf_api_key | replace('$', '$$') }}"
