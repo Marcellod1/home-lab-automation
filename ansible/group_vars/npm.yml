@@ -1,4 +1,6 @@
-nom_container_version: 2.12.6
+npm_stack_name: nginx_proxy_manager
+npm_container_name: nginx_proxy_manager
+npm_container_version: 2.12.6
 npm_url: https://npm.lab.marcellodb.ca
 npm_username: marcellodb17@gmail.com
 npm_password: !vault |

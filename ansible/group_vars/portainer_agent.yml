@@ -1,1 +1,3 @@
+portainer_agent_stack_name: portainer_agent
+portainer_agent_container_name: portainer_agent
 portainer_agent_container_version: 2.33.0

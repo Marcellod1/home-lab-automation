@@ -1,1 +1,3 @@
+portainer_stack_name: portainer
+portainer_container_name: portainer
 portainer_container_version: 2.33.0

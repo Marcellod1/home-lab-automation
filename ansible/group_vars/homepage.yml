@@ -1,3 +1,5 @@
+homepage_stack_name: homepage
+homepage_container_name: homepage
 homepage_container_version: v1.4
 homepage_domain_name: home.lab.marcellodb.ca
 hompage_openweathermap_token: !vault |

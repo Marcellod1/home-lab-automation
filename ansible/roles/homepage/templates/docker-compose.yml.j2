@@ -5,7 +5,7 @@ services:
     ports:
       - {{ homepage_admin_port }}:3000
     volumes:
-      - {{ docker_projects_directory }}/homepage/config:/app/config
+      - {{ docker_stacks_directory }}/homepage/config:/app/config
     environment:
       PUID: {{ homepage_uid }}
       PGID: {{ homepage_gid }}

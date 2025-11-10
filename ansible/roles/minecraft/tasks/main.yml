@@ -30,7 +30,7 @@
 - name: Ensure project directory exists
   become: true
   file:
-    path: "{{ docker_projects_directory }}/minecraft/"
+    path: "{{ docker_stacks_directory }}/{{ minecraft_stack_name }}"
     owner: minecraft
     group: minecraft
     mode: "750"
@@ -40,7 +40,7 @@
   become: true
   template:
     src: docker-compose.yml.j2
-    dest: "{{ docker_projects_directory }}/minecraft/docker-compose.yml"
+    dest: "{{ docker_stacks_directory }}/{{ minecraft_stack_name }}/docker-compose.yml"
     owner: minecraft
     group: minecraft
     mode: "750"
@@ -48,6 +48,6 @@
 - name: Run docker compose
   become: true
   community.docker.docker_compose_v2:
-    project_src: "{{ docker_projects_directory }}/minecraft"
+    project_src: "{{ docker_stacks_directory }}/{{ minecraft_stack_name }}"
     state: present
   register: output

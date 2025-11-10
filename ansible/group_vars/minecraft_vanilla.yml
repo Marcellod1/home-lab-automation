@@ -1,4 +1,5 @@
-minecraft_container_name: minecraft-vanilla
+minecraft_stack_name: minecraft_vanilla
+minecraft_container_name: minecraft_vanilla
 minecraft_memory_gb: 12
 minecraft_ops:
   - EqualMarcello

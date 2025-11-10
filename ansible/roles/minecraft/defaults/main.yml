@@ -1,5 +1,3 @@
-docker_projects_directory: /opt/docker/
-minecraft_container_name: minecraft
 minecraft_container_version: latest
 minecraft_memory_gb: 4
 minecraft_port: 25565

@@ -1,3 +1,4 @@
+minecraft_stack_name: minecraft
 minecraft_container_name: minecraft
 minecraft_memory_gb: 16
 minecraft_ops:

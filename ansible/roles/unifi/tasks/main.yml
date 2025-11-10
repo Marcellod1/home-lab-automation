@@ -30,7 +30,7 @@
 - name: Ensure project directory exists
   become: true
   file:
-    path: "{{ docker_projects_directory }}/unifi/"
+    path: "{{ docker_stacks_directory }}/unifi/"
     owner: unifi
     group: unifi
     mode: "750"
@@ -41,7 +41,7 @@
   become: true
   copy:
     src: init-mongo.sh
-    dest: "{{ docker_projects_directory }}/unifi/init-mongo.sh"
+    dest: "{{ docker_stacks_directory }}/unifi/init-mongo.sh"
     owner: unifi
     group: unifi
     mode: "755"
@@ -50,7 +50,7 @@
   become: true
   template:
     src: docker-compose.yml.j2
-    dest: "{{ docker_projects_directory }}/unifi/docker-compose.yml"
+    dest: "{{ docker_stacks_directory }}/unifi/docker-compose.yml"
     owner: unifi
     group: unifi
     mode: "750"
@@ -58,6 +58,6 @@
 - name: Run docker compose
   become: true
   community.docker.docker_compose_v2:
-    project_src: "{{ docker_projects_directory }}/unifi"
+    project_src: "{{ docker_stacks_directory }}/unifi"
     state: present
   register: output

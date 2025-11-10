@@ -1,3 +1,5 @@
+pihole_stack_name: pihole
+pihole_container_name: pihole
 pihole_container_version: 2025.08.0
 pihole_admin_port: 8008
 pihole_admin_password: !vault |

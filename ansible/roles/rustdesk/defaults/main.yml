@@ -1,4 +1,2 @@
-docker_projects_directory: /opt/docker/
-rustdesk_container_name: rustdesk
 rustdesk_container_version: latest
 time_zone: America/Edmonton

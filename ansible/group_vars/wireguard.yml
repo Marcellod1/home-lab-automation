@@ -1,3 +1,5 @@
+wireguard_stack_name: wireguard
+wireguard_container_name: wireguard
 wireguard_container_version: 1.0.20250521
 wireguard_server_hostname: marcellodb.ca
 wireguard_peer_dns: 10.0.19.15

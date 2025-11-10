@@ -13,7 +13,7 @@ services:
       - MONGO_DBNAME=unifi
       - MONGO_AUTHSOURCE=admin
     volumes:
-      - unifi:/config
+      - app:/config
     ports:
       - 8443:8443
       - 3478:3478/udp
@@ -48,10 +48,10 @@ services:
       - MONGO_DBNAME=unifi
       - MONGO_AUTHSOURCE=admin
     volumes:
-      - unifi_db:/data/db
-      - "{{ docker_projects_directory }}/unifi/init-mongo.sh:/docker-entrypoint-initdb.d/init-mongo.sh:ro"
+      - db:/data/db
+      - "{{ docker_stacks_directory }}/unifi/init-mongo.sh:/docker-entrypoint-initdb.d/init-mongo.sh:ro"
     restart: unless-stopped
 
 volumes:
-  unifi:
-  unifi_db:
+  app:
+  db:
