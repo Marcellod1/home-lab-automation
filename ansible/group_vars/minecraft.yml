@@ -1,0 +1,56 @@
+minecraft_uid: 10008
+minecraft_gid: 10007
+minecraft_stack_name: minecraft
+minecraft_stack:
+  services:
+    vanilla:
+      container_name: "minecraft_vanilla"
+      image: "itzg/minecraft-server:latest"
+      tty: true
+      stdin_open: true
+      ports:
+        - "25565:25565"
+      environment:
+        EULA: true
+        ALLOW_FLIGHT: true
+        TZ: "{{ time_zone }}"
+        UID: "{{ minecraft_uid }}"
+        GID: "{{ minecraft_gid }}"
+        MEMORY: "8G"
+        DIFFICULTY: "hard"
+        OPS: "EqualMarcello"
+        ENABLE_WHITELIST: "True"
+        WHITELIST: "ItsBacara,Steve_Ohhhhh,heckinkiki,ShadOblivion,MastrIgnis9,MorganDoesStuff,EqualMarcello,theshortchris,Sir_Mannington"
+        TYPE: "VANILLA"
+      volumes:
+        - vanilla_data:/data
+      restart: unless-stopped
+
+    atm:
+      container_name: "minecraft_atm"
+      image: "itzg/minecraft-server:latest"
+      tty: true
+      stdin_open: true
+      ports:
+        - "25566:25565"
+      environment:
+        EULA: true
+        ALLOW_FLIGHT: true
+        TZ: "{{ time_zone }}"
+        UID: "{{ minecraft_uid }}"
+        GID: "{{ minecraft_gid }}"
+        MEMORY: "12G"
+        DIFFICULTY: "hard"
+        OPS: "EqualMarcello"
+        ENABLE_WHITELIST: "True"
+        WHITELIST: "ItsBacara,Steve_Ohhhhh,heckinkiki,ShadOblivion,MastrIgnis9,MorganDoesStuff,EqualMarcello,theshortchris,Sir_Mannington"
+        TYPE: "AUTO_CURSEFORGE"
+        CF_API_KEY: "$$2a$$10$$O0WVQFHyHEDOJ4tgUSHruOyYVa1EcLqB9uXhw0PehiDneEXFCP1m2"
+        CF_PAGE_URL: "https://www.curseforge.com/minecraft/modpacks/all-the-mods-10/files/6427275"
+      volumes:
+        - atm_data:/data
+      restart: unless-stopped
+
+  volumes:
+    vanilla_data:
+    atm_data:

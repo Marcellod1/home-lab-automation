@@ -9,9 +9,8 @@ services:
     environment:
       EULA: true
       ALLOW_FLIGHT: true
-      OVERRIDE_ICON: true
-      OVERRIDE_OPS: true
-      OVERRIDE_WHITELIST: true
+      OVERRIDE_OPS: false
+      OVERRIDE_WHITELIST: false
       TZ: "{{ time_zone }}"
       UID: "{{ minecraft_uid | string }}"
       GID: "{{ minecraft_gid | string }}"
@@ -20,7 +19,6 @@ services:
       OPS: "{{ minecraft_ops | join(',') }}"
       ENABLE_WHITELIST: "{{ minecraft_whitelist_enabled }}"
       WHITELIST: "{{ minecraft_whitelist | join(',') }}"
-      ICON: "{{ minecraft_icon }}"
       TYPE: "{{ minecraft_type }}"
       CF_API_KEY: "{{ minecraft_cf_api_key | replace('$', '$$') }}"
       CF_PAGE_URL: "{{ minecraft_cf_modpack_url }}"
