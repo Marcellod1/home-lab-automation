@@ -1,30 +1,58 @@
 services:
-  minecraft:
-    container_name: "{{ minecraft_container_name }}"
-    image: "itzg/minecraft-server:{{ minecraft_container_version }}"
+  proxy:
+    container_name: "{{ minecraft_stack_name}}_proxy"
+    image: "itzg/mc-proxy:{{ minecraft_proxy_version | default('latest') }}"
     tty: true
     stdin_open: true
     ports:
-      - "{{ minecraft_port }}:25565"
+      - "{{ minecraft_proxy_port }}:25577"
+    environment:
+      TYPE: "VELOCITY"
+      DEBUG: "true"
+      ENABLE_RCON: "true"
+    volumes:
+      - "{{ docker_stacks_directory }}/{{ minecraft_stack_name }}//velocity.toml:/config/velocity.toml:ro"
+      - "{{ docker_stacks_directory }}/{{ minecraft_stack_name }}//forwarding.secret:/config/forwarding.secret:ro"
+      - proxy:/server
+    depends_on:
+{% for name, server in minecraft_servers.items() %}
+      - {{ name }}
+{% endfor %}
+    restart: unless-stopped
+
+{% for name, server in minecraft_servers.items() %}
+  {{ name }}:
+    container_name: "{{ minecraft_stack_name}}_{{ name }}"
+    image: "itzg/minecraft-server:{{ server.version | default('latest') }}"
+    tty: true
+    stdin_open: true
+    ports:
+      - "{{ server.port }}:25565"
     environment:
       EULA: true
       ALLOW_FLIGHT: true
-      OVERRIDE_OPS: false
-      OVERRIDE_WHITELIST: false
       TZ: "{{ time_zone }}"
-      UID: "{{ minecraft_uid | string }}"
-      GID: "{{ minecraft_gid | string }}"
-      MEMORY: "{{ minecraft_memory_gb | string }}G"
-      DIFFICULTY: "{{ minecraft_difficulty }}"
-      OPS: "{{ minecraft_ops | join(',') }}"
-      ENABLE_WHITELIST: "{{ minecraft_whitelist_enabled }}"
-      WHITELIST: "{{ minecraft_whitelist | join(',') }}"
-      TYPE: "{{ minecraft_type }}"
-      CF_API_KEY: "{{ minecraft_cf_api_key | replace('$', '$$') }}"
-      CF_PAGE_URL: "{{ minecraft_cf_modpack_url }}"
+      UID: "{{ minecraft_uid }}"
+      GID: "{{ minecraft_gid }}"
+      MEMORY: "{{ server.memory | default('8G') }}"
+      TYPE: "{{ server.type | default('VANILLA') }}"
+      DIFFICULTY: "{{ server.difficulty | default('normal') }}"
+{% if server.ops is defined %}
+      OPS: "{{ server.ops }}"
+{% endif %}
+{% if server.cf_api_key is defined %}
+      CF_API_KEY: "{{ server.cf_api_key | replace('$', '$$') }}"
+{% endif %}
+{% if server.cf_page_url is defined %}
+      CF_PAGE_URL: "{{ server.cf_page_url }}"
+{% endif %}
     volumes:
-      - data:/data
+      - "{{ name }}:/data"
     restart: unless-stopped
+{% endfor %}
 
-volumes: 
-  data:
+volumes:
+  proxy:
+{% for name, server in minecraft_servers.items() %}
+  {{ name }}:
+{% endfor %}

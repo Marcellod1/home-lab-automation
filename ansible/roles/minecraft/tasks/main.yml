@@ -2,21 +2,79 @@
   become: true
   ansible.builtin.group:
     name: minecraft
-    gid: "{{ minecraft_gid }}"
     state: present
 
 - name: Create minecraft user
   become: true
   ansible.builtin.user:
     name: minecraft
-    uid: "{{ minecraft_uid }}"
     group: minecraft
     state: present
+
+- name: Get user details
+  ansible.builtin.getent:
+    database: passwd
+    key: minecraft
+
+- name: Get group details
+  getent:
+    database: group
+    key: minecraft
+
+- name: Set user and group id
+  set_fact:
+    minecraft_uid: "{{ ansible_facts.getent_passwd.minecraft.1 }}"
+    minecraft_gid: "{{ ansible_facts.getent_group.minecraft.1 }}"
+
+- name: Ensure stack directory {{ docker_stacks_directory }}/{{ minecraft_stack_name }} exists 
+  become: true
+  file:
+    path: "{{ docker_stacks_directory }}/{{ minecraft_stack_name }}"
+    state: directory
+    recurse: true
+    owner: minecraft
+    group: minecraft
+    mode: "750"
+
+- name: Template {{ docker_stacks_directory }}/{{ minecraft_stack_name }}/velocity.toml
+  become: true
+  template:
+    src: velocity.toml.j2
+    dest: "{{ docker_stacks_directory }}/{{ minecraft_stack_name }}/velocity.toml"
+    owner: minecraft
+    group: minecraft
+    mode: "640"
+
+- name: Template {{ docker_stacks_directory }}/{{ minecraft_stack_name }}/forwarding.secret
+  become: true
+  template:
+    src: forwarding.secret.j2
+    dest: "{{ docker_stacks_directory }}/{{ minecraft_stack_name }}/forwarding.secret"
+    owner: minecraft
+    group: minecraft
+    mode: "640"
+
+- name: Template {{ docker_stacks_directory }}/{{ minecraft_stack_name }}/paper-global.yml
+  become: true
+  template:
+    src: paper-global.yml.j2
+    dest: "{{ docker_stacks_directory }}/{{ minecraft_stack_name }}/paper-global.yml"
+    owner: minecraft
+    group: minecraft
+    mode: "640"
+
+- name: Copy docker compose to project directory
+  become: true
+  template:
+    src: docker-compose.yml.j2
+    dest: "{{ docker_stacks_directory }}/{{ minecraft_stack_name }}/docker-compose.yml"
+    owner: minecraft
+    group: minecraft
+    mode: "640"
 
 - name: Run docker compose
   become: true
   community.docker.docker_compose_v2:
-    project_name: "{{ minecraft_stack_name }}"
-    definition: "{{ minecraft_stack }}"
+    project_src: "{{ docker_stacks_directory }}/{{ minecraft_stack_name }}"
     state: present
   register: output

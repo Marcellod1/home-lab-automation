@@ -1,56 +1,36 @@
-minecraft_uid: 10008
-minecraft_gid: 10007
-minecraft_stack_name: minecraft
-minecraft_stack:
-  services:
+minecraft_stack_name: minecraft_test
+minecraft_proxy_port: 25577
+minecraft_proxy_forawrding_secret: !vault |
+          $ANSIBLE_VAULT;1.1;AES256
+          37643730346466353237376434353336613632626364353137343334376431613064643166386266
+          3638613038396662386332316433343966363731386438300a313734336534623333366337653533
+          61313930343836326663323331326661366461666336343033303037393535323431666338613531
+          3162626363313133360a633263343139396661643465393936393939613338636538343965363131
+          38363532653365616638363661633961373132326665643963326235653764333732323939643562
+          3764616539623766313332303239666333373837396437626461
+
+minecraft_servers:
     vanilla:
-      container_name: "minecraft_vanilla"
-      image: "itzg/minecraft-server:latest"
-      tty: true
-      stdin_open: true
-      ports:
-        - "25565:25565"
-      environment:
-        EULA: true
-        ALLOW_FLIGHT: true
-        TZ: "{{ time_zone }}"
-        UID: "{{ minecraft_uid }}"
-        GID: "{{ minecraft_gid }}"
-        MEMORY: "8G"
-        DIFFICULTY: "hard"
-        OPS: "EqualMarcello"
-        ENABLE_WHITELIST: "True"
-        WHITELIST: "ItsBacara,Steve_Ohhhhh,heckinkiki,ShadOblivion,MastrIgnis9,MorganDoesStuff,EqualMarcello,theshortchris,Sir_Mannington"
-        TYPE: "VANILLA"
-      volumes:
-        - vanilla_data:/data
-      restart: unless-stopped
-
+      domain: vanilla.mc.marcellodb.ca
+      port: 25566
+      memory: "4G"
+      difficulty: "hard"
+      ops: "EqualMarcello"
+      type: "PAPER"
     atm:
-      container_name: "minecraft_atm"
-      image: "itzg/minecraft-server:latest"
-      tty: true
-      stdin_open: true
-      ports:
-        - "25566:25565"
-      environment:
-        EULA: true
-        ALLOW_FLIGHT: true
-        TZ: "{{ time_zone }}"
-        UID: "{{ minecraft_uid }}"
-        GID: "{{ minecraft_gid }}"
-        MEMORY: "12G"
-        DIFFICULTY: "hard"
-        OPS: "EqualMarcello"
-        ENABLE_WHITELIST: "True"
-        WHITELIST: "ItsBacara,Steve_Ohhhhh,heckinkiki,ShadOblivion,MastrIgnis9,MorganDoesStuff,EqualMarcello,theshortchris,Sir_Mannington"
-        TYPE: "AUTO_CURSEFORGE"
-        CF_API_KEY: "$$2a$$10$$O0WVQFHyHEDOJ4tgUSHruOyYVa1EcLqB9uXhw0PehiDneEXFCP1m2"
-        CF_PAGE_URL: "https://www.curseforge.com/minecraft/modpacks/all-the-mods-10/files/6427275"
-      volumes:
-        - atm_data:/data
-      restart: unless-stopped
-
-  volumes:
-    vanilla_data:
-    atm_data:
+      domain: atm.mc.marcellodb.ca
+      port: 25567
+      memory: "8G"
+      difficulty: "hard"
+      ops: "EqualMarcello"
+      type: "AUTO_CURSEFORGE"
+      cf_api_key: !vault |
+          $ANSIBLE_VAULT;1.1;AES256
+          38623137393538353134623735393061386135363935383136313131616262353635383531613862
+          3133316265363637376364313065666531613830643437620a343437363330643765336162323935
+          37366236313663663638356161636464353536643233663439363935366634333733383661346133
+          3832333166353936650a353564343834616463343836303833306535363432393266626536336234
+          61636266356531383734303064656137326636383264653061313665366437373230353738653436
+          65656436616138356133623131373865383963326431336637396533333663393635333561613834
+          653534343336623963373964313930373936
+      cf_page_url: "https://www.curseforge.com/minecraft/modpacks/all-the-mods-10/files/6427275"
