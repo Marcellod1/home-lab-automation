@@ -11,9 +11,9 @@ services:
       DEBUG: "true"
       ENABLE_RCON: "true"
     volumes:
-      - "{{ docker_stacks_directory }}/{{ minecraft_stack_name }}//velocity.toml:/config/velocity.toml:ro"
-      - "{{ docker_stacks_directory }}/{{ minecraft_stack_name }}//forwarding.secret:/config/forwarding.secret:ro"
-      - proxy:/server
+      - "proxy:/server"
+      - "{{ docker_stacks_directory }}/{{ minecraft_stack_name }}/velocity.toml:/config/velocity.toml:ro"
+      - "{{ docker_stacks_directory }}/{{ minecraft_stack_name }}/forwarding.secret:/config/forwarding.secret:ro"
     depends_on:
 {% for name, server in minecraft_servers.items() %}
       - {{ name }}
@@ -31,6 +31,7 @@ services:
     environment:
       EULA: true
       ALLOW_FLIGHT: true
+      ONLINE_MODE: false
       TZ: "{{ time_zone }}"
       UID: "{{ minecraft_uid }}"
       GID: "{{ minecraft_gid }}"
