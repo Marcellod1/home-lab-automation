@@ -12,6 +12,7 @@ minecraft_proxy_forawrding_secret: !vault |
 minecraft_servers:
     vanilla:
       domain: vanilla.mc.marcellodb.ca
+      icon: https://www.marcellodb.ca/resources/img/mc-server-icon2.png
       port: 25566
       memory: "8G"
       difficulty: "hard"

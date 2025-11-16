@@ -38,6 +38,10 @@ services:
       MEMORY: "{{ server.memory | default('8G') }}"
       TYPE: "{{ server.type | default('VANILLA') }}"
       DIFFICULTY: "{{ server.difficulty | default('normal') }}"
+{% if server.icon is defined %}
+      OVERRIDE_ICON: true
+      ICON: "{{ server.icon }}"
+{% endif %}
 {% if server.ops is defined %}
       OPS: "{{ server.ops }}"
 {% endif %}
