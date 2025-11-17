@@ -43,7 +43,11 @@ services:
       ICON: "{{ server.icon }}"
 {% endif %}
 {% if server.ops is defined %}
-      OPS: "{{ server.ops }}"
+      OPS: "{{ server.ops | join(',') }}"
+{% endif %}
+{% if server.whitelist is defined %}
+      ENABLE_WHITELIST: true
+      WHITELIST: "{{ server.whitelist | join(',') }}"
 {% endif %}
 {% if server.cf_api_key is defined %}
       CF_API_KEY: "{{ server.cf_api_key | replace('$', '$$') }}"
@@ -56,7 +60,6 @@ services:
 {% if server.type == "PAPER" %}
       - "{{ docker_stacks_directory }}/{{ minecraft_stack_name }}/paper-global.yml:/config/paper-global.yml"
 {% endif %}
-
     restart: unless-stopped
 {% endfor %}
 

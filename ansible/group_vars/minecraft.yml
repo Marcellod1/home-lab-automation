@@ -9,6 +9,22 @@ minecraft_proxy_forawrding_secret: !vault |
           38363532653365616638363661633961373132326665643963326235653764333732323939643562
           3764616539623766313332303239666333373837396437626461
 
+minecraft_ops:
+  - EqualMarcello
+
+minecraft_whitelist:
+  - "ItsBacara"
+  - "Steve_Ohhhhh"
+  - "heckinkiki"
+  - "Dealerin"
+  - "ShadOblivion"
+  - "MastrIgnis9"
+  - "MorganDoesStuff"
+  - "EqualMarcello"
+  - "theshortchris"
+  - "ilovemydogdaisy"
+  - "Sir_Mannington"
+
 minecraft_servers:
     vanilla:
       domain: vanilla.mc.marcellodb.ca
@@ -16,14 +32,16 @@ minecraft_servers:
       port: 25566
       memory: "8G"
       difficulty: "hard"
-      ops: "EqualMarcello"
+      ops: "{{ minecraft_ops }}"
+      whitelist: "{{ minecraft_whitelist }}"
       type: "PAPER"
     vanilla2:
       domain: vanilla2.mc.marcellodb.ca
       port: 25567
       memory: "4G"
       difficulty: "hard"
-      ops: "EqualMarcello"
+      ops: "{{ minecraft_ops }}"
+      whitelist: "{{ minecraft_whitelist }}"
       type: "PAPER"
     # atm:
     #   domain: atm.mc.marcellodb.ca
