@@ -53,6 +53,10 @@ services:
 {% endif %}
     volumes:
       - "{{ name }}:/data"
+{% if server.type == "PAPER" %}
+      - "{{ docker_stacks_directory }}/{{ minecraft_stack_name }}/paper-global.yml:/config/paper-global.yml"
+{% endif %}
+
     restart: unless-stopped
 {% endfor %}
 
