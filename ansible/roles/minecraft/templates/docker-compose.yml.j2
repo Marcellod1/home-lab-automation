@@ -10,10 +10,11 @@ services:
       TYPE: "VELOCITY"
       DEBUG: "true"
       ENABLE_RCON: "true"
+      JVM_OPTS: "-Dvelocity.packet-decode-logging=true -Dvelocity.max-known-packs=4096"
     volumes:
       - "proxy:/server"
-      - "{{ docker_stacks_directory }}/{{ minecraft_stack_name }}/velocity.toml:/config/velocity.toml:ro"
-      - "{{ docker_stacks_directory }}/{{ minecraft_stack_name }}/forwarding.secret:/config/forwarding.secret:ro"
+      - "{{ docker_stacks_directory }}/{{ minecraft_stack_name }}/config/velocity.toml:/config/velocity.toml:ro"
+      - "{{ docker_stacks_directory }}/{{ minecraft_stack_name }}/config/forwarding.secret:/config/forwarding.secret:ro"
     depends_on:
 {% for name, server in minecraft_servers.items() %}
       - {{ name }}
@@ -58,7 +59,11 @@ services:
     volumes:
       - "{{ name }}:/data"
 {% if server.type == "PAPER" %}
-      - "{{ docker_stacks_directory }}/{{ minecraft_stack_name }}/paper-global.yml:/config/paper-global.yml"
+      - "{{ docker_stacks_directory }}/{{ minecraft_stack_name }}/config/paper-global.yml:/config/paper-global.yml"
+{% endif %}
+{% if server.type == "AUTO_CURSEFORGE" %}
+      - "{{ docker_stacks_directory }}/{{ minecraft_stack_name }}/mods/:/mods/"
+      - "{{ docker_stacks_directory }}/{{ minecraft_stack_name }}/config/neovelocity-common.toml:/config/neovelocity-common.toml"
 {% endif %}
     restart: unless-stopped
 {% endfor %}

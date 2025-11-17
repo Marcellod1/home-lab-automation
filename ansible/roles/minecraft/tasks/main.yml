@@ -31,34 +31,69 @@
   file:
     path: "{{ docker_stacks_directory }}/{{ minecraft_stack_name }}"
     state: directory
-    recurse: true
     owner: minecraft
     group: minecraft
     mode: "750"
 
-- name: Template {{ docker_stacks_directory }}/{{ minecraft_stack_name }}/velocity.toml
+- name: Ensure config directory exists
+  become: true
+  file:
+    path: "{{ docker_stacks_directory }}/{{ minecraft_stack_name }}/config"
+    state: directory
+    owner: minecraft
+    group: minecraft
+    mode: "750"
+
+- name: Template {{ docker_stacks_directory }}/{{ minecraft_stack_name }}/config/velocity.toml
   become: true
   template:
     src: velocity.toml.j2
-    dest: "{{ docker_stacks_directory }}/{{ minecraft_stack_name }}/velocity.toml"
+    dest: "{{ docker_stacks_directory }}/{{ minecraft_stack_name }}/config/velocity.toml"
     owner: minecraft
     group: minecraft
     mode: "640"
 
-- name: Template {{ docker_stacks_directory }}/{{ minecraft_stack_name }}/forwarding.secret
+- name: Template {{ docker_stacks_directory }}/{{ minecraft_stack_name }}/config/forwarding.secret
   become: true
   template:
     src: forwarding.secret.j2
-    dest: "{{ docker_stacks_directory }}/{{ minecraft_stack_name }}/forwarding.secret"
+    dest: "{{ docker_stacks_directory }}/{{ minecraft_stack_name }}/config/forwarding.secret"
     owner: minecraft
     group: minecraft
     mode: "640"
 
-- name: Template {{ docker_stacks_directory }}/{{ minecraft_stack_name }}/paper-global.yml
+- name: Template {{ docker_stacks_directory }}/{{ minecraft_stack_name }}/config/paper-global.yml
   become: true
   template:
     src: paper-global.yml.j2
-    dest: "{{ docker_stacks_directory }}/{{ minecraft_stack_name }}/paper-global.yml"
+    dest: "{{ docker_stacks_directory }}/{{ minecraft_stack_name }}/config/paper-global.yml"
+    owner: minecraft
+    group: minecraft
+    mode: "640"
+
+- name: Template {{ docker_stacks_directory }}/{{ minecraft_stack_name }}/config/neovelocity-common.toml.yml
+  become: true
+  template:
+    src: neovelocity-common.toml.j2
+    dest: "{{ docker_stacks_directory }}/{{ minecraft_stack_name }}/config/neovelocity-common.toml"
+    owner: minecraft
+    group: minecraft
+    mode: "640"
+
+- name: Ensure mods directory exists
+  become: true
+  file:
+    path: "{{ docker_stacks_directory }}/{{ minecraft_stack_name }}/mods"
+    state: directory
+    owner: minecraft
+    group: minecraft
+    mode: "750"
+
+- name: Copy Neovelocity mod jar
+  become: true
+  copy:
+    src: "mods/neovelocity-neoforge-1.2.4.jar"
+    dest: "{{ docker_stacks_directory }}/{{ minecraft_stack_name }}/mods/neovelocity-neoforge-1.2.4.jar"
     owner: minecraft
     group: minecraft
     mode: "640"
