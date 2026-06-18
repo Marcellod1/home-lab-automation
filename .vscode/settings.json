@@ -1,4 +1,8 @@
 {
     "ansible.validation.lint.enabled": false,
-    "ansible.python.interpreterPath": "/home/marcello/dev/home-lab-automation/ansible/.venv/bin/python"
+    "yaml.customTags": [
+        "!vault scalar",
+        "!vault mapping",
+        "!unsafe"
+    ]
 }
