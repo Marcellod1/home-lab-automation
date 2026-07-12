@@ -1,6 +1,6 @@
 unifi_stack_name: unifi
 unifi_container_name: unifi
-unifi_container_version: 9.3.45
+unifi_container_version: v10.0
 unifi_url: https://unifi.lab.marcellodb.ca
 unifi_username: homepage
 unifi_password: !vault |
@@ -10,7 +10,7 @@ unifi_password: !vault |
           37306163623662363633616630383364393364393834646138643437623431333862666633346231
           6332383066663034360a363835326263363730343938343335363561383833333134326433386232
           65653532343831386364383831613861633632313162616666336465616463643433
-mongodb_container_version: 8.0.5
+mongodb_container_version: 8.3.4
 mongodb_initdb_root_password: !vault |
           $ANSIBLE_VAULT;1.1;AES256
           65326435336430383865623565383035666338663931303564313237343266363139356365646466
