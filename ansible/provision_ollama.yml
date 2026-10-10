@@ -1,0 +1,5 @@
+- name: Set up local LLM server with GPU support
+  hosts: ollama
+  become: true
+  roles:
+    - ollama

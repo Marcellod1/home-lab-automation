@@ -1,0 +1,104 @@
+---
+- name: Install kernel headers and build tools (must come before drivers)
+  ansible.builtin.apt:
+    name:
+      - linux-headers-generic
+      - linux-headers-{{ ansible_kernel }}
+      - dkms
+      - build-essential
+    state: present
+    update_cache: true
+
+- name: Install NVIDIA drivers
+  ansible.builtin.apt:
+    name: ubuntu-drivers-common
+    state: present
+
+- name: Check if a working NVIDIA driver is already loaded
+  ansible.builtin.command: nvidia-smi
+  register: nvidia_smi_check
+  changed_when: false
+  failed_when: false
+
+# nvidia-smi only succeeds when the driver is installed AND loaded, so this
+# task runs exactly once - on first setup. Re-runs skip it, no reboot.
+- name: Auto-install recommended NVIDIA drivers
+  ansible.builtin.command: ubuntu-drivers autoinstall
+  register: driver_install
+  when: nvidia_smi_check.rc != 0
+
+- name: Reboot to activate the new driver/kernel
+  ansible.builtin.reboot:
+    reboot_timeout: 600
+  when: driver_install is changed
+
+- name: Verify NVIDIA driver is loaded
+  ansible.builtin.command: nvidia-smi
+  register: nvidia_smi
+  changed_when: false
+
+- name: Show detected GPU
+  ansible.builtin.debug:
+    msg: "{{ nvidia_smi.stdout_lines | select('search', 'GeForce|RTX|GTX|Tesla|Quadro|NVIDIA') | list }}"
+
+# Follows NVIDIA's official install docs:
+# https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html
+# Version is pinned via nvidia_container_toolkit_version - define it in your
+# role's defaults/main.yml, e.g.:  nvidia_container_toolkit_version: "1.20.1-1"
+
+- name: Install repository prerequisites
+  ansible.builtin.apt:
+    name:
+      - ca-certificates
+      - curl
+      - gnupg2
+    state: present
+    update_cache: true
+
+- name: Add NVIDIA Container Toolkit GPG key (dearmored)
+  ansible.builtin.shell: >
+    curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey |
+    gpg --dearmor -o /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg
+  args:
+    creates: /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg
+
+- name: Configure the production repository (signed-by patched in)
+  ansible.builtin.apt_repository:
+    repo: "deb [signed-by=/usr/share/keyrings/nvidia-container-toolkit-keyring.gpg] https://nvidia.github.io/libnvidia-container/stable/deb/amd64 /"
+    filename: nvidia-container-toolkit
+    state: present
+
+- name: Install pinned NVIDIA Container Toolkit packages
+  ansible.builtin.apt:
+    name:
+      - "nvidia-container-toolkit={{ nvidia_container_toolkit_version }}"
+      - "nvidia-container-toolkit-base={{ nvidia_container_toolkit_version }}"
+      - "libnvidia-container-tools={{ nvidia_container_toolkit_version }}"
+      - "libnvidia-container1={{ nvidia_container_toolkit_version }}"
+    state: present
+    update_cache: true
+
+# nvidia-ctk rewrites /etc/docker/daemon.json every time it runs, so we gate
+# on whether the runtime is already present to stay idempotent.
+- name: Check if Docker already has the NVIDIA runtime configured
+  ansible.builtin.shell: grep -q '"nvidia"' /etc/docker/daemon.json
+  register: nvidia_runtime_check
+  changed_when: false
+  failed_when: false
+
+- name: Configure Docker to use the NVIDIA runtime
+  ansible.builtin.command: nvidia-ctk runtime configure --runtime=docker
+  when: nvidia_runtime_check.rc != 0
+
+- name: Restart Docker to apply the NVIDIA runtime
+  ansible.builtin.service:
+    name: docker
+    state: restarted
+  when: nvidia_runtime_check.rc != 0
+
+- name: Verify GPU passthrough into containers
+  ansible.builtin.command: >
+    docker run --rm --gpus all
+    nvidia/cuda:12.4.0-base-ubuntu22.04 nvidia-smi
+  register: gpu_test
+  changed_when: false

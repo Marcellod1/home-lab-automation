@@ -1,0 +1,7 @@
+ollama_model: "llama3.1:8b"      # ~4.9GB Q4 — fits 6GB VRAM
+# ollama_model: "qwen2.5:7b"     # ~4.7GB
+# ollama_model: "gemma3:4b"      # ~3.3GB, faster
+# ollama_model: "phi4-mini"      # ~2.5GB, fastest
+ollama_port: 11434
+ollama_stack_name: ollama
+open_webui_port: 3000

@@ -11,6 +11,7 @@ docker03.lab.marcellodb.local
 docker01
 docker02
 docker03
+ollama
 
 [pve01]
 pve01.lab.marcellodb.local
@@ -70,5 +71,5 @@ docker02
 [rustdesk:children]
 docker03
 
-[ubuntu]
+[ollama]
 deeproot.lab.marcellodb.local
