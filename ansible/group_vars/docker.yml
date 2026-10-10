@@ -1,3 +1,2 @@
 docker_version: 5:29.5.1-1
 docker_stacks_directory: /opt/docker/
-docker_api_port: 2375
